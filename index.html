@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekskluzywny Salon Fryzjerski</title>
+    
+    <!-- Eleganckie fonty z Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- KROK 1: Preloader (Ekran ładowania) -->
+    <div class="preloader">
+        <img src="logo.png" alt="Logo Salonu" class="preloader-logo">
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- KROK 2: Sekcja Hero -->
+    <main>
+        <section class="hero">
+            <!-- Liście otaczające ekran (cztery rogi) -->
+            <img src="leaf1.png" alt="" class="jungle-leaf leaf-1">
+            <img src="leaf2.png" alt="" class="jungle-leaf leaf-2">
+            <img src="leaf3.png" alt="" class="jungle-leaf leaf-3">
+            <img src="leaf4.png" alt="" class="jungle-leaf leaf-4">
+
+            <!-- Główna zawartość -->
+            <div class="hero-content">
+                <h1 class="hero-title">Odkryj swoje piękno na nowo</h1>
+                <p class="hero-subtitle">Ekskluzywne doświadczenie dla Twoich włosów. <br>Harmonia natury i nowoczesnego luksusu.</p>
+                <a href="#" class="btn-primary">Zarezerwuj wizytę (Booksy)</a>
+            </div>
+        </section>
+
+        <!-- Sekcja pomocnicza - pozwala na przewijanie i przetestowanie Paralaksy -->
+        <section class="spacer">
+            <h2>Przewijaj dalej, aby doświadczyć harmonii...</h2>
+        </section>
+    </main>
+
+    <!-- Biblioteki GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
