@@ -1,40 +1,46 @@
+/* ================= ZMIENNE KOLORYSTYCZNE & FONTY ================= */
 :root {
     --bg-dark: #161a18;           
-    --bg-darker: #121513;         /* O ton ciemniejsze tło dla sekcji usług (odcięcie) */
+    --bg-darker: #101311;         
     --primary-green: #4f6f52;     
     --accent-sand: #d7c4a5;       
     --accent-sand-hover: #e8d7bb; 
     --text-light: #f4f1eb;        
-    --text-muted: #a3a7a4;        
+    --text-muted: #8b908d;        
     
-    /* Zmodyfikowana typografia */
     --font-heading: 'Bebas Neue', sans-serif;
     --font-body: 'Montserrat', sans-serif;
 }
 
+/* ================= RESET ================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body, html {
+html {
+    scroll-behavior: smooth; /* Płynne przewijanie do kotwic */
+}
+
+body {
     width: 100%;
     background-color: var(--bg-dark);
     color: var(--text-light);
     font-family: var(--font-body);
     overflow-x: hidden; 
+    -webkit-font-smoothing: antialiased; /* Lepsza czytelność */
 }
 
-/* WSPÓLNE KLASY DLA NOWYCH SEKCJI */
+/* ================= KLASY GLOBALNE ================= */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 25px;
 }
 
 .section-padding {
-    padding: 120px 0;
+    padding: 130px 0;
 }
 
 .bg-darker {
@@ -50,13 +56,38 @@ body, html {
     font-size: clamp(2.5rem, 5vw, 4rem);
     color: var(--accent-sand);
     text-align: center;
-    margin-bottom: 60px;
-    letter-spacing: 4px; /* Eleganckie rozstrzelenie liter */
+    margin-bottom: 70px;
+    letter-spacing: 5px; 
 }
 
-/* ---------------------------------
-   PRELOADER
------------------------------------*/
+/* Stan początkowy dla sekcji animowanych w JS (niweluje skok ekranu) */
+.gs-reveal {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Przycisk CTA */
+.btn-primary {
+    display: inline-block;
+    padding: 18px 45px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--bg-dark);
+    background-color: var(--accent-sand);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid var(--accent-sand);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--accent-sand);
+}
+
+/* ================= PRELOADER ================= */
 .preloader {
     position: fixed;
     top: 0;
@@ -69,20 +100,20 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
 }
 
-.preloader-logo {
-    width: 250px; 
-    height: auto;
-    object-fit: contain;
+.preloader-brand {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--accent-sand);
+    letter-spacing: 8px;
+    margin-bottom: 30px;
 }
 
 .progress-container {
-    width: 200px;
-    height: 2px;
+    width: 250px;
+    height: 1px;
     background-color: rgba(215, 196, 165, 0.2); 
-    border-radius: 2px;
     overflow: hidden;
 }
 
@@ -92,9 +123,7 @@ body, html {
     background-color: var(--accent-sand);
 }
 
-/* ---------------------------------
-   SEKCJA HERO
------------------------------------*/
+/* ================= SEKCJA HERO ================= */
 .hero {
     position: relative;
     width: 100%;
@@ -109,220 +138,104 @@ body, html {
     position: relative;
     z-index: 10;
     text-align: center;
-    max-width: 800px;
+    max-width: 850px;
     padding: 0 20px;
 }
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(4rem, 8vw, 7rem);
+    font-size: clamp(4rem, 8vw, 7.5rem);
     color: var(--accent-sand);
     line-height: 1;
-    margin-bottom: 20px;
-    letter-spacing: 5px; 
+    margin-bottom: 25px;
+    letter-spacing: 6px; 
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
     font-weight: 300;
-    line-height: 1.6;
-    margin-bottom: 40px;
+    line-height: 1.7;
+    margin-bottom: 45px;
     color: var(--text-light);
     opacity: 0.9;
 }
 
-/* Przycisk CTA */
-.btn-primary {
-    display: inline-block;
-    padding: 18px 40px;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--bg-dark);
+/* Animowana myszka sygnalizująca scroll */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    opacity: 0.6;
+}
+
+.mouse {
+    width: 26px;
+    height: 42px;
+    border: 2px solid var(--accent-sand);
+    border-radius: 15px;
+    position: relative;
+}
+
+.mouse::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
     background-color: var(--accent-sand);
-    text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border: 1px solid var(--accent-sand);
+    border-radius: 50%;
+    animation: scrollWheel 2s infinite ease-in-out;
 }
 
-.btn-primary:hover {
-    background-color: transparent;
-    color: var(--accent-sand);
+@keyframes scrollWheel {
+    0% { top: 8px; opacity: 1; }
+    100% { top: 24px; opacity: 0; }
 }
 
-/* LIŚCIE W HERO */
+/* Liście 3D Paralaksa */
 .jungle-leaf {
     position: absolute;
     z-index: 5;
     pointer-events: none; 
     opacity: 0.9;
-    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.7)); 
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)); 
 }
 
-.leaf-1 { top: -5%; left: -10%; width: 35vw; min-width: 300px; transform: rotate(115deg); }
-.leaf-2 { top: -5%; right: -10%; width: 30vw; min-width: 250px; transform: rotate(20deg) scaleX(-1); }
-.leaf-3 { bottom: -15%; left: -10%; width: 40vw; min-width: 350px; transform: rotate(280deg); }
-.leaf-4 { bottom: -10%; right: -10%; width: 35vw; min-width: 280px; transform: rotate(205deg); }
+.leaf-1 { top: -8%; left: -8%; width: 35vw; min-width: 250px; transform: rotate(115deg); }
+.leaf-2 { top: -5%; right: -10%; width: 30vw; min-width: 220px; transform: rotate(20deg) scaleX(-1); }
+.leaf-3 { bottom: -15%; left: -10%; width: 40vw; min-width: 280px; transform: rotate(280deg); }
+.leaf-4 { bottom: -10%; right: -8%; width: 35vw; min-width: 250px; transform: rotate(205deg); }
 
-/* ---------------------------------
-   O PRACOWNI
------------------------------------*/
+/* ================= O PRACOWNI ================= */
 .about-text {
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
     text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 1.15rem;
+    line-height: 1.9;
     font-weight: 300;
     color: var(--text-light);
 }
 
-/* ---------------------------------
-   USŁUGI (KAFELKI)
------------------------------------*/
+/* ================= USŁUGI / CENNIK ================= */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
 }
 
 .service-card {
     background-color: var(--bg-dark);
-    border: 1px solid rgba(215, 196, 165, 0.15);
-    padding: 50px 30px;
+    border: 1px solid rgba(215, 196, 165, 0.1);
+    padding: 60px 40px;
     text-align: center;
-    transition: transform 0.4s ease, border-color 0.4s ease;
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    border-color: var(--accent-sand);
-}
-
-.service-title {
-    font-family: var(--font-heading);
-    font-size: 2.2rem;
-    color: var(--accent-sand);
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-}
-
-.service-price {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--text-light);
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid rgba(215, 196, 165, 0.3);
-}
-
-.service-desc {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    font-weight: 300;
-    color: var(--text-muted);
-}
-
-/* ---------------------------------
-   KONTAKT I GODZINY
------------------------------------*/
-.contact-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    justify-content: center;
-}
-
-.contact-info, .contact-hours {
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
-    padding: 40px;
-    background-color: var(--bg-darker);
-    border-left: 2px solid var(--accent-sand);
-}
-
-.contact-info h3, .contact-hours h3 {
-    font-family: var(--font-heading);
-    font-size: 2.2rem;
-    color: var(--accent-sand);
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-}
-
-.contact-info p {
-    font-weight: 300;
-    line-height: 1.8;
-    margin-bottom: 15px;
-}
-
-.contact-phone {
-    font-size: 1.4rem;
-    font-weight: 500 !important;
-    color: var(--accent-sand);
-}
-
-.hours-list {
-    list-style: none;
-}
-
-.hours-list li {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-weight: 300;
-}
-
-.hours-list li:last-child {
-    border-bottom: none;
-}
-
-/* ---------------------------------
-   STOPKA (FOOTER)
------------------------------------*/
-.footer {
-    background-color: #0d100e; /* Najciemniejszy kolor na dnie */
-    padding: 30px 0;
-    border-top: 1px solid rgba(215, 196, 165, 0.1);
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.copyright {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 300;
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-}
-
-.social-icon {
-    color: var(--accent-sand);
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.social-icon:hover {
-    color: var(--text-light);
-    transform: scale(1.1);
-}
-
-/* ---------------------------------
-   RESPONSYWNOŚĆ (MEDIA QUERIES)
------------------------------------*/
-@media (max-width: 768px) {
-    .section-padding { padding: 80px 0; }
-    .hero-title { letter-spacing: 3px; }
-    .footer-content { justify-content: center; text-align: center; }
-}
+    border-color: rgba(215, 196,
