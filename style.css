@@ -238,4 +238,158 @@ body {
 
 .service-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(215, 196,
+    border-color: rgba(215, 196, 165, 0.5);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.service-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--accent-sand);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.service-price {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(215, 196, 165, 0.2);
+}
+
+.service-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-weight: 300;
+    color: var(--text-muted);
+}
+
+/* ================= KONTAKT ================= */
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.contact-info, .contact-hours {
+    flex: 1;
+    min-width: 320px;
+    max-width: 500px;
+    padding: 50px;
+    background-color: var(--bg-darker);
+    border-left: 2px solid var(--accent-sand);
+}
+
+.contact-info h3, .contact-hours h3 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--accent-sand);
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.contact-info p {
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+}
+
+/* Linki kontaktowe (telefon, mail) */
+.contact-phone, .contact-email {
+    display: block;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.contact-phone {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--accent-sand);
+    margin-top: 15px;
+}
+
+.contact-phone:hover, .contact-email:hover {
+    color: var(--accent-sand-hover);
+}
+
+.hours-list {
+    list-style: none;
+}
+
+.hours-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-weight: 300;
+    color: var(--text-light);
+}
+
+.hours-list li:last-child {
+    border-bottom: none;
+}
+
+.muted-text {
+    color: var(--text-muted);
+}
+
+/* ================= STOPKA ================= */
+.footer {
+    background-color: #0c0e0d; 
+    padding: 40px 0;
+    border-top: 1px solid rgba(215, 196, 165, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    color: var(--accent-sand);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--text-light);
+    transform: translateY(-3px);
+}
+
+/* ================= MEDIA QUERIES (RWD) ================= */
+@media (max-width: 900px) {
+    .contact-wrapper { flex-direction: column; align-items: center; }
+    .contact-info, .contact-hours { max-width: 100%; border-left: none; border-top: 2px solid var(--accent-sand); }
+}
+
+@media (max-width: 768px) {
+    .section-padding { padding: 90px 0; }
+    .hero-title { letter-spacing: 3px; }
+    .footer-content { flex-direction: column; text-align: center; justify-content: center; }
+    .service-card { padding: 40px 25px; }
+}
+
+@media (max-width: 480px) {
+    .hero-title { font-size: 3rem; }
+    .btn-primary { padding: 15px 30px; font-size: 0.8rem; }
+}
