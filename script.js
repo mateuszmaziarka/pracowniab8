@@ -1,12 +1,12 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// Ukrywamy elementy przed animacją by nie "mrugały" na ekranie
+// Ukrywamy elementy przed startem animacji
 gsap.set([".gs-reveal-hero", ".gs-reveal-nav", ".gs-reveal-up"], { opacity: 0, y: 30 });
-gsap.set(".hero-image", { scale: 1.15 }); // Zdjęcie delikatnie powiększone na start
+gsap.set(".hero-image", { scale: 1.15 }); 
 
 const mainTimeline = gsap.timeline();
 
-// 1. ŁADOWANIE PRELOADERA
+// 1. ŁADOWANIE PRELOADERA (Oryginalny szampański/beżowy pasek)
 mainTimeline.to(".progress-line-inner", {
     width: "100%",
     duration: 1.8,
@@ -21,13 +21,14 @@ mainTimeline.to(".progress-line-inner", {
         document.querySelector(".preloader").style.display = "none";
     }
 })
-// 3. EFEKT KENA BURNSA NA TLE (bardzo powolne oddalenie tła)
+// 3. EFEKT KENA BURNSA NA TLE (powolne oddalenie tła, buduje napięcie)
 .to(".hero-image", {
     scale: 1,
     duration: 4,
     ease: "power2.out"
-}, "-=0.8") // Zaczyna się lekko przed końcem znikania preloadera
-// 4. ANIMACJA TEKSTÓW W HERO
+}, "-=0.8") 
+
+// 4. ANIMACJA WEJŚCIA TEKSTÓW I MENU
 .to([".gs-reveal-nav", ".gs-reveal-hero"], {
     y: 0,
     opacity: 1,
@@ -37,7 +38,7 @@ mainTimeline.to(".progress-line-inner", {
 }, "-=3.5");
 
 // ================= ANIMACJE PRZY SCROLLOWANIU =================
-// Każda sekcja będzie elegancko i powoli wypływać od dołu
+// Każda kolejna sekcja będzie elegancko i miękko wypływać od dołu
 const scrollElements = document.querySelectorAll('.gs-reveal-up');
 
 scrollElements.forEach((elem) => {
@@ -48,14 +49,14 @@ scrollElements.forEach((elem) => {
         ease: "power2.out",
         scrollTrigger: {
             trigger: elem,
-            start: "top 85%", // Aktywacja, gdy góra elementu jest w 85% ekranu
-            toggleActions: "play none none none" // Odpala się raz i zostaje
+            start: "top 85%", // Odpala, gdy element pojawi się na dole ekranu
+            toggleActions: "play none none none" 
         }
     });
 });
 
 // ================= PARALAKSA ZDJĘCIA O PRACOWNI =================
-// Zdjęcie będzie się delikatnie przesuwać wewnątrz swojego kontenera podczas scrolla
+// Zdjęcie w sekcji "O pracowni" przesuwa się lekko wewnątrz ramki na scrollu
 gsap.to(".about-image", {
     y: 50,
     ease: "none",
