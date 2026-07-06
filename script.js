@@ -20,7 +20,7 @@ mainTimeline.to(".progress-bar", {
 // ANIMACJA WEJŚCIOWA PO ZAŁADOWANIU
 .fromTo(".jungle-leaf", 
     { scale: 0.8, opacity: 0 },
-    { scale: 1, opacity: 0.8, duration: 1.5, stagger: 0.1, ease: "power3.out" },
+    { scale: 1, opacity: 0.9, duration: 1.5, stagger: 0.1, ease: "power3.out" },
     "-=0.4"
 )
 .fromTo([".hero-title", ".hero-subtitle", ".btn-primary"], 
@@ -45,7 +45,7 @@ gsap.to(".leaf-1", {
 gsap.to(".leaf-2", {
     y: -250,           
     x: 50,
-    rotation: 15,      
+    rotation: 40,      
     ease: "none",
     scrollTrigger: {
         trigger: ".hero",
@@ -70,7 +70,7 @@ gsap.to(".leaf-3", {
 gsap.to(".leaf-4", {
     y: -200,
     x: 40,
-    rotation: -10,
+    rotation: 185,
     ease: "none",
     scrollTrigger: {
         trigger: ".hero",
