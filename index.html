@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- Lenis Smooth Scroll -->
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <style>
   :root{
     --bg: #fcfbfa;
@@ -22,15 +24,6 @@
   }
 
   * { box-sizing: border-box; margin:0; padding:0; }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
-  }
-
-  section, header.hero, footer{
-    scroll-snap-align: start;
-  }
 
   body{
     background: var(--bg);
@@ -213,21 +206,30 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @supports (height: 100svh){
+    .loader{ height: 100svh; }
+  }
+
+  .loader-bg{
+    position: absolute;
+    inset: 0;
     background: #0f1e17;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition: opacity 0.7s ease, visibility 0.7s ease;
+    transition: opacity 0.8s ease;
+    z-index: 1;
   }
 
-  .loader.hidden{
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .loader-logo{
-    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
+  .loader-content{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 0 24px;
   }
 
   .loader-bar{
@@ -240,6 +242,8 @@
     background: rgba(255,255,255,0.16);
     border-radius: 4px;
     overflow: hidden;
+    z-index: 2;
+    transition: opacity 0.8s ease;
   }
 
   .loader-bar-fill{
@@ -247,6 +251,17 @@
     height: 100%;
     background: var(--sand-gold-light);
     border-radius: 4px;
+    transition: width 0.1s linear;
+  }
+
+  .loader.hidden .loader-bg,
+  .loader.hidden .loader-bar {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .loader.hidden {
+    pointer-events: none;
   }
 
   /* HERO */
@@ -294,9 +309,6 @@
     width: min(420px, 74vw);
     height: auto;
     filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 1s ease, transform 1s ease;
   }
 
   .hero-tagline{
@@ -313,13 +325,7 @@
   }
 
   .hero-content.animate .hero-kicker{ opacity:1; transform: translateY(0); transition-delay: 0.15s; }
-  .hero-content.animate .hero-logo{ opacity:1; transform: translateY(0); transition-delay: 0.4s; }
-  .hero-content.animate .hero-tagline{ opacity:1; transform: translateY(0); transition-delay: 0.75s; }
-
-  .loader-logo{
-    opacity: 1 !important;
-    transform: none !important;
-  }
+  .hero-content.animate .hero-tagline{ opacity:1; transform: translateY(0); transition-delay: 0.3s; }
 
   .hero-scroll{
     position:absolute;
@@ -821,6 +827,26 @@
       visibility: visible;
       transition: transform 0.45s cubic-bezier(.77,0,.18,1), visibility 0s linear 0s;
     }
+    
+    /* Force light colors when mobile menu is open, regardless of .scrolled */
+    .navbar.scrolled .nav-links.open a,
+    .navbar .nav-links.open a {
+      color: #f0ece2 !important;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.3) !important;
+    }
+    .navbar.scrolled .nav-links.open a:hover,
+    .navbar .nav-links.open a:hover {
+      color: #ffffff !important;
+    }
+    .navbar.scrolled .nav-links.open a::after,
+    .navbar .nav-links.open a::after {
+      background: var(--sand-gold-light) !important;
+    }
+    .navbar.scrolled .nav-toggle.active span,
+    .navbar .nav-toggle.active span {
+      background: #f5efe4 !important;
+    }
+
     .nav-links a{ font-size: 1.05rem; }
     .nav-toggle{ display:flex; }
     .services-grid{ grid-template-columns: 1fr; }
@@ -837,8 +863,15 @@
 <body>
 
 <div class="loader" id="loader">
-  <img src="logo.png" alt="Pracownia B8" class="hero-logo loader-logo">
-  <div class="loader-bar"><div class="loader-bar-fill" id="loaderFill"></div></div>
+  <div class="loader-bg" id="loaderBg"></div>
+  <div class="loader-content">
+    <span class="hero-kicker" style="visibility:hidden; margin:0;">Rzeszów · Hair &amp; Beauty Studio</span>
+    <img src="logo.png" alt="Pracownia B8" class="hero-logo loader-logo">
+    <p class="hero-tagline" style="visibility:hidden; margin:0;">Miejsce, gdzie luksus wiąże się z pasją i precyzją każdego cięcia.</p>
+  </div>
+  <div class="loader-bar" id="loaderBarWrapper">
+    <div class="loader-bar-fill" id="loaderFill"></div>
+  </div>
 </div>
 
 <nav class="navbar" id="navbar">
@@ -895,7 +928,6 @@
 
     <div class="pricing-list">
 
-      <!-- STRZYŻENIE -->
       <details class="glass pricing-category" open>
         <summary>
           <span class="cat-icon">✂</span>
@@ -903,7 +935,6 @@
           <span class="cat-chevron">▾</span>
         </summary>
         <div class="pricing-body">
-
           <div class="price-item">
             <div class="price-item-info">
               <h4>Strzyżenie damskie</h4>
@@ -916,36 +947,29 @@
               <div class="variant-row"><span class="variant-name">Włosy Bardzo Długie – Niżej Łopatek</span><span class="variant-meta">180 zł <small>1g 30min</small></span></div>
             </div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info"><h4>Strzyżenie grzywki</h4><p>Podcięcie grzywki</p></div>
-            <div class="price-single"><span class="amount">40 zł <small class="variant-meta"></small></span></div>
+            <div class="price-single"><span class="amount">40 zł</span></div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info"><h4>Strzyżenie męskie</h4></div>
             <div class="price-single"><span class="amount">80 zł</span></div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info"><h4>Strzyżenie męskie (maszynka)</h4></div>
             <div class="price-single"><span class="amount">60 zł</span></div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info"><h4>Strzyżenie dziecka (chłopcy do 10 lat)</h4><p>Usługa obejmuje mycie, strzyżenie i modelowanie</p></div>
             <div class="price-single"><span class="amount">70 zł</span></div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info"><h4>Strzyżenie dziecka (dziewczynki do 10 lat)</h4><p>Usługa obejmuje strzyżenie włosów na sucho po wcześniejszym umyciu włosów</p></div>
             <div class="price-single"><span class="amount">70 zł</span></div>
           </div>
-
         </div>
       </details>
 
-      <!-- KOLORYZACJA -->
       <details class="glass pricing-category">
         <summary>
           <span class="cat-icon">◆</span>
@@ -953,7 +977,6 @@
           <span class="cat-chevron">▾</span>
         </summary>
         <div class="pricing-body">
-
           <div class="price-item">
             <div class="price-item-info"><h4>Koloryzacja jednolita</h4></div>
             <div class="price-variants">
@@ -962,7 +985,6 @@
               <div class="variant-row"><span class="variant-name">Włosy Długie – Niżej Ramion</span><span class="variant-meta">320 zł <small>2g 30min</small></span></div>
             </div>
           </div>
-
           <div class="price-item">
             <div class="price-item-info"><h4>Koloryzacja z rozjaśnieniem</h4></div>
             <div class="price-variants">
@@ -971,7 +993,6 @@
               <div class="variant-row"><span class="variant-name">Włosy Długie – Niżej Ramion</span><span class="variant-meta">470 zł <small>3g 30min</small></span></div>
             </div>
           </div>
-
           <div class="price-item">
             <div class="price-item-info"><h4>Balayage / Pasemka / Refleksy</h4></div>
             <div class="price-variants">
@@ -981,7 +1002,6 @@
               <div class="variant-row"><span class="variant-name">Włosy Bardzo Długie</span><span class="variant-meta">500 zł <small>5g</small></span></div>
             </div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info">
               <h4>Dekoloryzacja</h4>
@@ -989,7 +1009,6 @@
             </div>
             <div class="price-single"><span class="amount">500 zł+ <small class="variant-meta">5g</small></span></div>
           </div>
-
           <div class="price-item">
             <div class="price-item-info">
               <h4>Tonowanie</h4>
@@ -1001,7 +1020,6 @@
               <div class="variant-row"><span class="variant-name">Włosy Długie – Niżej Ramion</span><span class="variant-meta">270 zł <small>2g</small></span></div>
             </div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info">
               <h4>Tuszowanie siwizny</h4>
@@ -1009,11 +1027,9 @@
             </div>
             <div class="price-single"><span class="amount">80 zł <small class="variant-meta">20min</small></span></div>
           </div>
-
         </div>
       </details>
 
-      <!-- STYLIZACJA I UPIĘCIA -->
       <details class="glass pricing-category">
         <summary>
           <span class="cat-icon">✦</span>
@@ -1021,7 +1037,6 @@
           <span class="cat-chevron">▾</span>
         </summary>
         <div class="pricing-body">
-
           <div class="price-item">
             <div class="price-item-info"><h4>Modelowanie na szczotce</h4><p>Mycie i modelowanie</p></div>
             <div class="price-variants">
@@ -1030,7 +1045,6 @@
               <div class="variant-row"><span class="variant-name">Włosy Długie – Niżej Ramion</span><span class="variant-meta">130 zł <small>1g</small></span></div>
             </div>
           </div>
-
           <div class="price-item">
             <div class="price-item-info"><h4>Modelowanie Fale / Loki</h4><p>Mycie i modelowanie</p></div>
             <div class="price-variants">
@@ -1038,7 +1052,6 @@
               <div class="variant-row"><span class="variant-name">Włosy Długie – Niżej Ramion</span><span class="variant-meta">170 zł+ <small>1g 30min</small></span></div>
             </div>
           </div>
-
           <div class="price-item">
             <div class="price-item-info"><h4>Upięcia włosów</h4></div>
             <div class="price-variants">
@@ -1046,7 +1059,6 @@
               <div class="variant-row"><span class="variant-name">Włosy Długie</span><span class="variant-meta">350 zł+ <small>2g 30min</small></span></div>
             </div>
           </div>
-
           <div class="price-item">
             <div class="price-item-info"><h4>Upięcia ślubne</h4></div>
             <div class="price-variants">
@@ -1054,11 +1066,9 @@
               <div class="variant-row"><span class="variant-name">Włosy Długie</span><span class="variant-meta">350 zł+ <small>2g 30min</small></span></div>
             </div>
           </div>
-
         </div>
       </details>
 
-      <!-- PIELĘGNACJA I REGENERACJA -->
       <details class="glass pricing-category">
         <summary>
           <span class="cat-icon">❋</span>
@@ -1066,7 +1076,6 @@
           <span class="cat-chevron">▾</span>
         </summary>
         <div class="pricing-body">
-
           <div class="price-item">
             <div class="price-item-info">
               <h4>Rytuał Piękna Nashi (SPA Pielęgnacyjne)</h4>
@@ -1077,7 +1086,6 @@
               <div class="variant-row"><span class="variant-name">Włosy Długie</span><span class="variant-meta">160 zł <small>1g 30min</small></span></div>
             </div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info">
               <h4>Pielęgnacja bankietowa (Lifting Express)</h4>
@@ -1085,7 +1093,6 @@
             </div>
             <div class="price-single"><span class="amount">120 zł <small class="variant-meta">1g</small></span></div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info">
               <h4>Uszczelnienie łuski włosa</h4>
@@ -1093,7 +1100,6 @@
             </div>
             <div class="price-single"><span class="amount">250 zł <small class="variant-meta">1g 30min</small></span></div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info">
               <h4>3-etapowa rekonstrukcja włosów Filler Therapy</h4>
@@ -1101,7 +1107,6 @@
             </div>
             <div class="price-single"><span class="amount">250 zł+ <small class="variant-meta">1g 30min</small></span></div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info">
               <h4>Intensywna kuracja stymulująca (Essential Energy)</h4>
@@ -1109,7 +1114,6 @@
             </div>
             <div class="price-single"><span class="amount">120 zł <small class="variant-meta">1g 30min</small></span></div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info">
               <h4>Pielęgnacja dermatologiczna Armonia</h4>
@@ -1117,7 +1121,6 @@
             </div>
             <div class="price-single"><span class="amount">120 zł+ <small class="variant-meta">1g</small></span></div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info">
               <h4>Molekularna odbudowa włosów</h4>
@@ -1125,12 +1128,10 @@
             </div>
             <div class="price-single"><span class="amount">200 zł+ <small class="variant-meta">2g</small></span></div>
           </div>
-
           <div class="price-item single">
             <div class="price-item-info"><h4>Konsultacja fryzjerska</h4></div>
             <div class="price-single"><span class="amount">Bezpłatnie <small class="variant-meta">15min</small></span></div>
           </div>
-
         </div>
       </details>
 
@@ -1223,7 +1224,6 @@
     <h2 class="section-heading">Cennik i Rezerwacja</h2>
     <p class="section-sub">Sprawdź dostępne terminy i zarezerwuj wizytę online w wybranym przez siebie momencie.</p>
 
-    <!-- TUTAJ WKLEJ KOD EMBED Z BOOKSY -->
     <div class="glass booking-box">
       Widget rezerwacji Booksy zostanie umieszczony w tym miejscu.
     </div>
@@ -1269,14 +1269,28 @@
 </footer>
 
 <script>
+  // Inicjalizacja luksusowego Smooth Scroll (Lenis)
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true
+  });
+  
+  // Wstrzymanie scrolla na czas loadera
+  lenis.stop();
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
   const navOverlay = document.getElementById('navOverlay');
   const heroEl = document.getElementById('top');
 
-  // Pasek nawigacji: mocna zieleń dopóki widać zdjęcie hero,
-  // płynne przejście w szklany "liquid glass" po całkowitym zjechaniu z niego
   const heroObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) navbar.classList.remove('scrolled');
@@ -1285,7 +1299,6 @@
   }, { threshold: 0 });
   heroObserver.observe(heroEl);
 
-  // Menu mobilne
   const openMenu = () => {
     navLinks.classList.add('open');
     navOverlay.classList.add('active');
@@ -1302,11 +1315,21 @@
     navLinks.classList.contains('open') ? closeMenu() : openMenu();
   });
   navOverlay.addEventListener('click', closeMenu);
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
+
+  // Gładkie przewijanie linków za pomocą Lenis
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        lenis.scrollTo(targetEl);
+      }
+      closeMenu();
+    });
   });
 
-  // Ekran ładowania
+  // Logika Loadera i animacji
   const loader = document.getElementById('loader');
   const loaderFill = document.getElementById('loaderFill');
   const heroContent = document.getElementById('heroContent');
@@ -1325,18 +1348,39 @@
   }
   requestAnimationFrame(tickProgress);
 
-  window.addEventListener('load', () => {
-    loaded = true;
-    loaderFill.style.width = '100%';
-    setTimeout(() => {
-      loader.classList.add('hidden');
-      document.body.style.overflow = '';
-      // Animacja wejścia napisów i logo w hero, dopiero gdy strona jest widoczna
-      heroContent.classList.add('animate');
-    }, 450);
+  // Wymuszony minimalny czas Loadera (1 sekunda) 
+  const minTimePromise = new Promise(resolve => setTimeout(resolve, 1000));
+  
+  // Właściwy czas wczytywania strony
+  const windowLoadPromise = new Promise(resolve => {
+    if (document.readyState === 'complete') {
+      resolve();
+    } else {
+      window.addEventListener('load', resolve);
+    }
   });
 
-  // Wskaźnik "Przewiń" znika płynnie w dół krótko po rozpoczęciu przewijania
+  Promise.all([minTimePromise, windowLoadPromise]).then(() => {
+    loaded = true;
+    loaderFill.style.width = '100%';
+    
+    setTimeout(() => {
+      // Wyzwolenie przejścia Loadera w Hero (fade out tła i paska postępu)
+      loader.classList.add('hidden');
+      document.body.style.overflow = '';
+      lenis.start(); // Odblokowanie Lenis Smooth Scroll
+      
+      // Animacja tekstu Hero (logo jest już perfekcyjnie wyrównane dzięki identycznej strukturze w Loaderze)
+      heroContent.classList.add('animate');
+      
+      // Całkowite ukrycie diva Loadera po zakończeniu CSS transition
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 850);
+    }, 400); // 400ms marginesu na docelowy efekt wypełnienia paska w 100%
+  });
+
+  // Wskaźnik "Przewiń" znika płynnie
   const heroScroll = document.getElementById('heroScroll');
   let scrollStarted = false;
   window.addEventListener('scroll', () => {
