@@ -445,65 +445,49 @@
     overflow: hidden;
   }
 
-  .cat-header{
-    display:flex;
-    align-items:center;
+  .pricing-category summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
     gap: 18px;
     padding: 26px 32px;
-    cursor: pointer;
-    list-style: none;
     user-select: none;
     outline: none;
   }
 
-  .cat-header::-webkit-details-marker {
+  .pricing-category summary::-webkit-details-marker {
     display: none;
   }
 
-  .cat-icon{
+  .cat-icon {
     width: 44px;
     height: 44px;
     min-width: 44px;
     border-radius: 14px;
     background: var(--bottle-green);
     color: var(--sand-gold-light);
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.15rem;
   }
 
-  .cat-title{
+  .cat-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.55rem;
     color: var(--bottle-green);
     flex-grow: 1;
-    margin: 0;
   }
 
   .cat-chevron {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--bottle-green);
-    transition: transform 0.4s ease;
-    line-height: 1;
+    transition: transform 0.35s ease;
   }
 
   .pricing-category[open] .cat-chevron {
     transform: rotate(180deg);
-  }
-
-  .pricing-body-wrapper {
-    display: grid;
-    transition: grid-template-rows 0.4s ease-out;
-  }
-
-  /* Fallback dla wyłączonego JS */
-  .pricing-category[open] .pricing-body-wrapper {
-    grid-template-rows: 1fr;
-  }
-
-  .pricing-body-inner {
-    overflow: hidden;
   }
 
   .pricing-body{
@@ -566,13 +550,6 @@
   .pricing-cta{
     text-align:center;
     margin-top: 46px;
-  }
-
-  .pricing-note{
-    text-align:center;
-    margin-top: 16px;
-    font-size: 0.85rem;
-    color: #7a7a70;
   }
 
   /* TEAM */
@@ -935,71 +912,69 @@
     <div class="pricing-list">
 
       <details class="glass pricing-category">
-        <summary class="cat-header">
+        <summary>
           <span class="cat-icon">✂</span>
-          <h3 class="cat-title">Strzyżenie</h3>
+          <span class="cat-title">Strzyżenie</span>
           <span class="cat-chevron">▾</span>
         </summary>
-        <div class="pricing-body-wrapper">
-          <div class="pricing-body-inner">
-            <div class="pricing-body">
-              <div class="price-item">
+        <div class="accordion-content">
+          <div class="pricing-body">
+            <div class="price-item">
+              <div class="price-item-info">
+                <h4>Strzyżenie damskie</h4>
+                <p>Strzyżenie damskie włosów + podstawowa pielęgnacja</p>
+              </div>
+              <div class="price-variants">
+                <div class="variant-row"><span class="variant-name">Włosy Krótkie - Do Ucha</span><span class="variant-meta">120,00 zł <small>1g</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">140,00 zł <small>1g</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">160,00 zł <small>1g</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Bardzo Długie - Niżej Łopatek</span><span class="variant-meta">180,00 zł <small>1g 30min</small></span></div>
+              </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
                 <div class="price-item-info">
-                  <h4>Strzyżenie damskie</h4>
-                  <p>Strzyżenie damskie włosów + podstawowa pielęgnacja</p>
+                  <h4>Strzyżenie męskie</h4>
                 </div>
-                <div class="price-variants">
-                  <div class="variant-row"><span class="variant-name">Włosy Krótkie - Do Ucha</span><span class="variant-meta">120,00 zł <small>1g</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">140,00 zł <small>1g</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">160,00 zł <small>1g</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Bardzo Długie - Niżej Łopatek</span><span class="variant-meta">180,00 zł <small>1g 30min</small></span></div>
-                </div>
+                <span class="variant-meta">80,00 zł <small>45min</small></span>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info">
-                    <h4>Strzyżenie męskie</h4>
-                  </div>
-                  <span class="variant-meta">80,00 zł <small>45min</small></span>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info">
+                  <h4>Strzyżenie męskie (maszynka)</h4>
                 </div>
+                <span class="variant-meta">60,00 zł <small>30min</small></span>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info">
-                    <h4>Strzyżenie męskie (maszynka)</h4>
-                  </div>
-                  <span class="variant-meta">60,00 zł <small>30min</small></span>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info">
+                  <h4>Strzyżenie dziecka (chłopcy do 10 lat)</h4>
                 </div>
+                <span class="variant-meta">70,00 zł <small>30min</small></span>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info">
-                    <h4>Strzyżenie dziecka (chłopcy do 10 lat)</h4>
-                  </div>
-                  <span class="variant-meta">70,00 zł <small>30min</small></span>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info">
+                  <h4>Strzyżenie dziecka (dziewczynki do 10 lat)</h4>
                 </div>
+                <span class="variant-meta">70,00 zł <small>45min</small></span>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info">
-                    <h4>Strzyżenie dziecka (dziewczynki do 10 lat)</h4>
-                  </div>
-                  <span class="variant-meta">70,00 zł <small>45min</small></span>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0; align-items: flex-start;">
+                <div class="price-item-info">
+                  <h4>Strzyżenie grzywki</h4>
+                  <p>Podcięcie grzywki</p>
                 </div>
-              </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0; align-items: flex-start;">
-                  <div class="price-item-info">
-                    <h4>Strzyżenie grzywki</h4>
-                    <p>Podcięcie grzywki</p>
-                  </div>
-                  <span class="variant-meta" style="margin-top: 2px;">40,00 zł <small>15min</small></span>
-                </div>
+                <span class="variant-meta" style="margin-top: 2px;">40,00 zł <small>15min</small></span>
               </div>
             </div>
           </div>
@@ -1007,66 +982,64 @@
       </details>
 
       <details class="glass pricing-category">
-        <summary class="cat-header">
+        <summary>
           <span class="cat-icon">🖌︎</span>
-          <h3 class="cat-title">Koloryzacja</h3>
+          <span class="cat-title">Koloryzacja</span>
           <span class="cat-chevron">▾</span>
         </summary>
-        <div class="pricing-body-wrapper">
-          <div class="pricing-body-inner">
-            <div class="pricing-body">
-              <div class="price-item">
-                <div class="price-item-info"><h4>Koloryzacja jednolita</h4></div>
-                <div class="price-variants">
-                  <div class="variant-row"><span class="variant-name">Włosy Krótkie - Do Ucha+</span><span class="variant-meta">230,00 zł <small>2g</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">280,00 zł <small>2g 30min</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">320,00 zł <small>2g 30min</small></span></div>
-                </div>
+        <div class="accordion-content">
+          <div class="pricing-body">
+            <div class="price-item">
+              <div class="price-item-info"><h4>Koloryzacja jednolita</h4></div>
+              <div class="price-variants">
+                <div class="variant-row"><span class="variant-name">Włosy Krótkie - Do Ucha+</span><span class="variant-meta">230,00 zł <small>2g</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">280,00 zł <small>2g 30min</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">320,00 zł <small>2g 30min</small></span></div>
               </div>
-              
-              <div class="price-item">
-                <div class="price-item-info"><h4>Koloryzacja z rozjaśnieniem</h4></div>
-                <div class="price-variants">
-                  <div class="variant-row"><span class="variant-name">Włosy Krótkie - Do Ucha+</span><span class="variant-meta">320,00 zł <small>3g</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">400,00 zł <small>3g</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">470,00 zł <small>3g 30min</small></span></div>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="price-item-info"><h4>Koloryzacja z rozjaśnieniem</h4></div>
+              <div class="price-variants">
+                <div class="variant-row"><span class="variant-name">Włosy Krótkie - Do Ucha+</span><span class="variant-meta">320,00 zł <small>3g</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">400,00 zł <small>3g</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">470,00 zł <small>3g 30min</small></span></div>
               </div>
-              
-              <div class="price-item">
-                <div class="price-item-info"><h4>Baleyage / Pasemka / Refleksy</h4></div>
-                <div class="price-variants">
-                  <div class="variant-row"><span class="variant-name">Włosy Krótkie</span><span class="variant-meta">280,00 zł <small>2g 30min</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">360,00 zł+ <small>3g 30min</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">430,00 zł+ <small>3g 30min</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Bardzo Długie</span><span class="variant-meta">500,00 zł <small>5g</small></span></div>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="price-item-info"><h4>Baleyage / Pasemka / Refleksy</h4></div>
+              <div class="price-variants">
+                <div class="variant-row"><span class="variant-name">Włosy Krótkie</span><span class="variant-meta">280,00 zł <small>2g 30min</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">360,00 zł+ <small>3g 30min</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">430,00 zł+ <small>3g 30min</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Bardzo Długie</span><span class="variant-meta">500,00 zł <small>5g</small></span></div>
               </div>
-              
-              <div class="price-item">
-                <div class="price-item-info">
-                  <h4>Tonowanie</h4>
-                  <p>Odświeżenie lub nadanie odpowiedniego odcienia po zabiegach rozjaśniających</p>
-                </div>
-                <div class="price-variants">
-                  <div class="variant-row"><span class="variant-name">Włosy Krótkie - Do Ucha+</span><span class="variant-meta">220,00 zł <small>1g 30min</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">250,00 zł <small>1g 30min</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">270,00 zł <small>2g</small></span></div>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="price-item-info">
+                <h4>Tonowanie</h4>
+                <p>Odświeżenie lub nadanie odpowiedniego odcienia po zabiegach rozjaśniających</p>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info"><h4>Dekoloryzacja</h4></div>
-                  <span class="variant-meta">500,00 zł+ <small>5g</small></span>
-                </div>
+              <div class="price-variants">
+                <div class="variant-row"><span class="variant-name">Włosy Krótkie - Do Ucha+</span><span class="variant-meta">220,00 zł <small>1g 30min</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">250,00 zł <small>1g 30min</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">270,00 zł <small>2g</small></span></div>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info"><h4>Tuszowanie siwizny</h4></div>
-                  <span class="variant-meta">80,00 zł <small>20min</small></span>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info"><h4>Dekoloryzacja</h4></div>
+                <span class="variant-meta">500,00 zł+ <small>5g</small></span>
+              </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info"><h4>Tuszowanie siwizny</h4></div>
+                <span class="variant-meta">80,00 zł <small>20min</small></span>
               </div>
             </div>
           </div>
@@ -1074,51 +1047,49 @@
       </details>
 
       <details class="glass pricing-category">
-        <summary class="cat-header">
+        <summary>
           <span class="cat-icon">✦</span>
-          <h3 class="cat-title">Stylizacja i upięcia</h3>
+          <span class="cat-title">Stylizacja i upięcia</span>
           <span class="cat-chevron">▾</span>
         </summary>
-        <div class="pricing-body-wrapper">
-          <div class="pricing-body-inner">
-            <div class="pricing-body">
-              <div class="price-item">
-                <div class="price-item-info">
-                  <h4>Modelowanie na szczotce</h4>
-                  <p>Mycie i modelowanie</p>
-                </div>
-                <div class="price-variants">
-                  <div class="variant-row"><span class="variant-name">Włosy Krótkie</span><span class="variant-meta">90,00 zł <small>40min</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">110,00 zł <small>1g</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">130,00 zł <small>1g</small></span></div>
-                </div>
+        <div class="accordion-content">
+          <div class="pricing-body">
+            <div class="price-item">
+              <div class="price-item-info">
+                <h4>Modelowanie na szczotce</h4>
+                <p>Mycie i modelowanie</p>
               </div>
-              
-              <div class="price-item">
-                <div class="price-item-info">
-                  <h4>Modelowanie Fale / Loki</h4>
-                  <p>Mycie i modelowanie</p>
-                </div>
-                <div class="price-variants">
-                  <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">130,00 zł+ <small>1g</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">170,00 zł+ <small>1g 30min</small></span></div>
-                </div>
+              <div class="price-variants">
+                <div class="variant-row"><span class="variant-name">Włosy Krótkie</span><span class="variant-meta">90,00 zł <small>40min</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">110,00 zł <small>1g</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">130,00 zł <small>1g</small></span></div>
               </div>
-              
-              <div class="price-item">
-                <div class="price-item-info"><h4>Upięcia włosów</h4></div>
-                <div class="price-variants">
-                  <div class="variant-row"><span class="variant-name">Włosy Średnie</span><span class="variant-meta">200,00 zł+ <small>2g</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Długie</span><span class="variant-meta">350,00 zł+ <small>2g 30min</small></span></div>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="price-item-info">
+                <h4>Modelowanie Fale / Loki</h4>
+                <p>Mycie i modelowanie</p>
               </div>
-              
-              <div class="price-item">
-                <div class="price-item-info"><h4>Upięcia ślubne</h4></div>
-                <div class="price-variants">
-                  <div class="variant-row"><span class="variant-name">Włosy Średnie</span><span class="variant-meta">250,00 zł+ <small>2g 30min</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Długie</span><span class="variant-meta">350,00 zł+ <small>2g 30min</small></span></div>
-                </div>
+              <div class="price-variants">
+                <div class="variant-row"><span class="variant-name">Włosy Średnie - Do Ramion</span><span class="variant-meta">130,00 zł+ <small>1g</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Długie - Niżej Ramion</span><span class="variant-meta">170,00 zł+ <small>1g 30min</small></span></div>
+              </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="price-item-info"><h4>Upięcia włosów</h4></div>
+              <div class="price-variants">
+                <div class="variant-row"><span class="variant-name">Włosy Średnie</span><span class="variant-meta">200,00 zł+ <small>2g</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Długie</span><span class="variant-meta">350,00 zł+ <small>2g 30min</small></span></div>
+              </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="price-item-info"><h4>Upięcia ślubne</h4></div>
+              <div class="price-variants">
+                <div class="variant-row"><span class="variant-name">Włosy Średnie</span><span class="variant-meta">250,00 zł+ <small>2g 30min</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Długie</span><span class="variant-meta">350,00 zł+ <small>2g 30min</small></span></div>
               </div>
             </div>
           </div>
@@ -1126,71 +1097,69 @@
       </details>
 
       <details class="glass pricing-category">
-        <summary class="cat-header">
+        <summary>
           <span class="cat-icon">❋</span>
-          <h3 class="cat-title">Pielęgnacja i regeneracja</h3>
+          <span class="cat-title">Pielęgnacja i regeneracja</span>
           <span class="cat-chevron">▾</span>
         </summary>
-        <div class="pricing-body-wrapper">
-          <div class="pricing-body-inner">
-            <div class="pricing-body">
-              <div class="price-item">
-                <div class="price-item-info">
-                  <h4>Rytuał Piękna NASHI (SPA Pielęgnacyjne)</h4>
-                </div>
-                <div class="price-variants">
-                  <div class="variant-row"><span class="variant-name">Włosy Krótkie</span><span class="variant-meta">110,00 zł <small>1g</small></span></div>
-                  <div class="variant-row"><span class="variant-name">Włosy Długie</span><span class="variant-meta">160,00 zł <small>1g 30min</small></span></div>
-                </div>
+        <div class="accordion-content">
+          <div class="pricing-body">
+            <div class="price-item">
+              <div class="price-item-info">
+                <h4>Rytuał Piękna NASHI (SPA Pielęgnacyjne)</h4>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info"><h4>Pielęgnacja Bankietowa (Lifting Express)</h4></div>
-                  <span class="variant-meta">120,00 zł <small>1g</small></span>
-                </div>
+              <div class="price-variants">
+                <div class="variant-row"><span class="variant-name">Włosy Krótkie</span><span class="variant-meta">110,00 zł <small>1g</small></span></div>
+                <div class="variant-row"><span class="variant-name">Włosy Długie</span><span class="variant-meta">160,00 zł <small>1g 30min</small></span></div>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info"><h4>Uszczelnienie łuski włosa</h4></div>
-                  <span class="variant-meta">250,00 zł <small>1g 30min</small></span>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info"><h4>Pielęgnacja Bankietowa (Lifting Express)</h4></div>
+                <span class="variant-meta">120,00 zł <small>1g</small></span>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info"><h4>3 etapowa rekonstrukcja włosów FILLER THERAPY</h4></div>
-                  <span class="variant-meta">250,00 zł+ <small>1g 30min</small></span>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info"><h4>Uszczelnienie łuski włosa</h4></div>
+                <span class="variant-meta">250,00 zł <small>1g 30min</small></span>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info"><h4>Intensywna kuracja stymulująca (Essential Energy)</h4></div>
-                  <span class="variant-meta">120,00 zł <small>1g 30min</small></span>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info"><h4>3 etapowa rekonstrukcja włosów FILLER THERAPY</h4></div>
+                <span class="variant-meta">250,00 zł+ <small>1g 30min</small></span>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info"><h4>Pielęgnacja dermatologiczna Armonia</h4></div>
-                  <span class="variant-meta">120,00 zł+ <small>1g</small></span>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info"><h4>Intensywna kuracja stymulująca (Essential Energy)</h4></div>
+                <span class="variant-meta">120,00 zł <small>1g 30min</small></span>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info"><h4>Molekularna odbudowa włosów</h4></div>
-                  <span class="variant-meta">200,00 zł+ <small>2g</small></span>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info"><h4>Pielęgnacja dermatologiczna Armonia</h4></div>
+                <span class="variant-meta">120,00 zł+ <small>1g</small></span>
               </div>
-              
-              <div class="price-item">
-                <div class="variant-row" style="border-bottom: none; padding: 0;">
-                  <div class="price-item-info"><h4>Konsultacja fryzjerska</h4></div>
-                  <span class="variant-meta">Darmowa <small>15min</small></span>
-                </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info"><h4>Molekularna odbudowa włosów</h4></div>
+                <span class="variant-meta">200,00 zł+ <small>2g</small></span>
+              </div>
+            </div>
+            
+            <div class="price-item">
+              <div class="variant-row" style="border-bottom: none; padding: 0;">
+                <div class="price-item-info"><h4>Konsultacja fryzjerska</h4></div>
+                <span class="variant-meta">Darmowa <small>15min</small></span>
               </div>
             </div>
           </div>
@@ -1200,9 +1169,8 @@
     </div>
 
     <div class="pricing-cta">
-      <a href="#rezerwacja" class="btn">Zarezerwuj termin</a>
+      <a href="https://booksy.com/pl-pl/268448_fryzjerstwo-pracowniab8_fryzjer_10729_rzeszow" target="_blank" rel="noopener noreferrer" class="btn">Zarezerwuj termin</a>
     </div>
-    <p class="pricing-note">g – godzina zabiegu. Ceny mogą ulec zmianie w zależności od długości, gęstości i stanu włosów.</p>
   </div>
 </section>
 
@@ -1452,35 +1420,63 @@
     }
   }, { passive: true });
 
-  // Płynny akordeon Cennika
-  document.querySelectorAll('details.pricing-category').forEach(details => {
-    const summary = details.querySelector('summary');
-    const wrapper = details.querySelector('.pricing-body-wrapper');
-    
-    // Inicjalizacja styli (dla pewności nadpisujemy fallback CSS)
-    wrapper.style.gridTemplateRows = details.hasAttribute('open') ? '1fr' : '0fr';
-    
-    summary.addEventListener('click', (e) => {
+  // Płynny akordeon (Details & Summary Smooth Animation)
+  class SmoothDetails {
+    constructor(el) {
+      this.el = el;
+      this.summary = el.querySelector('summary');
+      this.content = el.querySelector('.accordion-content');
+      this.animation = null;
+      this.isClosing = false;
+      this.isExpanding = false;
+      this.summary.addEventListener('click', (e) => this.onClick(e));
+    }
+
+    onClick(e) {
       e.preventDefault();
-      
-      if (details.hasAttribute('open')) {
-        // Zamknięcie z płynną animacją
-        wrapper.style.gridTemplateRows = '0fr';
-        // Czekamy na zakończenie animacji CSS przed zdjęciem atrybutu "open" z details
-        setTimeout(() => {
-          details.removeAttribute('open');
-        }, 400); 
-      } else {
-        // Otwarcie
-        details.setAttribute('open', '');
-        // Dajemy przeglądarce chwilę na render 'display: block' przed rozpoczęciem tranzycji do 1fr
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            wrapper.style.gridTemplateRows = '1fr';
-          });
-        });
+      this.el.style.overflow = 'hidden';
+      if (this.isClosing || !this.el.open) {
+        this.open();
+      } else if (this.isExpanding || this.el.open) {
+        this.shrink();
       }
-    });
+    }
+
+    shrink() {
+      this.isClosing = true;
+      const startHeight = `${this.el.offsetHeight}px`;
+      const endHeight = `${this.summary.offsetHeight}px`;
+      if (this.animation) this.animation.cancel();
+      this.animation = this.el.animate({ height: [startHeight, endHeight] }, { duration: 350, easing: 'ease-in-out' });
+      this.animation.onfinish = () => this.onAnimationFinish(false);
+      this.animation.oncancel = () => this.isClosing = false;
+    }
+
+    open() {
+      this.el.style.height = `${this.el.offsetHeight}px`;
+      this.el.open = true;
+      window.requestAnimationFrame(() => {
+        this.isExpanding = true;
+        const startHeight = `${this.el.offsetHeight}px`;
+        const endHeight = `${this.summary.offsetHeight + this.content.offsetHeight}px`;
+        if (this.animation) this.animation.cancel();
+        this.animation = this.el.animate({ height: [startHeight, endHeight] }, { duration: 350, easing: 'ease-in-out' });
+        this.animation.onfinish = () => this.onAnimationFinish(true);
+        this.animation.oncancel = () => this.isExpanding = false;
+      });
+    }
+
+    onAnimationFinish(open) {
+      this.el.open = open;
+      this.animation = null;
+      this.isClosing = false;
+      this.isExpanding = false;
+      this.el.style.height = this.el.style.overflow = '';
+    }
+  }
+
+  document.querySelectorAll('details.pricing-category').forEach((el) => {
+    new SmoothDetails(el);
   });
 </script>
 
