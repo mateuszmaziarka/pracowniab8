@@ -1117,7 +1117,7 @@
 <body>
 
 <!-- KONTENER NA DEKORACYJNE LIŚCIE -->
-<div id="parallax-leaves-wrapper" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden;">
+<div id="parallax-leaves-wrapper" style="position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; z-index: -1; pointer-events: none; overflow: hidden;">
   <div id="parallax-leaves-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; will-change: transform;">
     <!-- Liście lewa strona -->
     <img src="LG1.png" class="parallax-leaf" style="top: 0; left: 0;" alt="">
@@ -1615,14 +1615,27 @@
   // --- LOGIKA PARALAKSY DLA LIŚCI ---
   const leavesLayer = document.getElementById('parallax-leaves-layer');
   
+  // Zmienna zapamiętująca szerokość ekranu
+  let lastWindowWidth = window.innerWidth;
+  
   function updateLeavesLayerHeight() {
     if (!leavesLayer) return;
+    
+    const currentWidth = window.innerWidth;
+    
+    // ZAPOBIEGANIE SKAKANIU NA MOBILE: 
+    // Jeśli to ekran mobilny i zmieniła się TYLKO wysokość (chowanie paska adresu), przerywamy funkcję.
+    if (currentWidth <= 760 && currentWidth === lastWindowWidth && leavesLayer.style.height !== '') {
+      return; 
+    }
+    
+    lastWindowWidth = currentWidth; // Aktualizujemy zapamiętaną szerokość
+
     const docHeight = document.documentElement.scrollHeight;
     const winHeight = window.innerHeight;
     const maxScroll = Math.max(0, docHeight - winHeight);
     
-    // Ustawiamy wirtualną wysokość kontenera, by idealnie wpasować 0.5x prędkość animacji 
-    // dla elementów granicznych jak LD1, PD1, PD2
+    // Ustawiamy wirtualną wysokość kontenera, by wpasować 0.5x prędkość animacji
     const layerHeight = winHeight + maxScroll * 0.5;
     leavesLayer.style.height = `${layerHeight}px`;
   }
