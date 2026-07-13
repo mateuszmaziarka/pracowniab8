@@ -27,7 +27,6 @@
   * { box-sizing: border-box; margin:0; padding:0; }
 
   body{
-    position: relative;
     background: var(--bg);
     color: var(--ink);
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -1099,61 +1098,9 @@
     opacity: 1;
     visibility: visible;
   }
-
-  /* DEKORACYJNE LIŚCIE - TŁO */
-  #leaves-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: -1;
-  }
-  .dec-leaf {
-    position: absolute;
-    width: auto;
-    max-width: 18vw;
-    min-width: 120px;
-    z-index: -1;
-    will-change: transform;
-  }
-  .leaf-lg1 { left: 0; top: 0; }
-  .leaf-lg2 { left: 0; top: 0; }
-  .leaf-ls1 { left: 0; top: 30%; }
-  .leaf-ls2 { left: 0; top: 65%; }
-  .leaf-ld1 { left: 0; bottom: 0; }
-  
-  .leaf-pg1 { right: 0; top: 0; }
-  .leaf-ps1 { right: 0; top: 48%; }
-  .leaf-pd1 { right: 0; bottom: 0; }
-  .leaf-pd2 { right: 0; bottom: 0; }
-  
-  @media (max-width: 760px) {
-    .dec-leaf {
-      max-width: 30vw;
-      min-width: 80px;
-    }
-  }
 </style>
 </head>
 <body>
-
-<!-- Tło liści (Parallax) -->
-<div id="leaves-bg">
-  <img src="LG1.png" class="dec-leaf leaf-lg1" alt="" aria-hidden="true">
-  <img src="LG2.png" class="dec-leaf leaf-lg2" alt="" aria-hidden="true">
-  <img src="LS1.png" class="dec-leaf leaf-ls1" alt="" aria-hidden="true">
-  <img src="LS2.png" class="dec-leaf leaf-ls2" alt="" aria-hidden="true">
-  <img src="LD1.png" class="dec-leaf leaf-ld1" alt="" aria-hidden="true">
-
-  <img src="PG1.png" class="dec-leaf leaf-pg1" alt="" aria-hidden="true">
-  <img src="PS1.png" class="dec-leaf leaf-ps1" alt="" aria-hidden="true">
-  <img src="PD1.png" class="dec-leaf leaf-pd1" alt="" aria-hidden="true">
-  <img src="PD2.png" class="dec-leaf leaf-pd2" alt="" aria-hidden="true">
-</div>
 
 <div class="loader" id="loader">
   <div class="loader-bg" id="loaderBg"></div>
@@ -1638,15 +1585,6 @@
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
-
-  // LOGIKA PARALAKSY DLA DEKORACYJNYCH LIŚCI W TLE (0.5 prędkości)
-  const leaves = document.querySelectorAll('.dec-leaf');
-  lenis.on('scroll', (e) => {
-    leaves.forEach(leaf => {
-      // Cofa liście w dół o połowę przescrollowanego dystansu (0.5x speed)
-      leaf.style.transform = `translate3d(0, ${e.scroll * 0.5}px, 0)`;
-    });
-  });
 
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
