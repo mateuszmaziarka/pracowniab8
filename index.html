@@ -23,7 +23,14 @@
 
   * { box-sizing: border-box; margin:0; padding:0; }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+  }
+
+  section, header.hero, footer{
+    scroll-snap-align: start;
+  }
 
   body{
     background: var(--bg);
@@ -84,9 +91,11 @@
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: #14261d;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    transition: background 0.5s ease, box-shadow 0.5s ease, backdrop-filter 0.5s ease;
+    background: linear-gradient(to bottom, rgba(8,16,12,0.55) 0%, rgba(8,16,12,0.25) 65%, rgba(8,16,12,0) 100%);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border-bottom: 1px solid transparent;
+    transition: background 0.6s ease, box-shadow 0.6s ease, backdrop-filter 0.6s ease, border-color 0.6s ease;
   }
 
   .navbar.scrolled{
@@ -115,10 +124,11 @@
     font-weight: 700;
     color: #f5efe4;
     letter-spacing: 1px;
-    transition: color 0.4s ease;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.35);
+    transition: color 0.4s ease, text-shadow 0.4s ease;
   }
 
-  .navbar.scrolled .nav-logo{ color: var(--bottle-green); }
+  .navbar.scrolled .nav-logo{ color: var(--bottle-green); text-shadow: none; }
 
   .nav-logo span{ color: var(--sand-gold-light); transition: color 0.4s ease; }
   .navbar.scrolled .nav-logo span{ color: var(--sand-gold); }
@@ -134,12 +144,13 @@
     font-size: 0.9rem;
     font-weight: 500;
     color: #f0ece2;
-    transition: color 0.25s ease;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+    transition: color 0.25s ease, text-shadow 0.4s ease;
     position: relative;
     padding-bottom: 3px;
   }
 
-  .navbar.scrolled .nav-links a{ color: var(--ink); }
+  .navbar.scrolled .nav-links a{ color: var(--ink); text-shadow: none; }
 
   .nav-links a::after{
     content:'';
@@ -260,39 +271,90 @@
     .hero{ height: 100svh; }
   }
 
+  .hero-content{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    gap: 22px;
+    padding: 0 24px;
+  }
+
+  .hero-kicker{
+    font-size: 0.78rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--sand-gold-light);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
   .hero-logo{
-    width: min(460px, 78vw);
+    width: min(420px, 74vw);
     height: auto;
     filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .hero-tagline{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    color: #f3efe6;
+    max-width: 520px;
+    line-height: 1.5;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .hero-content.animate .hero-kicker{ opacity:1; transform: translateY(0); transition-delay: 0.15s; }
+  .hero-content.animate .hero-logo{ opacity:1; transform: translateY(0); transition-delay: 0.4s; }
+  .hero-content.animate .hero-tagline{ opacity:1; transform: translateY(0); transition-delay: 0.75s; }
+
+  .loader-logo{
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .hero-scroll{
     position:absolute;
-    bottom: 40px;
+    bottom: 34px;
     left: 50%;
     transform: translateX(-50%);
     color: #fff;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
+    font-size: 0.65rem;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:10px;
-    opacity: 0.85;
+    gap:8px;
+    opacity: 0.75;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .hero-scroll.hide{
+    opacity: 0;
+    transform: translate(-50%, 14px);
+    pointer-events: none;
   }
 
   .hero-scroll .line{
     width:1px;
-    height:36px;
-    background: rgba(255,255,255,0.6);
-    animation: scrollPulse 2s ease-in-out infinite;
+    height:20px;
+    background: rgba(255,255,255,0.55);
+    animation: scrollPulse 2.2s ease-in-out infinite;
   }
 
   @keyframes scrollPulse{
-    0% { transform: scaleY(0.3); opacity:0.3; }
+    0% { transform: scaleY(0.4); opacity:0.4; }
     50% { transform: scaleY(1); opacity:1; }
-    100% { transform: scaleY(0.3); opacity:0.3; }
+    100% { transform: scaleY(0.4); opacity:0.4; }
   }
 
   /* ABOUT */
@@ -799,8 +861,12 @@
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <img src="logo.png" alt="Pracownia B8 - Hair &amp; Beauty" class="hero-logo">
-  <div class="hero-scroll">
+  <div class="hero-content" id="heroContent">
+    <span class="hero-kicker">Rzeszów · Hair &amp; Beauty Studio</span>
+    <img src="logo.png" alt="Pracownia B8 - Hair &amp; Beauty" class="hero-logo">
+    <p class="hero-tagline">Miejsce, gdzie luksus wiąże się z pasją i precyzją każdego cięcia.</p>
+  </div>
+  <div class="hero-scroll" id="heroScroll">
     <span>Przewiń</span>
     <div class="line"></div>
   </div>
@@ -1243,6 +1309,7 @@
   // Ekran ładowania
   const loader = document.getElementById('loader');
   const loaderFill = document.getElementById('loaderFill');
+  const heroContent = document.getElementById('heroContent');
   document.body.style.overflow = 'hidden';
 
   let progress = 0;
@@ -1264,8 +1331,20 @@
     setTimeout(() => {
       loader.classList.add('hidden');
       document.body.style.overflow = '';
+      // Animacja wejścia napisów i logo w hero, dopiero gdy strona jest widoczna
+      heroContent.classList.add('animate');
     }, 450);
   });
+
+  // Wskaźnik "Przewiń" znika płynnie w dół krótko po rozpoczęciu przewijania
+  const heroScroll = document.getElementById('heroScroll');
+  let scrollStarted = false;
+  window.addEventListener('scroll', () => {
+    if (!scrollStarted && window.scrollY > 10){
+      scrollStarted = true;
+      setTimeout(() => heroScroll.classList.add('hide'), 1000);
+    }
+  }, { passive: true });
 </script>
 
 </body>
