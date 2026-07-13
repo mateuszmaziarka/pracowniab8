@@ -671,10 +671,56 @@
     color: #fdf9f2;
   }
 
-  /* DYNAMIC GALLERY - MASONRY & LIGHTBOX */
-  .gallery-expand-overlay {
-    display: none;
+  /* DYNAMIC GALLERY - MASONRY, EXPAND & LIGHTBOX */
+  .gallery-wrapper {
+    position: relative;
+    overflow: hidden;
+    max-height: 420px; /* Wysokość dla komputerów - idealna na 1 rząd i kawałek drugiego */
+    transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
+  .gallery-wrapper.expanded {
+    max-height: 8000px; /* Rozwinięcie na maksymalną przestrzeń */
+  }
+
+  .gallery-expand-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(to top, var(--bg) 20%, rgba(252, 251, 250, 0.85) 60%, transparent); /* Szybki, silny zanik gradientowy */
+    display: flex;
+    align-items: center; /* Trzyma przycisk wysoko na gradientowym polu */
+    justify-content: center;
+    z-index: 2;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  .gallery-wrapper.expanded .gallery-expand-overlay {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .gallery-expand-btn {
+    padding: 14px 34px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--bottle-green);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    box-shadow: 0 8px 32px rgba(31,61,47,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    transform: translateY(15px); /* Precyzyjna wysokość osadzenia na gradiencie */
+  }
+  .gallery-expand-btn:hover {
+    background: #fff;
+    transform: translateY(12px);
+  }
+
   .lightbox-swipe-text {
     display: none;
     position: absolute;
@@ -994,43 +1040,25 @@
       height: 100%;
       object-fit: cover;
     }
+    
     .gallery-wrapper {
-      position: relative;
+      max-height: 170px; /* Wysokość pod pierwszy pełny wiersz (kwadraty) + góra drugiego */
     }
-    .gallery-wrapper:not(.expanded) .gallery-masonry-item:nth-of-type(n+7) {
-      display: none;
+    .gallery-wrapper.expanded {
+      max-height: 5000px; 
     }
-    @keyframes revealPhotos {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .gallery-wrapper.expanded .gallery-masonry-item:nth-of-type(n+7) {
-      animation: revealPhotos 0.5s ease forwards;
-    }
-    .gallery-wrapper:not(.expanded) .gallery-expand-overlay {
-      display: flex;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 140px;
-      background: linear-gradient(to top, var(--bg) 15%, transparent);
-      align-items: flex-end;
-      justify-content: center;
-      padding-bottom: 12px;
-      z-index: 2;
+    .gallery-expand-overlay {
+      height: 120px;
+      padding-bottom: 10px; /* Nieznacznie opuszcza przycisk na mniejszych ekranach */
+      background: linear-gradient(to top, var(--bg) 15%, rgba(252, 251, 250, 0.85) 65%, transparent);
     }
     .gallery-expand-btn {
-      padding: 12px 28px;
-      background: var(--bg);
-      color: var(--bottle-green);
-      border: 1px solid var(--glass-border);
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 6px 20px rgba(31,61,47,0.12);
-      cursor: pointer;
+      transform: none; /* Resetuje desktopowe ułożenie */
     }
+    .gallery-expand-btn:hover {
+      transform: translateY(-2px);
+    }
+
     .lightbox-prev, .lightbox-next {
       display: none !important;
     }
@@ -1108,7 +1136,7 @@
     <p class="section-sub">Pełny cennik usług Pracowni B8. Ceny mogą się różnić w zależności od długości i gęstości włosów oraz nakładu pracy — dokładną wycenę otrzymasz podczas bezpłatnej konsultacji.</p>
 
     <div class="pricing-list">
-      <!-- Kategorie cennika... (pozostały nienaruszone) -->
+      <!-- Kategorie cennika -->
       <details class="glass pricing-category">
         <summary>
           <span class="cat-icon">✂</span>
@@ -1426,7 +1454,7 @@
   </div>
 </section>
 
-<!-- GALERIA (ZMODYFIKOWANA) -->
+<!-- GALERIA -->
 <section id="galeria">
   <div class="container">
     <span class="eyebrow">Inspiracje</span>
@@ -1568,7 +1596,7 @@
     });
   });
 
-  // Logika Loadera i animacji
+  // Logika Loadera i animacji (optymalizacja ładowania)
   const loader = document.getElementById('loader');
   const loaderFill = document.getElementById('loaderFill');
   const heroContent = document.getElementById('heroContent');
@@ -1590,7 +1618,8 @@
   // Wymuszony minimalny czas Loadera (1 sekunda) 
   const minTimePromise = new Promise(resolve => setTimeout(resolve, 1000));
   
-  // Właściwy czas wczytywania strony
+  // Loader wyłączy się błyskawicznie tylko po załadowaniu głównego drzewa strony
+  // bez oczekiwania na zdjęcia ze skryptu galerii
   const windowLoadPromise = new Promise(resolve => {
     if (document.readyState === 'complete') {
       resolve();
@@ -1604,19 +1633,25 @@
     loaderFill.style.width = '100%';
     
     setTimeout(() => {
-      // Wyzwolenie przejścia Loadera w Hero (fade out tła i paska postępu)
+      // Wyzwolenie przejścia Loadera w Hero
       loader.classList.add('hidden');
       document.body.style.overflow = '';
-      lenis.start(); // Odblokowanie Lenis Smooth Scroll
+      lenis.start(); 
       
-      // Animacja tekstu Hero (logo jest już perfekcyjnie wyrównane dzięki identycznej strukturze w Loaderze)
+      // Animacja tekstu
       heroContent.classList.add('animate');
       
       // Całkowite ukrycie diva Loadera po zakończeniu CSS transition
       setTimeout(() => {
         loader.style.display = 'none';
+        
+        // ZAWIESZENIE ZDJĘĆ - DOPIERO TUTAJ ŁADUJEMY GALERIĘ W TLE
+        const galleryContainer = document.getElementById('galleryMasonry');
+        if(galleryContainer) {
+          loadGalleryImage(1);
+        }
       }, 850);
-    }, 400); // 400ms marginesu na docelowy efekt wypełnienia paska w 100%
+    }, 400); 
   });
 
   // Wskaźnik "Przewiń" znika płynnie
@@ -1688,7 +1723,7 @@
     new SmoothDetails(el);
   });
 
-  // Obsługa przycisku rozwijania galerii na mobile
+  // Obsługa przycisku rozwijania galerii (wspólne dla komputerów i mobile)
   const galleryExpandBtn = document.getElementById('galleryExpandBtn');
   const galleryWrapper = document.getElementById('galleryWrapper');
   if (galleryExpandBtn && galleryWrapper) {
@@ -1698,8 +1733,8 @@
   }
 
   // --- LOGIKA GALERII (Dynamiczne ładowanie, Masonry & Lightbox) ---
-  const galleryContainer = document.getElementById('galleryMasonry');
   const galleryLoader = document.getElementById('galleryLoader');
+  const galleryContainer = document.getElementById('galleryMasonry');
   const lightbox = document.getElementById('galleryLightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const btnClose = document.getElementById('lightboxClose');
@@ -1710,7 +1745,7 @@
   let currentImageIndex = 0;
   let lastFocusedElement = null;
 
-  // Automatyczne sprawdzanie i dodawanie zdjęć
+  // Automatyczne sprawdzanie i dodawanie zdjęć (wywoływane PO zniknięciu loadera)
   function loadGalleryImage(index) {
     const imgPath = `galeria/${index}.jpg`;
     const img = new Image();
@@ -1755,11 +1790,6 @@
     img.src = imgPath;
   }
 
-  // Uruchom ładowanie galerii od 1.jpg
-  if(galleryContainer) {
-    loadGalleryImage(1);
-  }
-
   // Funkcje Lightboxa
   function openLightbox(index, triggerElement) {
     currentImageIndex = index;
@@ -1772,7 +1802,7 @@
     if (typeof lenis !== 'undefined') lenis.stop();
     document.body.style.overflow = 'hidden';
     
-    // Ustawienie focusu (opóźnienie pozwala przeglądarce zarejestrować element jako widoczny)
+    // Ustawienie focusu
     setTimeout(() => btnNext.focus(), 50);
   }
 
@@ -1783,7 +1813,7 @@
     if (typeof lenis !== 'undefined') lenis.start();
     document.body.style.overflow = '';
     
-    // Przywróć focus do przycisku z którego galeria została otwarta
+    // Przywróć focus
     if (lastFocusedElement) {
       lastFocusedElement.focus();
     }
@@ -1818,7 +1848,7 @@
     }
   });
 
-  // Obsługa klawiatury i Focus Trap w Modalu (A11y)
+  // Obsługa klawiatury i Focus Trap w Modalu
   lightbox.addEventListener('keydown', (e) => {
     if (lightbox.hasAttribute('hidden')) return;
 
@@ -1837,7 +1867,6 @@
         showPrev();
         break;
       case 'Tab':
-        // Utrzymanie nawigacji Tab tylko wewnątrz aktywnego Lightboxa
         if (e.shiftKey) {
           if (document.activeElement === firstFocusable) {
             e.preventDefault();
