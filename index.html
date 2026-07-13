@@ -1627,7 +1627,7 @@
 
   // Automatyczne sprawdzanie i dodawanie zdjęć
   function loadGalleryImage(index) {
-    const imgPath = `galeria/${index}.png`;
+    const imgPath = `galeria/${index}.jpg`;
     const img = new Image();
     
     img.onload = () => {
@@ -1661,7 +1661,7 @@
     };
 
     img.onerror = () => {
-      // Natrafiono na brak pliku (np. brak 12.png) - koniec wyszukiwania
+      // Natrafiono na brak pliku (np. brak 12.jpg) - koniec wyszukiwania
       if(index === 1 && galleryLoader) {
         galleryLoader.textContent = 'Brak zdjęć w galerii.';
       }
@@ -1670,7 +1670,7 @@
     img.src = imgPath;
   }
 
-  // Uruchom ładowanie galerii od 1.png
+  // Uruchom ładowanie galerii od 1.jpg
   if(galleryContainer) {
     loadGalleryImage(1);
   }
