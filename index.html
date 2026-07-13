@@ -1386,7 +1386,7 @@
   window.addEventListener('scroll', () => {
     if (!scrollStarted && window.scrollY > 10){
       scrollStarted = true;
-      setTimeout(() => heroScroll.classList.add('hide'), 1000);
+      setTimeout(() => heroScroll.classList.add('hide'), 500);
     }
   }, { passive: true });
 </script>
