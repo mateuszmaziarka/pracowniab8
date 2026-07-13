@@ -1067,6 +1067,37 @@
     }
     .lightbox-close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 1.2rem; }
   }
+  /* TOAST NOTIFICATION - KOMUNIKAT GALERII */
+  .gallery-toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translate(-50%, 80px); /* Ukryte poniżej ekranu */
+    opacity: 0;
+    visibility: hidden;
+    background: var(--glass-bg-strong); /* Użycie mocniejszego rozmycia z Twoich zmiennych */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    color: var(--bottle-green);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 16px 32px;
+    border-radius: 30px;
+    box-shadow: 0 12px 40px rgba(31,61,47,0.15);
+    z-index: 10000;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Elegancki efekt sprężystości */
+    pointer-events: none;
+    text-align: center;
+    width: max-content;
+    max-width: 90vw;
+  }
+
+  .gallery-toast.show {
+    transform: translate(-50%, 0); /* Wyjazd do oryginalnej pozycji */
+    opacity: 1;
+    visibility: visible;
+  }
 </style>
 </head>
 <body>
@@ -1483,7 +1514,10 @@
   <button class="lightbox-next" id="lightboxNext" aria-label="Następne zdjęcie">›</button>
   <div class="lightbox-swipe-text">Przesuń palcem w lewo lub w prawo, aby przeglądać galerię</div>
 </div>
-
+<!-- KOMUNIKAT GALERII (TOAST) -->
+<div id="galleryToast" class="gallery-toast">
+  Kliknij lub dotknij zdjęcie, aby je powiększyć
+</div>
 <!-- REZERWACJA -->
 <section id="rezerwacja">
   <div class="container">
@@ -1726,9 +1760,20 @@
   // Obsługa przycisku rozwijania galerii (wspólne dla komputerów i mobile)
   const galleryExpandBtn = document.getElementById('galleryExpandBtn');
   const galleryWrapper = document.getElementById('galleryWrapper');
+  const galleryToast = document.getElementById('galleryToast');
+
   if (galleryExpandBtn && galleryWrapper) {
     galleryExpandBtn.addEventListener('click', () => {
       galleryWrapper.classList.add('expanded');
+      
+      // Pokazanie ładnego komunikatu
+      if (galleryToast) {
+        galleryToast.classList.add('show');
+        // Ukrycie po 2.5 sekundach (daje czas na przeczytanie i pięknie zjeżdża)
+        setTimeout(() => {
+          galleryToast.classList.remove('show');
+        }, 2500);
+      }
     });
   }
 
