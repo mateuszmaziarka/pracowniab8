@@ -742,19 +742,19 @@
     font-weight: 500;
   }
   
-  /* ANIMACJA PODPOWIEDZI PRZESUWANIA (SWIPE) - WERSJA 2x WIĘKSZA */
+  /* ANIMACJA PODPOWIEDZI PRZESUWANIA (SWIPE) - WERSJA 2x WIĘKSZA I AGRESYWNA */
   .swipe-hint {
     position: absolute;
     top: 50%; 
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 280px; /* 2x szerszy */
-    height: 36px; /* 2x grubszy */
+    width: 280px;
+    height: 36px;
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 18px; /* 2x większe zaokrąglenie (połowa wysokości) */
+    border-radius: 18px;
     z-index: 10002;
     opacity: 0;
     pointer-events: none;
@@ -763,9 +763,9 @@
 
   .swipe-hint-dot {
     position: absolute;
-    top: 7px; /* Wyśrodkowane w grubszym pasku */
+    top: 7px;
     left: 7px; 
-    width: 20px; /* 2x większa kropka */
+    width: 20px;
     height: 20px;
     background: #ffffff;
     border-radius: 50%;
@@ -779,12 +779,12 @@
   }
 
   .swipe-hint.play-anim {
-    /* Skróciłem czas do 1.2s, żeby swipe był szybki i zdecydowany */
     animation: hintFade 1.2s forwards;
   }
+  
   .swipe-hint.play-anim .swipe-hint-dot {
-    /* ease-in odpowiada za przyspieszanie bez zwalniania na końcu */
-    animation: hintSlide 1.2s ease-in forwards;
+    /* (0.8, 0, 1, 1) wymusza powolny start i ekstremalne przyspieszenie na końcu */
+    animation: hintSlide 1.2s cubic-bezier(0.8, 0, 1, 1) forwards;
   }
 
   @keyframes hintFade {
@@ -797,7 +797,7 @@
   @keyframes hintSlide {
     0% { transform: translateX(0); opacity: 0; }
     15% { transform: translateX(0); opacity: 1; }
-    /* Przesunięcie o 246px (szerokość paska minus kropka i marginesy) */
+    90% { transform: translateX(246px); opacity: 1; }
     100% { transform: translateX(246px); opacity: 0; }
   }
 
@@ -1956,7 +1956,7 @@
         clearTimeout(toastTimeout);
         toastTimeout = setTimeout(() => {
           galleryToast.classList.remove('show');
-        }, 10000);
+        }, 12000);
       }
     });
   }
