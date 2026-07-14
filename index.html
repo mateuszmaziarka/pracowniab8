@@ -1020,14 +1020,6 @@
     height: 100%;
     display: block;
     border: none;
-    /* Magia CSS: Zgaszone kolory, lekka sepia - idealnie gra ze złotem i zielenią */
-    filter: grayscale(85%) sepia(35%) hue-rotate(345deg) contrast(110%);
-    transition: filter 0.6s ease;
-  }
-  
-  /* Po najechaniu myszką mapa powoli odzyskuje kolory ułatwiając czytanie */
-  .footer-map-wrapper:hover iframe {
-    filter: grayscale(15%) sepia(0%) contrast(100%);
   }
 
   /* AKTYWNE LINKI KONTAKTOWE (Tel / Mail) */
@@ -1666,10 +1658,11 @@
     <!-- MAPA GOOGLE -->
     <div class="footer-map-wrapper">
       <iframe 
-        src="https://maps.google.com/maps?q=ul.%20Bernardy%C5%84ska%208,%2035-069%20Rzesz%C3%B3w&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2562.466338402162!2d22.00133650000001!3d50.0390843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473cfbd6c14ab57f%3A0xa864a511fa896347!2sPracownia%20B8%20Fryzjerstwo!5e0!3m2!1spl!2spl!4v1784040185823!5m2!1spl!2spl" 
+        style="border:0;" 
         allowfullscreen="" 
         loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
+        referrerpolicy="strict-origin-when-cross-origin">
       </iframe>
     </div>
 
@@ -1687,9 +1680,9 @@
 
       <div class="footer-col">
         <h4>Kontakt</h4>
-        <!-- Aktywne linki do telefonu i maila -->
         <p>Tel: <a href="tel:+48888520223" class="contact-link">888 520 223</a></p>
-        <p>Email: <a href="mailto:pracownia8b@gmail.com" class="contact-link">pracownia8b@gmail.com</a></p>
+        <!-- Zaktualizowany email -->
+        <p>Email: <a href="mailto:fryzjerstwo@pracowniab8.pl" class="contact-link">fryzjerstwo@pracowniab8.pl</a></p>
         
         <h4 style="margin-top:22px;">Godziny otwarcia</h4>
         <p>Pon–Pt: 10:00–18:00</p>
