@@ -2067,7 +2067,7 @@
   }, {passive: true});
 
   function handleSwipe() {
-    const threshold = 50; // Minimalny dystans przeciągnięcia
+    const threshold = 15; // Zmniejszony dystans - super czułe przesunięcie
     if (touchEndX < touchStartX - threshold) {
       showNext(); // Przesunięcie w lewo
     }
