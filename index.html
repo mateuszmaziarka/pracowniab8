@@ -1001,6 +1001,49 @@
     color: rgba(242,237,226,0.6);
   }
 
+  /* WIDŻET MAPY W STOPCE */
+  .footer-map-wrapper {
+    width: 100%;
+    height: 320px;
+    margin-bottom: 60px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(242,237,226,0.15);
+    background: rgba(15,28,22,0.4);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  }
+  
+  .footer-map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+    /* Magia CSS: Zgaszone kolory, lekka sepia - idealnie gra ze złotem i zielenią */
+    filter: grayscale(85%) sepia(35%) hue-rotate(345deg) contrast(110%);
+    transition: filter 0.6s ease;
+  }
+  
+  /* Po najechaniu myszką mapa powoli odzyskuje kolory ułatwiając czytanie */
+  .footer-map-wrapper:hover iframe {
+    filter: grayscale(15%) sepia(0%) contrast(100%);
+  }
+
+  /* AKTYWNE LINKI KONTAKTOWE (Tel / Mail) */
+  .footer-col p .contact-link {
+    display: inline;
+    color: var(--sand-gold-light);
+    font-weight: 600;
+    margin-bottom: 0;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  .footer-col p .contact-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(231, 210, 174, 0.4);
+  }
+
   /* RESPONSIVE */
   @media (max-width: 980px){
     .services-grid{ grid-template-columns: repeat(2, 1fr); }
@@ -1064,6 +1107,12 @@
     .about-content{ padding: 36px 24px; }
     .booking-box{ height: 460px; }
     .hero-logo{ width: min(300px, 80vw); }
+    
+    .footer-map-wrapper {
+          height: 240px;
+          margin-bottom: 40px;
+        }
+
 
     /* MOBILE GALLERY RESPONSIVE */
     .gallery-masonry { 
@@ -1613,6 +1662,17 @@
   <img src="LD1.png" class="footer-leaf footer-leaf-left" alt="">
   <img src="PD2.png" class="footer-leaf footer-leaf-right" alt="">
   <div class="container">
+
+    <!-- MAPA GOOGLE -->
+    <div class="footer-map-wrapper">
+      <iframe 
+        src="https://maps.google.com/maps?q=ul.%20Bernardy%C5%84ska%208,%2035-069%20Rzesz%C3%B3w&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-brand">Pracownia B8</div>
@@ -1627,8 +1687,10 @@
 
       <div class="footer-col">
         <h4>Kontakt</h4>
-        <p>Tel: 888 520 223</p>
-        <p>Email: pracownia8b@gmail.com</p>
+        <!-- Aktywne linki do telefonu i maila -->
+        <p>Tel: <a href="tel:+48888520223" class="contact-link">888 520 223</a></p>
+        <p>Email: <a href="mailto:pracownia8b@gmail.com" class="contact-link">pracownia8b@gmail.com</a></p>
+        
         <h4 style="margin-top:22px;">Godziny otwarcia</h4>
         <p>Pon–Pt: 10:00–18:00</p>
         <p>Sob: 08:00–14:00</p>
