@@ -745,42 +745,44 @@
 /* ANIMACJA PODPOWIEDZI PRZESUWANIA (SWIPE) */
   .swipe-hint {
     position: absolute;
-    top: 50%; /* Ustawia pasek idealnie na środku zdjęcia */
+    top: 50%; 
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.2); /* Półprzezroczysty pasek */
-    border-radius: 3px;
+    width: 140px; /* Szerszy pasek */
+    height: 18px; /* Gruby pasek */
+    background: rgba(255, 255, 255, 0.25); /* Półprzezroczyste tło */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 9px; /* Zaokrąglenie równe połowie wysokości = kształt kapsułki */
     z-index: 10002;
     opacity: 0;
     pointer-events: none;
-    display: none; /* Domyślnie ukryte na PC */
+    display: none; 
   }
 
   .swipe-hint-dot {
     position: absolute;
-    top: -4px; /* Unosi kropkę tak, by była na równi z paskiem */
-    left: 0;
-    width: 11px;
-    height: 11px;
+    top: 3px; /* Kropka idealnie wyśrodkowana wewnątrz (18px - 10px = 8px luzu, po 4px na stronę, ale odliczamy border) */
+    left: 3px;
+    width: 10px; /* Kropka jest mniejsza niż wysokość paska */
+    height: 10px;
     background: #ffffff;
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Lekki cień, by odcinało się od jasnych zdjęć */
+    box-shadow: 0 0 6px rgba(0,0,0,0.3); 
   }
 
-  /* Pokazujemy tylko na urządzeniach mobilnych */
   @media (max-width: 760px) {
     .swipe-hint {
       display: block; 
     }
   }
 
-  /* Klasa dodawana przez JavaScript, która uruchamia animację */
   .swipe-hint.play-anim {
     animation: hintFade 1.6s forwards;
   }
   .swipe-hint.play-anim .swipe-hint-dot {
+    /* Dystans: 140px (pasek) - 6px (marginesy L/P) - 10px (kropka) = 124px */
     animation: hintSlide 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   }
 
@@ -794,8 +796,8 @@
   @keyframes hintSlide {
     0% { transform: translateX(0); opacity: 0; }
     15% { transform: translateX(0); opacity: 1; }
-    70% { transform: translateX(109px); opacity: 1; } /* 109px bo (120px - 11px kropki) */
-    100% { transform: translateX(109px); opacity: 0; }
+    70% { transform: translateX(124px); opacity: 1; } 
+    100% { transform: translateX(124px); opacity: 0; }
   }
 
   .gallery-masonry {
@@ -1933,7 +1935,11 @@
     new SmoothDetails(el);
   });
 
-  // Obsługa przycisku rozwijania galerii (wspólne dla komputerów i mobile)
+
+  // Zmienna globalna dla czasu komunikatu
+  let toastTimeout;
+
+  // Obsługa przycisku rozwijania galerii
   const galleryExpandBtn = document.getElementById('galleryExpandBtn');
   const galleryWrapper = document.getElementById('galleryWrapper');
   const galleryToast = document.getElementById('galleryToast');
@@ -1942,11 +1948,12 @@
     galleryExpandBtn.addEventListener('click', () => {
       galleryWrapper.classList.add('expanded');
       
-      // Pokazanie ładnego komunikatu
       if (galleryToast) {
         galleryToast.classList.add('show');
-        // Ukrycie po 2.5 sekundach (daje czas na przeczytanie i pięknie zjeżdża)
-        setTimeout(() => {
+        
+        // Zapisujemy czas do zmiennej, żeby móc go później anulować
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
           galleryToast.classList.remove('show');
         }, 6000);
       }
@@ -2016,6 +2023,13 @@
     currentImageIndex = index;
     lastFocusedElement = triggerElement || document.activeElement; 
     
+    // BŁYSKAWICZNE CHOWANIE KOMUNIKATU (TOAST)
+    const galleryToast = document.getElementById('galleryToast');
+    if (galleryToast && galleryToast.classList.contains('show')) {
+      galleryToast.classList.remove('show');
+      clearTimeout(toastTimeout); // Zatrzymujemy 6-sekundowy zegar
+    }
+
     updateLightboxImage();
     lightbox.removeAttribute('hidden');
     
@@ -2026,10 +2040,10 @@
     // START ANIMACJI PRZESUWANIA (SWIPE)
     const swipeHint = document.getElementById('swipeHint');
     if (swipeHint) {
-      swipeHint.classList.remove('play-anim'); // Resetujemy starą animację
+      swipeHint.classList.remove('play-anim'); 
       setTimeout(() => {
-        swipeHint.classList.add('play-anim'); // Odpalamy nową
-      }, 300); // Małe opóźnienie (300ms), by zdjęcie zdążyło się wgrać
+        swipeHint.classList.add('play-anim'); 
+      }, 300); 
     }
     
     // Ustawienie focusu
