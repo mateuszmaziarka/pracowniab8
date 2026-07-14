@@ -981,40 +981,31 @@
   .social-icons-wrapper {
     display: flex;
     flex-direction: row;
-    gap: 16px;
-    margin-top: 10px;
+    gap: 18px; /* Odstęp między ikonami */
+    margin-top: 14px;
   }
 
-  /* Dodane '.footer-col a' wymusza najwyższy priorytet i naprawia centrowanie */
+  /* Resetujemy domyślne style linków w stopce, żeby ikony leżały w rzędzie */
   .footer-col a.social-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background: rgba(242,237,226,0.06);
-    border: 1px solid rgba(242,237,226,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--sand-gold-light);
-    transition: all 0.3s ease;
-    text-decoration: none;
-    margin-bottom: 0; /* Blokuje margines, który rozsuwał ikony */
+    display: block;
+    margin: 0;
     padding: 0;
+    width: 44px; /* Wielkość ikony - możesz zmienić jeśli są za małe/za duże */
+    height: 44px;
+    transition: transform 0.2s ease; /* Tylko delikatne uniesienie przy najechaniu */
   }
 
-  .footer-col a.social-icon svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
+  /* Dopasowanie obrazka do rozmiaru linku */
+  .footer-col a.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Gwarantuje, że obrazek nie zostanie ucięty ani rozciągnięty */
     display: block;
   }
 
+  /* Lekkie podbicie do góry po najechaniu myszką, żadnych zmian kolorów */
   .footer-col a.social-icon:hover {
-    background: var(--sand-gold-light);
-    color: var(--bottle-green);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    border-color: var(--sand-gold-light);
+    transform: translateY(-3px);
   }
 
   .footer-bottom{
@@ -1122,6 +1113,7 @@
     .services-grid{ grid-template-columns: 1fr; }
     .team-grid{ grid-template-columns: 1fr; }
     .footer-grid{ grid-template-columns: 1fr; text-align:center; }
+    .social-icons-wrapper { justify-content: center; }
     .about-content{ padding: 36px 24px; }
     .booking-box{ height: 460px; }
     .hero-logo{ width: min(300px, 80vw); }
@@ -1717,24 +1709,17 @@
       <div class="footer-col">
         <h4>Odwiedź nas</h4>
         <div class="social-icons-wrapper">
-          <!-- Nowe logo Booksy (nowoczesne, wektorowe "b.") -->
-          <a class="social-icon" href="https://booksy.com/pl-pl/268448_fryzjerstwo-pracowniab8_fryzjer_10729_rzeszow" target="_blank" rel="noopener" aria-label="Zarezerwuj przez Booksy" title="Zarezerwuj na Booksy">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 2v20h3.5v-2.5a6 6 0 1 0 0-12V2h-3.5zM9 13.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-              <circle cx="20" cy="19.5" r="2.2"/>
-            </svg>
+          <!-- Booksy -->
+          <a class="social-icon" href="https://booksy.com/pl-pl/268448_fryzjerstwo-pracowniab8_fryzjer_10729_rzeszow" target="_blank" rel="noopener">
+            <img src="logo/b.png" alt="Booksy">
           </a>
-          <!-- Instagram (zostawiamy to, to jest najnowsze oficjalne logo) -->
-          <a class="social-icon" href="https://www.instagram.com/pracownia_b8/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
+          <!-- Instagram -->
+          <a class="social-icon" href="https://www.instagram.com/pracownia_b8/" target="_blank" rel="noopener">
+            <img src="logo/i.png" alt="Instagram">
           </a>
-          <!-- Nowe logo Facebooka (samo wycięte, eleganckie "f" bez starego kwadratu) -->
-          <a class="social-icon" href="https://www.facebook.com/profile.php?id=61568803359059" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7.5v4H10v9h4v-9z"/>
-            </svg>
+          <!-- Facebook -->
+          <a class="social-icon" href="https://www.facebook.com/profile.php?id=61568803359059" target="_blank" rel="noopener">
+            <img src="logo/f.png" alt="Facebook">
           </a>
         </div>
       </div>
