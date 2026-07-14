@@ -13,15 +13,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <style>
+
   /* Custom Cursor - Działa tylko na urządzeniach wskazujących (myszka) */
-  @media (pointer: fine) {
-    body {
-      cursor: none; /* Ukrywa systemowy kursor */
-    }
-    
-    a, button, summary, .gallery-masonry-item {
-      cursor: none; /* Ukrywa kursor nad klikalnymi elementami */
-    }
+@media (pointer: fine) {
+  
+  /* Gwiazdka (*) oznacza, że ukrywamy kursor siłowo na absolutnie każdym elemencie strony */
+  * {
+    cursor: none !important;
+  }
 
   .custom-cursor {
     position: fixed;
