@@ -980,11 +980,13 @@
 
   .social-icons-wrapper {
     display: flex;
+    flex-direction: row;
     gap: 16px;
     margin-top: 10px;
   }
 
-  .social-icon {
+  /* Dodane '.footer-col a' wymusza najwyższy priorytet i naprawia centrowanie */
+  .footer-col a.social-icon {
     width: 46px;
     height: 46px;
     border-radius: 50%;
@@ -996,15 +998,18 @@
     color: var(--sand-gold-light);
     transition: all 0.3s ease;
     text-decoration: none;
+    margin-bottom: 0; /* Blokuje margines, który rozsuwał ikony */
+    padding: 0;
   }
 
-  .social-icon svg {
+  .footer-col a.social-icon svg {
     width: 20px;
     height: 20px;
     fill: currentColor;
+    display: block;
   }
 
-  .social-icon:hover {
+  .footer-col a.social-icon:hover {
     background: var(--sand-gold-light);
     color: var(--bottle-green);
     transform: translateY(-4px);
