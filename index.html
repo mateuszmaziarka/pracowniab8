@@ -6,7 +6,7 @@
 <title>Pracownia B8 | Salon Fryzjerski Rzeszów</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <!-- Lenis Smooth Scroll -->
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <!-- GSAP & ScrollTrigger -->
@@ -147,16 +147,17 @@
   .navbar.scrolled .nav-inner{ padding: 14px 24px; }
 
   .nav-logo{
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    font-size: 2.8rem; /* Nieco większe, bo Bebas jest dość wąski */
+    font-weight: 400;
     color: #f5efe4;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     text-shadow: 0 1px 6px rgba(0,0,0,0.35);
     transition: color 0.4s ease, text-shadow 0.4s ease, font-size 0.4s ease;
   }
 
-  .navbar.scrolled .nav-logo{ color: var(--bottle-green); text-shadow: none; font-size: 1.45rem; }
+  .navbar.scrolled .nav-logo{ color: var(--bottle-green); text-shadow: none; font-size: 1.6rem; }
 
   .nav-logo span{ color: var(--sand-gold-light); transition: color 0.4s ease; }
   .navbar.scrolled .nav-logo span{ color: var(--sand-gold); }
@@ -169,8 +170,11 @@
   }
 
   .nav-links a{
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.25rem; /* Zwiększone, aby zachować czytelność nowej czcionki */
+    letter-spacing: 1.5px;
+    font-weight: 400;
     color: #f0ece2;
     text-shadow: 0 1px 6px rgba(0,0,0,0.3);
     transition: color 0.25s ease, text-shadow 0.4s ease;
@@ -1099,8 +1103,8 @@
   @media (max-width: 760px){
     section{ padding: 80px 0; }
     
-    .nav-logo{ font-size: 1.8rem; }
-    .navbar.scrolled .nav-logo{ font-size: 1.45rem; }
+    .nav-logo{ font-size: 2.2rem; }
+    .navbar.scrolled .nav-logo{ font-size: 1.6rem; }
 
     .nav-links{
       position: fixed;
@@ -1143,7 +1147,7 @@
       background: #f5efe4 !important;
     }
 
-    .nav-links a{ font-size: 1.05rem; }
+    .nav-links a{ font-size: 1.6rem; }
     .nav-toggle{ display:flex; }
     .services-grid{ grid-template-columns: 1fr; }
     .team-grid{ grid-template-columns: 1fr; }
