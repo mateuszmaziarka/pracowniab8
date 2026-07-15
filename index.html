@@ -134,16 +134,18 @@
   /* --- NOWY KOD: Styl i animacja dla FRYZJERSTWO --- */
   .nav-sub {
     position: absolute;
-    top: 96%; /* Delikatnie wsunięte pod główny tekst */
-    left: 2px;
+    top: 96%; 
+    left: 0;
+    width: 100%; /* Wymusza dokładną szerokość napisu Pracownia B8 */
+    text-align: justify;
+    text-align-last: justify; /* Rozciąga litery IDEALNIE od lewej do prawej krawędzi */
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 9px; /* Mocne rozstrzelenie f r y z j e r s t w o */
+    font-size: 0.85rem;
+    letter-spacing: 0; /* Wyłączamy sztuczne odstępy */
     color: var(--bottle-green);
     text-shadow: none !important;
-    white-space: nowrap;
     
-    /* Ukryte (na samej górze strony) */
+    /* Ukryte na samej górze strony */
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -1924,19 +1926,24 @@
   }
 
   let resizeTimeout;
+  
+  // Obserwator zmian na stronie (np. rozwinięcie akordeonu, galerii)
+  const resizeObserver = new ResizeObserver(() => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      updateLeavesLayerHeight();
+      ScrollTrigger.refresh(); // <--- TO NAPRAWIA PROBLEM! Oblicza na nowo wysokość dla stopki
+    }, 150);
+  });
+  resizeObserver.observe(document.body);
 
-  if (leavesLayer) {
-    // ResizeObserver wykrywa również np. rozwinięcie galerii lub innych akordeonów
-    const resizeObserver = new ResizeObserver(() => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(updateLeavesLayerHeight, 150);
-    });
-    resizeObserver.observe(document.body);
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(updateLeavesLayerHeight, 150);
-    });
-  }
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      updateLeavesLayerHeight();
+      ScrollTrigger.refresh(); // Oblicza wysokość przy zmianie rozmiaru okna
+    }, 150);
+  });
   // ----------------------------------
 
   function raf(time) {
