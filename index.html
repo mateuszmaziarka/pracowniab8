@@ -1012,8 +1012,9 @@
   }
   .footer-grid{
     display: grid;
-    /* Poprawione na 5 kolumn. Pierwsza kolumna jest mocno zwężona, reszta ma idealnie dobrany balans: */
-    grid-template-columns: 1.4fr 1.5fr 1.3fr 1fr 1.2fr; 
+    /* Pierwsza kolumna (2fr) ma teraz wystarczająco dużo miejsca, by B8 nie spadało na dół, 
+       a reszta jest idealnie zbalansowana, żeby email i adres też miały oddech: */
+    grid-template-columns: 2fr 1.5fr 1.2fr 1fr 1.2fr; 
     gap: 30px;
   }
 
