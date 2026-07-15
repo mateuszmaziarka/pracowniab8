@@ -965,28 +965,31 @@
     gap: 40px;
   }
 
-  .footer-col h4{
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    text-transform: uppercase;
+  .footer-brand{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
     letter-spacing: 2px;
-    font-size: 0.8rem;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  .footer-col h4{
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-size: 1.4rem;
     color: var(--sand-gold-light);
     margin-bottom: 18px;
-    font-weight: 700;
   }
 
   .footer-col p, .footer-col a{
-    font-size: 0.92rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
     color: rgba(242,237,226,0.85);
     margin-bottom: 8px;
     display:block;
-  }
-
-  .footer-brand{
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    color: #fff;
-    margin-bottom: 14px;
   }
 
   .social-icons-wrapper {
@@ -1020,11 +1023,13 @@
   }
 
   .footer-bottom{
+    font-family: 'Bebas Neue', sans-serif;
     text-align:center;
     margin-top: 60px;
     padding-top: 24px;
     border-top: 1px solid rgba(242,237,226,0.15);
-    font-size: 0.8rem;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
     color: rgba(242,237,226,0.6);
   }
 
@@ -1934,22 +1939,13 @@
     threshold: 0 
   });
   heroObserver.observe(heroEl);
-  // --- NOWY KOD: Obserwator stopki ---
-  const footerEl = document.querySelector('footer');
-  const footerObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navbar.classList.add('at-footer');
-      } else {
-        navbar.classList.remove('at-footer');
-      }
-    });
-  }, { 
-    // Margines ~80px wykrywa idealny moment, gdy stopka wsuwa się fizycznie pod pasek nawigacji
-    rootMargin: "-80px 0px 0px 0px", 
-    threshold: 0 
+  // --- NOWY KOD: Precyzyjny obserwator stopki (ScrollTrigger) ---
+  ScrollTrigger.create({
+    trigger: "footer",
+    start: "top 80px", // Aktywuje się DOKŁADNIE gdy góra stopki wjeżdża pod pasek (ok. 80px od góry ekranu)
+    onEnter: () => document.getElementById('navbar').classList.add('at-footer'),
+    onLeaveBack: () => document.getElementById('navbar').classList.remove('at-footer')
   });
-  footerObserver.observe(footerEl);
   const openMenu = () => {
     navLinks.classList.add('open');
     navOverlay.classList.add('active');
