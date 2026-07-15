@@ -991,9 +991,11 @@
     }
   }
   .footer-grid{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+    display: grid;
+    /* Zamiast 4 równych kolumn, dajemy więcej miejsca opisowi i kontaktowi, 
+       a zwężamy ikony i adres, dzięki czemu znikną gigantyczne dziury: */
+    grid-template-columns: 3fr 2.5fr 1.5fr 1.5fr; 
+    gap: 30px;
   }
 
   .footer-brand{
@@ -1062,6 +1064,21 @@
     font-size: 1rem;
     letter-spacing: 1.5px;
     color: rgba(242,237,226,0.6);
+  }
+
+  /* --- NOWY KOD: Styl dla linku Regulamin --- */
+  .footer-link-regulamin {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(242,237,226,0.4); /* Delikatne podkreślenie */
+    text-underline-offset: 4px;
+    margin-left: 6px;
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
+  }
+
+  .footer-link-regulamin:hover {
+    color: #fff;
+    text-decoration-color: #fff;
   }
 
   /* WIDŻET MAPY W STOPCE */
@@ -1839,12 +1856,14 @@
     </div>
 
     <div class="footer-bottom">
-      &copy; 2026 Pracownia B8. Wszelkie prawa zastrzeżone.
+      &copy; <span id="currentYear"></span> Pracownia B8. Wszelkie prawa zastrzeżone. <a href="regulamin.pdf" class="footer-link-regulamin" target="_blank">Regulamin</a>
     </div>
   </div>
 </footer>
 
 <script>
+  // Dynamiczny rocznik w stopce
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
   // Rejestracja wtyczki ScrollTrigger
   gsap.registerPlugin(ScrollTrigger);
 
