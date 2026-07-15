@@ -119,9 +119,11 @@
   .navbar.scrolled .nav-inner{ padding: 14px 24px; }
 
   .nav-logo{
+    position: relative; /* NOWE: pozwala ułożyć dolny napis */
+    line-height: 1;     /* NOWE: wyrównuje odstępy */
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
-    font-size: 2.8rem; /* Nieco większe, bo Bebas jest dość wąski */
+    font-size: 2.8rem;
     font-weight: 400;
     color: #f5efe4;
     letter-spacing: 2px;
@@ -129,10 +131,37 @@
     transition: color 0.4s ease, text-shadow 0.4s ease, font-size 0.4s ease;
   }
 
+  /* --- NOWY KOD: Styl i animacja dla FRYZJERSTWO --- */
+  .nav-sub {
+    position: absolute;
+    top: 96%; /* Delikatnie wsunięte pod główny tekst */
+    left: 2px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 9px; /* Mocne rozstrzelenie f r y z j e r s t w o */
+    color: var(--bottle-green);
+    text-shadow: none !important;
+    white-space: nowrap;
+    
+    /* Ukryte (na samej górze strony) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
+  }
+
+  /* Płynne pokazanie napisu, gdy zjedziemy ze szczytu strony lub jesteśmy na stopce */
+  .navbar.scrolled .nav-sub,
+  .navbar.at-footer .nav-sub {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
   .navbar.scrolled .nav-logo{ color: var(--bottle-green); text-shadow: none; font-size: 1.6rem; }
 
-  .nav-logo span{ color: var(--sand-gold-light); transition: color 0.4s ease; }
-  .navbar.scrolled .nav-logo span{ color: var(--sand-gold); }
+  .nav-logo .b8 { color: var(--sand-gold-light); transition: color 0.4s ease; }
+  .navbar.scrolled .nav-logo .b8 { color: var(--sand-gold); }
 
   .nav-links{
     display:flex;
@@ -1249,7 +1278,7 @@
     text-shadow: none !important;
   }
 
-  .navbar.at-footer .nav-logo span {
+  .navbar.at-footer .nav-logo .b8 {
     color: var(--sand-gold) !important;
   }
 
@@ -1319,7 +1348,10 @@
 
 <nav class="navbar" id="navbar">
   <div class="nav-inner container">
-    <a href="#top" class="nav-logo">Pracownia <span>B8</span></a>
+    <a href="#top" class="nav-logo">
+      Pracownia <span class="b8">B8</span>
+      <span class="nav-sub">FRYZJERSTWO</span>
+    </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#onas">O nas</a></li>
       <li><a href="#uslugi">Usługi</a></li>
