@@ -162,8 +162,28 @@
 
   .navbar.scrolled .nav-logo{ color: var(--bottle-green); text-shadow: none; font-size: 1.6rem; }
 
-  .nav-logo .b8 { color: var(--sand-gold-light); transition: color 0.4s ease; }
-  .navbar.scrolled .nav-logo .b8 { color: var(--sand-gold); }
+  .nav-logo .logo-full,
+  .nav-logo .logo-short {
+    color: var(--sand-gold-light);
+    transition: color 0.4s ease;
+  }
+  .navbar.scrolled .nav-logo .logo-full,
+  .navbar.scrolled .nav-logo .logo-short {
+    color: var(--sand-gold);
+  }
+
+  /* Logika chowania/pokazywania napisu */
+  .nav-logo .logo-short {
+    display: none;
+  }
+  .navbar.scrolled .nav-logo .logo-full,
+  .navbar.at-footer .nav-logo .logo-full {
+    display: none;
+  }
+  .navbar.scrolled .nav-logo .logo-short,
+  .navbar.at-footer .nav-logo .logo-short {
+    display: inline;
+  }
 
   .nav-links{
     display:flex;
@@ -992,8 +1012,8 @@
   }
   .footer-grid{
     display: grid;
-    /* Zmniejszone poszerzenie pierwszej kolumny – idealny balans dla 4 sekcji: */
-    grid-template-columns: 2fr 2fr 1fr 1.2fr; 
+    /* 5 kolumn, by idealnie rozłożyć wszystko na równe wysokości i zlikwidować puste dziury */
+    grid-template-columns: 2.2fr 1.6fr 1.4fr 1fr 1.2fr; 
     gap: 30px;
   }
 
@@ -1120,7 +1140,7 @@
   @media (max-width: 980px){
     .services-grid{ grid-template-columns: repeat(2, 1fr); }
     .nashi-grid{ grid-template-columns: repeat(1, 1fr); max-width: 480px; margin-left:auto; margin-right:auto; }
-    .footer-grid{ grid-template-columns: repeat(2, 1fr); }
+    .footer-grid{ grid-template-columns: repeat(3, 1fr); gap: 40px; } /* Zmienione na 3 kolumny by dopasować 5 elementów */
     .gallery-masonry { column-count: 2; }
   }
 
@@ -1296,7 +1316,8 @@
     text-shadow: none !important;
   }
 
-  .navbar.at-footer .nav-logo .b8 {
+  .navbar.at-footer .nav-logo .logo-full,
+  .navbar.at-footer .nav-logo .logo-short {
     color: var(--sand-gold) !important;
   }
 
@@ -1367,7 +1388,9 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner container">
     <a href="#top" class="nav-logo">
-      Pracownia <span class="b8">B8</span>
+      Pracownia 
+      <span class="logo-full">BERNARDYŃSKA 8</span>
+      <span class="logo-short">B8</span>
       <span class="nav-sub">
         <span>F</span><span>R</span><span>Y</span><span>Z</span><span>J</span><span>E</span><span>R</span><span>S</span><span>T</span><span>W</span><span>O</span>
       </span>
@@ -1811,8 +1834,10 @@
         <h4>Kontakt</h4>
         <p>Tel: <a href="tel:+48888520223" class="contact-link">888 520 223</a></p>
         <p>Email: <a href="mailto:fryzjerstwo@pracowniab8.pl" class="contact-link">fryzjerstwo@pracowniab8.pl</a></p>
+      </div>
         
-        <h4 style="margin-top:22px;">Godziny otwarcia</h4>
+      <div class="footer-col">
+        <h4>Godziny otwarcia</h4>
         <p>Pon–Pt: 10:00–18:00</p>
         <p>Sob: 08:00–14:00</p>
         <p>Nd: Zamknięte</p>
