@@ -119,8 +119,9 @@
   .navbar.scrolled .nav-inner{ padding: 14px 24px; }
 
   .nav-logo{
-    position: relative; /* NOWE: pozwala ułożyć dolny napis */
-    line-height: 1;     /* NOWE: wyrównuje odstępy */
+    position: relative; 
+    display: inline-block; /* KLUCZOWE: Nadaje logo dokładną szerokość */
+    line-height: 1;     
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
     font-size: 2.8rem;
@@ -131,26 +132,18 @@
     transition: color 0.4s ease, text-shadow 0.4s ease, font-size 0.4s ease;
   }
 
-
-  /* --- NAPRAWIONY KOD: Styl i animacja dla FRYZJERSTWO --- */
+  /* --- NAPRAWIONY KOD: Idealnie rozłożony napis --- */
   .nav-sub {
     position: absolute;
     top: 96%; 
     left: 0;
-    width: calc(100% - 2px); /* Trik! Odejmujemy 2px niewidzialnego odstępu po literze '8' */
-    text-align: justify;
-    text-align-last: justify; 
+    width: calc(100% - 2px); /* Idealnie zrównuje z prawą stroną "8", pomijając niewidzialną lukę */
+    display: flex;
+    justify-content: space-between; /* Matematycznie rozkłada litery na całą szerokość */
     font-family: 'Bebas Neue', sans-serif;
-    
-    /* KLUCZOWA ZMIANA: Zamiast sztywnego 'rem', używamy 'em', 
-       dzięki czemu napis ZAWSZE ma proporcję ~34% wielkości głównego logo,
-       niezależnie czy jesteśmy na górze, czy na małym pasku! */
-    font-size: 0.34em; 
-    
-    letter-spacing: 0; 
+    font-size: 0.45em; /* Powiększone, wreszcie będzie czytelne! */
     color: var(--bottle-green);
     text-shadow: none !important;
-    white-space: nowrap; /* Gwarantuje, że litery nigdy nie spadną do nowej linii */
     
     /* Ukryte na samej górze strony */
     opacity: 0;
@@ -159,7 +152,7 @@
     transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
   }
 
-  /* Płynne pokazanie napisu, gdy zjedziemy ze szczytu strony lub jesteśmy na stopce */
+  /* Płynne pokazanie napisu */
   .navbar.scrolled .nav-sub,
   .navbar.at-footer .nav-sub {
     opacity: 1;
@@ -1359,7 +1352,9 @@
   <div class="nav-inner container">
     <a href="#top" class="nav-logo">
       Pracownia <span class="b8">B8</span>
-      <span class="nav-sub">FRYZJERSTWO</span>
+      <span class="nav-sub">
+        <span>F</span><span>R</span><span>Y</span><span>Z</span><span>J</span><span>E</span><span>R</span><span>S</span><span>T</span><span>W</span><span>O</span>
+      </span>
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#onas">O nas</a></li>
