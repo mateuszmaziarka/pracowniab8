@@ -647,6 +647,11 @@
     top: -4px; /* Wyrównanie kropek do tekstu */
   }
 
+  /* NOWE: Wyłączamy kropki dla opcji z wcięciem (np. Włosy Krótkie), bo mają już własną przerywaną linię od spodu */
+  .price-variants .variant-meta::before {
+    display: none;
+  }
+
   .variant-meta small{
     display: inline-block;
     font-weight: 500;
