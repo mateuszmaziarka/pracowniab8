@@ -630,11 +630,21 @@
     display: flex;
     align-items: baseline;
     justify-content: flex-end;
-    flex-shrink: 0; /* Zapobiega zgniataniu cen przez długie nazwy */
+    flex-grow: 1; /* Pozwala cenie i kropkom zająć całą wolną przestrzeń */
     white-space: nowrap;
     font-weight: 700;
     color: var(--bottle-green);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  /* --- Kropki naprowadzające --- */
+  .variant-meta::before {
+    content: "";
+    flex-grow: 1;
+    border-bottom: 2px dotted rgba(31,61,47,0.25);
+    margin-right: 16px;
+    position: relative;
+    top: -4px; /* Wyrównanie kropek do tekstu */
   }
 
   .variant-meta small{
@@ -642,8 +652,8 @@
     font-weight: 500;
     color: var(--sand-gold);
     margin-left: 12px;
-    width: 75px;       /* Sztywna szerokość tworzy idealną kolumnę dla czasu */
-    text-align: right; /* Równa czas do prawej krawędzi */
+    width: 75px;
+    text-align: right;
   }
 
   .pricing-cta{
@@ -1161,6 +1171,35 @@
   @media (max-width: 760px){
     section{ padding: 80px 0; }
     
+    /* --- NOWY UKŁAD CENNIKA NA TELEFONY --- */
+    .pricing-category summary { padding: 20px 20px; }
+    .cat-title { font-size: 1.4rem; }
+    .pricing-body { padding: 0px 20px 24px; }
+    .price-variants { padding-left: 12px; }
+    
+    .variant-row {
+      flex-direction: column; /* To jest magia! Zrzuca cenę POD nazwę usługi */
+      align-items: flex-start;
+      gap: 8px;
+      padding: 14px 0;
+    }
+    
+    .variant-meta {
+      width: 100%; /* Cena ze znakiem "zł" idzie na lewo */
+      font-size: 1.05rem;
+    }
+    
+    .variant-meta::before {
+      display: none; /* Wyłączamy kropki na telefonie */
+    }
+    
+    .variant-meta small {
+      margin-left: auto; /* A czas trwania (np. 1h 30min) leci do prawej krawędzi */
+      width: auto;
+      font-size: 0.95rem;
+    }
+    /* -------------------------------------- */
+
     .nav-logo{ font-size: 2.2rem; }
     .navbar.scrolled .nav-logo{ font-size: 1.6rem; }
     
