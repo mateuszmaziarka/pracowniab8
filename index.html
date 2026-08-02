@@ -428,6 +428,12 @@
     animation: scrollPulse 2.2s ease-in-out infinite;
   }
 
+  @keyframes scrollPulse{
+    0% { transform: scaleY(0.4); opacity:0.4; }
+    50% { transform: scaleY(1); opacity:1; }
+    100% { transform: scaleY(0.4); opacity:0.4; }
+  }
+
   /* ABOUT */
   .about-card{
     /* padding usunięty stąd i przeniesiony do .about-content */
@@ -624,6 +630,7 @@
     display: flex;
     align-items: baseline;
     justify-content: flex-end;
+    flex-shrink: 0; /* Zapobiega zgniataniu cen przez długie nazwy */
     white-space: nowrap;
     font-weight: 700;
     color: var(--bottle-green);
@@ -632,11 +639,11 @@
 
   .variant-meta small{
     display: inline-block;
-    min-width: 75px;
-    text-align: right;
     font-weight: 500;
     color: var(--sand-gold);
-    margin-left: 6px;
+    margin-left: 12px;
+    width: 75px;       /* Sztywna szerokość tworzy idealną kolumnę dla czasu */
+    text-align: right; /* Równa czas do prawej krawędzi */
   }
 
   .pricing-cta{
@@ -1399,9 +1406,9 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner container">
     <a href="#top" class="nav-logo">
-      <span class="text-top"></span>
+      <span class="text-top">BERNARDYŃSKA 8 </span>
       <span class="text-scrolled">PRACOWNIA </span>
-      <span class="logo-full"></span>
+      <span class="logo-full">RZESZÓW</span>
       <span class="logo-short">B8</span>
       <span class="nav-sub">
         <span>F</span><span>R</span><span>Y</span><span>Z</span><span>J</span><span>E</span><span>R</span><span>S</span><span>T</span><span>W</span><span>O</span>
@@ -1426,7 +1433,7 @@
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-content" id="heroContent">
-    <span class="hero-kicker">Bernardyńska 8 Rzeszów</span>
+    <span class="hero-kicker">STUDIO FRYZUR</span>
     <img src="logo.png" alt="Pracownia B8 - FRYZJERSTWO" class="hero-logo">
     <p class="hero-tagline">Miejsce, gdzie luksus wiąże się z pasją i precyzją każdego cięcia.</p>
   </div>
