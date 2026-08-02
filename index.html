@@ -1190,11 +1190,12 @@
     }
     
     .variant-meta {
-      display: flex; /* Nadpisujemy siatkę z komputera powrotem na Flexbox */
-      justify-content: space-between; /* Rozsuwa Cenę i Czas na maksymalne boki */
+      display: grid; /* Używamy magii siatki również na telefonie */
+      grid-template-columns: 1fr auto; /* Lewa strona (czas) i prawa strona (cena) */
+      align-items: baseline;
       width: 100%; 
       font-size: 1.05rem;
-      text-align: left;
+      text-align: right; /* Tekst ceny zostanie ściągnięty idealnie do prawej */
     }
     
     .variant-meta::before {
@@ -1202,7 +1203,10 @@
     }
     
     .variant-meta small {
-      margin-left: auto; /* Czas ładnie przesuwa się maksymalnie do prawej */
+      grid-column: 1; /* Wymuszamy wrzucenie czasu do 1. kolumny (lewa krawędź) */
+      grid-row: 1;
+      text-align: left; /* Czas równamy do lewej */
+      margin: 0; /* Resetujemy wszelkie marginesy */
       font-size: 0.95rem;
     }
     /* -------------------------------------- */
