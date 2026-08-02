@@ -53,9 +53,9 @@
   .eyebrow{
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 6px; /* Zwiększony odstęp między literami */
-    font-size: 0.85rem; /* Minimalnie powiększone, bo Bebas jest optycznie węższy/mniejszy */
-    font-weight: 400; /* Bebas najlepiej wygląda bez dodatkowego pogrubienia */
+    letter-spacing: 6px; 
+    font-size: 0.85rem; 
+    font-weight: 400; 
     color: var(--sand-gold);
     margin-bottom: 14px;
     display:block;
@@ -64,7 +64,7 @@
   .section-heading{
     font-family: 'Bebas Neue', sans-serif;
     font-weight: 400;
-    letter-spacing: 1.5px; /* Delikatny odstęp dla poprawy czytelności */
+    letter-spacing: 1.5px; 
     font-size: clamp(2.2rem, 4vw, 3.2rem);
     margin-bottom: 20px;
   }
@@ -120,7 +120,7 @@
 
   .nav-logo{
     position: relative; 
-    display: inline-block; /* KLUCZOWE: Nadaje logo dokładną szerokość */
+    display: inline-block;
     line-height: 1;     
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
@@ -132,27 +132,24 @@
     transition: color 0.4s ease, text-shadow 0.4s ease, font-size 0.4s ease;
   }
 
-  /* --- NAPRAWIONY KOD: Idealnie rozłożony napis --- */
   .nav-sub {
     position: absolute;
     top: 96%; 
     left: 0;
-    width: calc(100% - 2px); /* Idealnie zrównuje z prawą stroną "8", pomijając niewidzialną lukę */
+    width: calc(100% - 2px); 
     display: flex;
-    justify-content: space-between; /* Matematycznie rozkłada litery na całą szerokość */
+    justify-content: space-between; 
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.45em; /* Powiększone, wreszcie będzie czytelne! */
+    font-size: 0.45em; 
     color: var(--bottle-green);
     text-shadow: none !important;
     
-    /* Ukryte na samej górze strony */
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
     transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
   }
 
-  /* Płynne pokazanie napisu */
   .navbar.scrolled .nav-sub,
   .navbar.at-footer .nav-sub {
     opacity: 1;
@@ -172,24 +169,23 @@
     color: var(--sand-gold);
   }
 
-  /* --- Logika chowania/pokazywania odpowiednich wyrazów --- */
   .nav-logo .text-scrolled,
   .nav-logo .logo-short {
-    display: none; /* Domyślnie ukryte na samym zdjęciu (Hero) */
+    display: none; 
   }
   
   .navbar.scrolled .nav-logo .text-top,
   .navbar.at-footer .nav-logo .text-top,
   .navbar.scrolled .nav-logo .logo-full,
   .navbar.at-footer .nav-logo .logo-full {
-    display: none; /* Ukrywamy "Bernardyńska 8 Rzeszów" podczas scrolla i na stopce */
+    display: none; 
   }
   
   .navbar.scrolled .nav-logo .text-scrolled,
   .navbar.at-footer .nav-logo .text-scrolled,
   .navbar.scrolled .nav-logo .logo-short,
   .navbar.at-footer .nav-logo .logo-short {
-    display: inline; /* Pokazujemy "Pracownia B8" podczas scrolla i na stopce */
+    display: inline; 
   }
 
   .nav-links{
@@ -202,7 +198,7 @@
   .nav-links a{
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
-    font-size: 1.25rem; /* Zwiększone, aby zachować czytelność nowej czcionki */
+    font-size: 1.25rem; 
     letter-spacing: 1.5px;
     font-weight: 400;
     color: #f0ece2;
@@ -299,13 +295,13 @@
     align-items: center;
     gap: 22px;
     padding: 0 24px;
-    margin-top: 8vh; /* <-- Dodane: przesuwa cały blok w dół */
+    margin-top: 8vh;
   }
 
   .loader-bar{
     position: absolute;
     left: 50%;
-    bottom: -15px; /* Odległość tuż pod logo. Zwiększ lub zmniejsz np. na -20px według preferencji */
+    bottom: -15px; 
     transform: translateX(-50%);
     width: min(220px, 50vw);
     height: 3px;
@@ -362,7 +358,7 @@
     align-items:center;
     gap: 22px;
     padding: 0 24px;
-    margin-top: 8vh; /* <-- Dodane: identyczne przesunięcie w dół co w loaderze */
+    margin-top: 8vh;
   }
 
   .hero-kicker{
@@ -436,11 +432,10 @@
 
   /* ABOUT */
   .about-card{
-    /* padding usunięty stąd i przeniesiony do .about-content */
     padding: 0;
     max-width: 900px;
     margin: 0 auto;
-    overflow: hidden; /* Kluczowe: docina rogi zdjęcia do zaokrągleń panelu glass */
+    overflow: hidden; 
     display: flex;
     flex-direction: column;
   }
@@ -570,7 +565,7 @@
     display: inline-block;
     width: 16px; 
     height: 16px;
-    flex-shrink: 0; /* TO JEST KLUCZ - całkowicie blokuje zgniatanie przez tekst */
+    flex-shrink: 0; 
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f3d2f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
@@ -579,7 +574,7 @@
   }
 
   .pricing-category[open] .cat-chevron {
-    transform: rotate(180deg); /* Przy otwarciu po prostu odwracamy wektor o 180 stopni */
+    transform: rotate(180deg); 
   }
 
   .pricing-body{
@@ -627,6 +622,9 @@
   .variant-name{ color: #3d3d38; }
 
   .variant-meta{
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
     white-space: nowrap;
     font-weight: 700;
     color: var(--bottle-green);
@@ -634,9 +632,12 @@
   }
 
   .variant-meta small{
+    display: inline-block;
+    min-width: 75px; /* Minimalna szerokość na czas ułatwiająca perfekcyjne zrównanie ceny */
+    text-align: right;
     font-weight: 500;
     color: var(--sand-gold);
-    margin-left: 6px;
+    margin-left: 8px;
   }
 
   .pricing-cta{
@@ -767,11 +768,11 @@
   .gallery-wrapper {
     position: relative;
     overflow: hidden;
-    max-height: 1350px; /* Zmieniono z 420px: idealna wysokość na pełne 2 rzędy i gradient */
+    max-height: 1350px; 
     transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .gallery-wrapper.expanded {
-    max-height: 8000px; /* Rozwinięcie na maksymalną przestrzeń */
+    max-height: 8000px; 
   }
 
   .gallery-expand-overlay {
@@ -780,9 +781,9 @@
     left: 0;
     width: 100%;
     height: 220px;
-    background: linear-gradient(to top, var(--bg) 20%, rgba(252, 251, 250, 0.85) 60%, transparent); /* Szybki, silny zanik gradientowy */
+    background: linear-gradient(to top, var(--bg) 20%, rgba(252, 251, 250, 0.85) 60%, transparent); 
     display: flex;
-    align-items: center; /* Trzyma przycisk wysoko na gradientowym polu */
+    align-items: center; 
     justify-content: center;
     z-index: 2;
     transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -806,7 +807,7 @@
     box-shadow: 0 8px 32px rgba(31,61,47,0.1);
     cursor: pointer;
     transition: transform 0.3s ease, background 0.3s ease;
-    transform: translateY(15px); /* Precyzyjna wysokość osadzenia na gradiencie */
+    transform: translateY(15px); 
   }
   .gallery-expand-btn:hover {
     background: #fff;
@@ -876,7 +877,7 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    background: rgba(15,28,22,0.85); /* Wektor z var(--bottle-green) */
+    background: rgba(15,28,22,0.85); 
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
@@ -979,38 +980,30 @@
 
   /* FOOTER */
   footer {
-    /* Ciągły, elegancki gradient na całej powierzchni stopki */
     background: linear-gradient(to bottom, #2b523f 0%, var(--bottle-green) 100%);
     color: #f2ede2;
     padding: 90px 0 40px;
     position: relative;
-    overflow: hidden; /* Przycina liście, żeby nie wychodziły poza obszar stopki */
+    overflow: hidden; 
   }
 
-  /* Wyciągnięcie tekstu stopki nad liście */
   footer .container {
     position: relative;
     z-index: 2;
   }
 
-  /* Statyczne liście wewnątrz stopki */
   .footer-leaf {
     position: absolute;
-    bottom: -5%; /* Lekko opuszczone, by dół liścia zniknął za krawędzią ekranu */
+    bottom: -5%; 
     max-width: 35vw;
     height: auto;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.6; /* Delikatnie zmniejszona widoczność, by lepiej stopiły się z gradientem */
+    opacity: 0.6; 
   }
 
-  .footer-leaf-left {
-    left: -2%;
-  }
-
-  .footer-leaf-right {
-    right: -2%;
-  }
+  .footer-leaf-left { left: -2%; }
+  .footer-leaf-right { right: -2%; }
 
   @media (max-width: 760px) {
     .footer-leaf {
@@ -1019,7 +1012,6 @@
   }
   .footer-grid{
     display: grid;
-    /* 5 kolumn, by idealnie rozłożyć wszystko na równe wysokości i zlikwidować puste dziury */
     grid-template-columns: 2.2fr 1.6fr 1.4fr 1fr 1.2fr; 
     gap: 30px;
   }
@@ -1054,29 +1046,26 @@
   .social-icons-wrapper {
     display: flex;
     flex-direction: row;
-    gap: 18px; /* Odstęp między ikonami */
+    gap: 18px; 
     margin-top: 14px;
   }
 
-  /* Resetujemy domyślne style linków w stopce, żeby ikony leżały w rzędzie */
   .footer-col a.social-icon {
     display: block;
     margin: 0;
     padding: 0;
-    width: 44px; /* Wielkość ikony - możesz zmienić jeśli są za małe/za duże */
+    width: 44px; 
     height: 44px;
-    transition: transform 0.2s ease; /* Tylko delikatne uniesienie przy najechaniu */
+    transition: transform 0.2s ease; 
   }
 
-  /* Dopasowanie obrazka do rozmiaru linku */
   .footer-col a.social-icon img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Gwarantuje, że obrazek nie zostanie ucięty ani rozciągnięty */
+    object-fit: contain; 
     display: block;
   }
 
-  /* Lekkie podbicie do góry po najechaniu myszką, żadnych zmian kolorów */
   .footer-col a.social-icon:hover {
     transform: translateY(-3px);
   }
@@ -1092,11 +1081,10 @@
     color: rgba(242,237,226,0.6);
   }
 
-  /* --- NOWY KOD: Styl dla linku Regulamin --- */
   .footer-link-regulamin {
     color: inherit;
     text-decoration: underline;
-    text-decoration-color: rgba(242,237,226,0.4); /* Delikatne podkreślenie */
+    text-decoration-color: rgba(242,237,226,0.4); 
     text-underline-offset: 4px;
     margin-left: 6px;
     transition: color 0.3s ease, text-decoration-color 0.3s ease;
@@ -1147,7 +1135,7 @@
   @media (max-width: 980px){
     .services-grid{ grid-template-columns: repeat(2, 1fr); }
     .nashi-grid{ grid-template-columns: repeat(1, 1fr); max-width: 480px; margin-left:auto; margin-right:auto; }
-    .footer-grid{ grid-template-columns: repeat(3, 1fr); gap: 40px; } /* Zmienione na 3 kolumny by dopasować 5 elementów */
+    .footer-grid{ grid-template-columns: repeat(3, 1fr); gap: 40px; } 
     .gallery-masonry { column-count: 2; }
   }
 
@@ -1157,8 +1145,6 @@
     .nav-logo{ font-size: 2.2rem; }
     .navbar.scrolled .nav-logo{ font-size: 1.6rem; }
     
-    /* --- NOWY KOD: Bernardyńska 8 pomniejszona na telefonach o 25% względem Pracowni --- */
-    /* Rzeszów na telefonach wyraźnie mniejszy (zmniejszony o 45%) */
     .nav-logo .logo-full { font-size: 0.85em; }
 
     .nav-links{
@@ -1218,7 +1204,6 @@
           margin-bottom: 40px;
         }
 
-
     /* MOBILE GALLERY RESPONSIVE */
     .gallery-masonry { 
       column-count: auto; 
@@ -1237,18 +1222,18 @@
     }
     
     .gallery-wrapper {
-      max-height: 420px; /* Zmieniono z 170px: mieści idealnie 2 rzędy kwadratów + zarys trzeciego pod gradientem */
+      max-height: 420px; 
     }
     .gallery-wrapper.expanded {
       max-height: 5000px; 
     }
     .gallery-expand-overlay {
       height: 120px;
-      padding-bottom: 10px; /* Nieznacznie opuszcza przycisk na mniejszych ekranach */
+      padding-bottom: 10px; 
       background: linear-gradient(to top, var(--bg) 15%, rgba(252, 251, 250, 0.85) 65%, transparent);
     }
     .gallery-expand-btn {
-      transform: none; /* Resetuje desktopowe ułożenie */
+      transform: none; 
     }
     .gallery-expand-btn:hover {
       transform: translateY(-2px);
@@ -1262,15 +1247,16 @@
     }
     .lightbox-close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 1.2rem; }
   }
+  
   /* TOAST NOTIFICATION - KOMUNIKAT GALERII */
   .gallery-toast {
     position: fixed;
     bottom: 40px;
     left: 50%;
-    transform: translate(-50%, 80px); /* Ukryte poniżej ekranu */
+    transform: translate(-50%, 80px); 
     opacity: 0;
     visibility: hidden;
-    background: var(--glass-bg-strong); /* Użycie mocniejszego rozmycia z Twoich zmiennych */
+    background: var(--glass-bg-strong); 
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
@@ -1281,7 +1267,7 @@
     border-radius: 30px;
     box-shadow: 0 12px 40px rgba(31,61,47,0.15);
     z-index: 10000;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Elegancki efekt sprężystości */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
     pointer-events: none;
     text-align: center;
     width: max-content;
@@ -1289,7 +1275,7 @@
   }
 
   .gallery-toast.show {
-    transform: translate(-50%, 0); /* Wyjazd do oryginalnej pozycji */
+    transform: translate(-50%, 0); 
     opacity: 1;
     visibility: visible;
   }
@@ -1308,7 +1294,7 @@
     }
   }
   
-  /* --- NOWY KOD: Pasek nawigacji przy stopce --- */
+  /* Pasek nawigacji przy stopce */
   .navbar.at-footer {
     background: #ffffff !important;
     backdrop-filter: none !important;
@@ -1399,9 +1385,9 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner container">
     <a href="#top" class="nav-logo">
-      <span class="text-top">BERNARDYŃSKA 8 </span>
+      <span class="text-top"></span> <!-- Zmiana: Puste miejsce na samym szczycie (przed scrollem) -->
       <span class="text-scrolled">PRACOWNIA </span>
-      <span class="logo-full">RZESZÓW</span>
+      <span class="logo-full"></span> <!-- Zmiana: Puste miejsce na samym szczycie (przed scrollem) -->
       <span class="logo-short">B8</span>
       <span class="nav-sub">
         <span>F</span><span>R</span><span>Y</span><span>Z</span><span>J</span><span>E</span><span>R</span><span>S</span><span>T</span><span>W</span><span>O</span>
@@ -1426,7 +1412,7 @@
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-content" id="heroContent">
-    <span class="hero-kicker">STUDIO FRYZUR</span>
+    <span class="hero-kicker">Bernardyńska 8 Rzeszów</span> <!-- Zmiana: Poprzednio "STUDIO FRYZUR" -->
     <img src="logo.png" alt="Pracownia B8 - FRYZJERSTWO" class="hero-logo">
     <p class="hero-tagline">Miejsce, gdzie luksus wiąże się z pasją i precyzją każdego cięcia.</p>
   </div>
@@ -1440,16 +1426,13 @@
 <section id="onas">
   <div class="container">
     <div class="glass about-card">
-      <!-- Kontener na tekst (przejmuje padding) -->
       <div class="about-content">
         <span class="eyebrow">Nasza historia</span>
         <h2 class="section-heading">O Pracowni B8</h2>
         <p>Pracownia B8 to miejsce stworzone z myślą o kobietach i mężczyznach, którzy cenią sobie precyzję, indywidualne podejście oraz najwyższą jakość usług fryzjerskich. Znajdziesz nas przy ul. Bernardyńskiej 8 w Rzeszowie — w kameralnym, starannie zaprojektowanym wnętrzu, w którym każdy detal ma znaczenie.</p>
-        <p>Naszą pasją jest tworzenie fryzur, które podkreślają naturalne piękno i charakter każdej osoby. Łączymy wieloletnie doświadczenie z ciągłym doskonaleniem umiejętności, śledząc najnowsze światowe trendy w koloryzacji i stylizacji włosów. Pracujemy wyłącznie na profesjonalnych, sprawdzonych produktach, dbając o zdrowie i kondycję włosów naszych Klientek i Klientów.</p>
         <p>W Pracowni B8 czas płynie inaczej — to przestrzeń stworzona do relaksu, rozmowy i metamorfozy. Wierzymy, że dobra fryzura to nie tylko efekt wizualny, ale przede wszystkim pewność siebie, którą zabierasz ze sobą na co dzień.</p>
         <p class="signature-line">— Zespół Pracowni B8, Rzeszów</p>
       </div>
-      <!-- Zdjęcie "przyklejone" do dołu (podmień src na własne) -->
       <img src="pracownia.jpg" alt="Wnętrze Pracowni B8" class="about-photo">
     </div>
   </div>
@@ -1899,18 +1882,15 @@
 </footer>
 
 <script>
-  // Dynamiczny rocznik w stopce
   document.getElementById('currentYear').textContent = new Date().getFullYear();
-  // Rejestracja wtyczki ScrollTrigger
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animacja wyłaniania nagłówków i sekcji "O nas"
   gsap.utils.toArray('.section-heading, .section-sub, .about-card').forEach(element => {
     gsap.from(element, {
       scrollTrigger: {
         trigger: element,
-        start: "top 85%", // Animacja startuje, gdy góra elementu osiągnie 85% wysokości ekranu
-        toggleActions: "play none none reverse" // Wraca do stanu początkowego przy scrollowaniu w górę
+        start: "top 85%", 
+        toggleActions: "play none none reverse" 
       },
       y: 40,
       opacity: 0,
@@ -1919,7 +1899,6 @@
     });
   });
 
-  // Kaskadowe (stagger) wyłanianie kart w siatkach (Usługi, Zespół, Nashi)
   const grids = ['.services-grid', '.team-grid', '.nashi-grid'];
   grids.forEach(gridClass => {
     const grid = document.querySelector(gridClass);
@@ -1934,28 +1913,23 @@
         y: 50,
         opacity: 0,
         duration: 1,
-        stagger: 0.15, // Opóźnienie między każdą kolejną kartą (efekt fali)
+        stagger: 0.15, 
         ease: "power3.out"
       });
     }
   });
   
-  // Inicjalizacja luksusowego Smooth Scroll (Lenis)
   const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true
   });
   
-  // Wstrzymanie scrolla na czas loadera
   lenis.stop();
 
-  // --- LOGIKA PARALAKSY DLA LIŚCI ---
   const leavesLayer = document.getElementById('parallax-leaves-layer');
   
-  // Zmienna zapamiętująca szerokość ekranu
   let lastWindowWidth = window.innerWidth;
-  // Flaga sprawdzająca, czy to pierwsze uruchomienie
   let isFirstLeavesInit = true;
   
   function updateLeavesLayerHeight() {
@@ -1963,10 +1937,6 @@
     
     const currentWidth = window.innerWidth;
     
-    // BLOKADA SKAKANIA (ZAMROŻENIE LIŚCI):
-    // Jeśli to nie jest pierwsze ładowanie strony I szerokość ekranu 
-    // się nie zmieniła, przerywamy funkcję. Dzięki temu rozwijanie 
-    // galerii czy cennika nie zepsuje początkowego ułożenia liści.
     if (!isFirstLeavesInit && currentWidth === lastWindowWidth) {
       return; 
     }
@@ -1978,19 +1948,17 @@
     const winHeight = window.innerHeight;
     const maxScroll = Math.max(0, currentDocHeight - winHeight);
     
-    // Ustawiamy wirtualną wysokość kontenera dla paralaksy
     const layerHeight = winHeight + maxScroll * 0.5;
     leavesLayer.style.height = `${layerHeight}px`;
   }
 
   let resizeTimeout;
   
-  // Obserwator zmian na stronie (np. rozwinięcie akordeonu, galerii)
   const resizeObserver = new ResizeObserver(() => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       updateLeavesLayerHeight();
-      ScrollTrigger.refresh(); // <--- TO NAPRAWIA PROBLEM! Oblicza na nowo wysokość dla stopki
+      ScrollTrigger.refresh(); 
     }, 150);
   });
   resizeObserver.observe(document.body);
@@ -1999,15 +1967,13 @@
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       updateLeavesLayerHeight();
-      ScrollTrigger.refresh(); // Oblicza wysokość przy zmianie rozmiaru okna
+      ScrollTrigger.refresh(); 
     }, 150);
   });
-  // ----------------------------------
 
   function raf(time) {
     lenis.raf(time);
     
-    // AKTUALIZACJA PARALLAX W GŁÓWNEJ PĘTLI ANIMACJI (Gwarancja płynności)
     if (leavesLayer) {
       const currentScroll = lenis.scroll || 0; 
       leavesLayer.style.transform = `translate3d(0, -${currentScroll * 0.5}px, 0)`;
@@ -2029,20 +1995,18 @@
       else navbar.classList.add('scrolled');
     });
   }, { 
-    // Dodajemy ujemny margines na górze ekranu. 
-    // -100px oznacza, że zmiana koloru zajdzie w momencie, gdy dół zdjęcia 
-    // wjedzie pod pasek nawigacyjny.
     rootMargin: "-100px 0px 0px 0px", 
     threshold: 0 
   });
   heroObserver.observe(heroEl);
-  // --- NOWY KOD: Precyzyjny obserwator stopki (ScrollTrigger) ---
+
   ScrollTrigger.create({
     trigger: "footer",
-    start: "top 80px", // Aktywuje się DOKŁADNIE gdy góra stopki wjeżdża pod pasek (ok. 80px od góry ekranu)
+    start: "top 80px", 
     onEnter: () => document.getElementById('navbar').classList.add('at-footer'),
     onLeaveBack: () => document.getElementById('navbar').classList.remove('at-footer')
   });
+  
   const openMenu = () => {
     navLinks.classList.add('open');
     navOverlay.classList.add('active');
@@ -2060,7 +2024,6 @@
   });
   navOverlay.addEventListener('click', closeMenu);
 
-  // Gładkie przewijanie linków za pomocą Lenis
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -2073,7 +2036,6 @@
     });
   });
 
-  // Logika Loadera i animacji (optymalizacja ładowania)
   const loader = document.getElementById('loader');
   const loaderFill = document.getElementById('loaderFill');
   const heroContent = document.getElementById('heroContent');
@@ -2092,11 +2054,8 @@
   }
   requestAnimationFrame(tickProgress);
 
-  // Wymuszony minimalny czas Loadera (1 sekunda) 
   const minTimePromise = new Promise(resolve => setTimeout(resolve, 1000));
   
-  // Loader wyłączy się błyskawicznie tylko po załadowaniu głównego drzewa strony
-  // bez oczekiwania na zdjęcia ze skryptu galerii
   const windowLoadPromise = new Promise(resolve => {
     if (document.readyState === 'complete') {
       resolve();
@@ -2110,21 +2069,16 @@
     loaderFill.style.width = '100%';
     
     setTimeout(() => {
-      // Wyzwolenie przejścia Loadera w Hero
       loader.classList.add('hidden');
       document.body.style.overflow = '';
       lenis.start(); 
-      // Inicjalne przeliczenie układu liści tuż po powrocie płynnego scrolla
       updateLeavesLayerHeight();
       
-      // Animacja tekstu
       heroContent.classList.add('animate');
       
-      // Całkowite ukrycie diva Loadera po zakończeniu CSS transition
       setTimeout(() => {
         loader.style.display = 'none';
         
-        // ZAWIESZENIE ZDJĘĆ - DOPIERO TUTAJ ŁADUJEMY GALERIĘ W TLE
         const galleryContainer = document.getElementById('galleryMasonry');
         if(galleryContainer) {
           loadGalleryImage(1);
@@ -2133,7 +2087,6 @@
     }, 400); 
   });
 
-  // Wskaźnik "Przewiń" znika płynnie
   const heroScroll = document.getElementById('heroScroll');
   let scrollStarted = false;
   window.addEventListener('scroll', () => {
@@ -2143,7 +2096,6 @@
     }
   }, { passive: true });
 
-  // Płynny akordeon (Details & Summary Smooth Animation)
   class SmoothDetails {
     constructor(el) {
       this.el = el;
@@ -2202,11 +2154,8 @@
     new SmoothDetails(el);
   });
 
-
-  // Zmienna globalna dla czasu komunikatu
   let toastTimeout;
 
-  // Obsługa przycisku rozwijania galerii
   const galleryExpandBtn = document.getElementById('galleryExpandBtn');
   const galleryWrapper = document.getElementById('galleryWrapper');
   const galleryToast = document.getElementById('galleryToast');
@@ -2218,7 +2167,6 @@
       if (galleryToast) {
         galleryToast.classList.add('show');
         
-        // Zapisujemy czas do zmiennej, żeby móc go później anulować
         clearTimeout(toastTimeout);
         toastTimeout = setTimeout(() => {
           galleryToast.classList.remove('show');
@@ -2227,7 +2175,6 @@
     });
   }
 
-  // --- LOGIKA GALERII (Dynamiczne ładowanie, Masonry & Lightbox) ---
   const galleryLoader = document.getElementById('galleryLoader');
   const galleryContainer = document.getElementById('galleryMasonry');
   const lightbox = document.getElementById('galleryLightbox');
@@ -2240,13 +2187,11 @@
   let currentImageIndex = 0;
   let lastFocusedElement = null;
 
-  // Automatyczne sprawdzanie i dodawanie zdjęć (wywoływane PO zniknięciu loadera)
   function loadGalleryImage(index) {
     const imgPath = `galeria/${index}.jpeg`;
     const img = new Image();
     
     img.onload = () => {
-      // Jeżeli wczytano pierwsze zdjęcie usuń napis "Ładowanie..."
       if(index === 1 && galleryLoader) {
         galleryLoader.style.display = 'none';
       }
@@ -2254,7 +2199,6 @@
       galleryImages.push(imgPath);
       const actualIndex = galleryImages.length - 1;
 
-      // Tworzenie dostępnego elementu kontenera
       const btn = document.createElement('button');
       btn.className = 'gallery-masonry-item';
       btn.setAttribute('aria-label', `Powiększ zdjęcie z galerii nr ${index}`);
@@ -2266,17 +2210,14 @@
       
       btn.appendChild(thumb);
       
-      // Event dla otwarcia Lightbox'a
       btn.addEventListener('click', () => openLightbox(actualIndex, btn));
       
       galleryContainer.appendChild(btn);
 
-      // Spróbuj załadować następne zdjęcie w kolejce
       loadGalleryImage(index + 1);
     };
 
     img.onerror = () => {
-      // Natrafiono na brak pliku (np. brak 12.jpeg) - koniec wyszukiwania
       if(index === 1 && galleryLoader) {
         galleryLoader.textContent = 'Brak zdjęć w galerii.';
       }
@@ -2285,37 +2226,31 @@
     img.src = imgPath;
   }
 
-  // Funkcje Lightboxa
   function openLightbox(index, triggerElement) {
     currentImageIndex = index;
     lastFocusedElement = triggerElement || document.activeElement; 
     
-    // BŁYSKAWICZNE CHOWANIE KOMUNIKATU (TOAST)
     const galleryToast = document.getElementById('galleryToast');
     if (galleryToast && galleryToast.classList.contains('show')) {
       galleryToast.classList.remove('show');
-      clearTimeout(toastTimeout); // Zatrzymujemy 6-sekundowy zegar
+      clearTimeout(toastTimeout); 
     }
 
     updateLightboxImage();
     lightbox.removeAttribute('hidden');
     
-    // Zablokuj scrollowanie w tle przy otwartym modalu
     if (typeof lenis !== 'undefined') lenis.stop();
     document.body.style.overflow = 'hidden';
     
-    // Ustawienie focusu
     setTimeout(() => btnNext.focus(), 50);
   }
 
   function closeLightbox() {
     lightbox.setAttribute('hidden', '');
     
-    // Odblokuj scrollowanie
     if (typeof lenis !== 'undefined') lenis.start();
     document.body.style.overflow = '';
     
-    // Przywróć focus
     if (lastFocusedElement) {
       lastFocusedElement.focus();
     }
@@ -2338,19 +2273,16 @@
     lightboxImg.alt = `Powiększone zdjęcie z galerii nr ${currentImageIndex + 1}`;
   }
 
-  // Listener'y przycisków
   btnClose.addEventListener('click', closeLightbox);
   btnNext.addEventListener('click', showNext);
   btnPrev.addEventListener('click', showPrev);
 
-  // Zamykanie przez kliknięcie w tło
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
       closeLightbox();
     }
   });
 
-  // Obsługa klawiatury i Focus Trap w Modalu
   lightbox.addEventListener('keydown', (e) => {
     if (lightbox.hasAttribute('hidden')) return;
 
@@ -2384,7 +2316,6 @@
     }
   });
 
-  // Obsługa przeciągania (Swipe) dla urządzeń mobilnych
   let touchStartX = 0;
   let touchEndX = 0;
 
@@ -2398,12 +2329,12 @@
   }, {passive: true});
 
   function handleSwipe() {
-    const threshold = 15; // Zmniejszony dystans - super czułe przesunięcie
+    const threshold = 15; 
     if (touchEndX < touchStartX - threshold) {
-      showNext(); // Przesunięcie w lewo
+      showNext(); 
     }
     if (touchEndX > touchStartX + threshold) {
-      showPrev(); // Przesunięcie w prawo
+      showPrev(); 
     }
   }
 
