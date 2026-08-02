@@ -645,6 +645,7 @@
     margin-right: 16px;
     position: relative;
     top: -4px; /* Wyrównanie kropek do tekstu */
+    order: -2; /* Wymusza kropki na samym początku z lewej */
   }
 
   /* NOWE: Wyłączamy kropki dla opcji z wcięciem (np. Włosy Krótkie), bo mają już własną przerywaną linię od spodu */
@@ -656,9 +657,11 @@
     display: inline-block;
     font-weight: 500;
     color: var(--sand-gold);
-    margin-left: 12px;
+    margin-left: 0;
+    margin-right: 16px; /* Odstęp między czasem a ceną (cena jest teraz po prawej) */
     width: 75px;
     text-align: right;
+    order: -1; /* Czas wskakuje ZA kropki, ale PRZED cenę */
   }
 
   .pricing-cta{
@@ -1199,7 +1202,9 @@
     }
     
     .variant-meta small {
-      margin-left: auto; /* A czas trwania (np. 1h 30min) leci do prawej krawędzi */
+      order: 0; /* Przywracamy stary układ: cena na lewo, czas na prawo */
+      margin-right: 0; /* Zerujemy odstęp wprowadzony na PC */
+      margin-left: auto; /* Czas trwania (np. 1h 30min) leci do prawej krawędzi */
       width: auto;
       font-size: 0.95rem;
     }
