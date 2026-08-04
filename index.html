@@ -6,7 +6,7 @@
 <title>Pracownia B8 | Salon Fryzjerski Rzeszów</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <!-- Lenis Smooth Scroll -->
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <!-- GSAP & ScrollTrigger -->
@@ -397,6 +397,52 @@
 
   .hero-content.animate .hero-kicker{ opacity:1; transform: translateY(0); transition-delay: 0.15s; }
   .hero-content.animate .hero-tagline{ opacity:1; transform: translateY(0); transition-delay: 0.3s; }
+
+  .hero-nashi-partner {
+    position: relative;
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .hero-nashi-partner img {
+    width: clamp(110px, 15vw, 140px); /* Małe logo responsywne */
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  }
+  
+  .hero-nashi-partner span {
+    position: absolute;
+    /* Wyśrodkowanie na obrazku i lekki kąt obrotu dla naturalnego "odręcznego" efektu */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-3deg);
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.4rem, 3vw, 1.7rem);
+    color: var(--bottle-green-light); /* Twój zmienny kolor, ładny liściasty zielony */
+    font-weight: 700;
+    white-space: nowrap;
+    /* Gruby biały obrys i poświata zapobiegająca zlewaniu się z logo w tle */
+    text-shadow: 
+      -1.5px -1.5px 0 rgba(255,255,255,0.9),  
+       1.5px -1.5px 0 rgba(255,255,255,0.9),
+      -1.5px  1.5px 0 rgba(255,255,255,0.9),
+       1.5px  1.5px 0 rgba(255,255,255,0.9),
+       0px  0px 14px rgba(255,255,255,1),
+       0px  3px 6px rgba(0,0,0,0.3);
+    z-index: 2;
+  }
+  
+  .hero-content.animate .hero-nashi-partner {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.45s; /* Pojawia się płynnie chwilę po podtytule */
+  }
 
   .hero-scroll{
     position:absolute;
@@ -1486,6 +1532,10 @@
     <span class="hero-kicker">STUDIO FRYZUR</span>
     <img src="logo.png" alt="Pracownia B8 - FRYZJERSTWO" class="hero-logo">
     <p class="hero-tagline">Miejsce, gdzie luksus wiąże się z pasją i precyzją każdego cięcia.</p>
+    <div class="hero-nashi-partner">
+      <img src="nashi_logo.png" alt="Nashi Argan">
+      <span>Salon partnerski</span>
+    </div>
   </div>
   <div class="hero-scroll" id="heroScroll">
     <span>Przewiń</span>
