@@ -399,11 +399,11 @@
   .hero-content.animate .hero-tagline{ opacity:1; transform: translateY(0); transition-delay: 0.3s; }
 
   .hero-nashi-partner {
-    position: relative;
-    margin-top: 20px;
+    margin-top: 16px;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Ustawia elementy w kolumnie (jeden pod drugim) */
     align-items: center;
+    gap: 2px; /* Dystans - bardzo blisko siebie */
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 1s ease, transform 1s ease;
@@ -416,17 +416,13 @@
   }
   
   .hero-nashi-partner span {
-    position: absolute;
-    top: 38%;
-    left: -25%;
-    transform: translateY(-50%);
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(1.7rem, 4vw, 2.2rem); /* Lekko powiększone, Great Vibes jest optycznie smuklejsze */
-    color: #a8d5af; 
-    font-weight: 400; 
-    white-space: nowrap;
-    text-shadow: none; 
-    z-index: 2;
+    font-family: 'Plus Jakarta Sans', sans-serif; /* Ta sama co 'STUDIO FRYZUR' */
+    font-size: 1.05rem;
+    color: var(--sand-gold-light); /* Ten sam beżowy odcień */
+    font-weight: 700; /* Grubsze litery */
+    letter-spacing: normal; /* Normalne odstępy między literami */
+    text-transform: none; /* Brak wymuszania samych wielkich liter */
+    text-shadow: none; /* Zero poświat i cieni */
   }
   
   .hero-content.animate .hero-nashi-partner {
@@ -1524,8 +1520,8 @@
     <img src="logo.png" alt="Pracownia B8 - FRYZJERSTWO" class="hero-logo">
     <p class="hero-tagline">Miejsce, gdzie luksus wiąże się z pasją i precyzją każdego cięcia.</p>
     <div class="hero-nashi-partner">
-      <img src="nashi_logo.png" alt="Nashi Argan">
       <span>Salon partnerski</span>
+      <img src="nashi_logo.png" alt="Nashi Argan">
     </div>
   </div>
   <div class="hero-scroll" id="heroScroll">
