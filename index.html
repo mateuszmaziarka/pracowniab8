@@ -2549,34 +2549,34 @@
     
     isBooksyAnimActive = true; 
 
-    // Cykl 1: Pokazanie logo
+    // Cykl 1: Pokazanie obrazka Booksy
     booksyBtn.classList.add('show-logo');
     
     let t1 = setTimeout(() => {
-      // Powrót do tekstu po 3s
+      // Powrót do "Umów wizytę" (Obrazek znika po 2s)
       booksyBtn.classList.remove('show-logo');
       
       let t2 = setTimeout(() => {
-        // Cykl 2: Drugie pokazanie logo po 3s przerwy
+        // Cykl 2: Ponowne pokazanie obrazka Booksy (Napis wisiał przez 4s)
         booksyBtn.classList.add('show-logo');
         
         let t3 = setTimeout(() => {
-          // Ostateczny powrót do tekstu po kolejnych 3s
+          // Ostateczny powrót do "Umów wizytę" (Obrazek znika po 2s)
           booksyBtn.classList.remove('show-logo');
           
           let t4 = setTimeout(() => {
-            // Zdejmujemy całkowitą blokadę po 5 sekundach od zakończenia pętli
+            // Zdejmujemy całkowitą blokadę (Twój zaplanowany odpoczynek 8s)
             isBooksyAnimActive = false;
-          }, 7000); 
+          }, 6000); 
           booksyTimeouts.push(t4);
 
-        }, 4000); 
+        }, 2000); // <--- CZAS: 2 sekundy (pokazywanie drugiego logo)
         booksyTimeouts.push(t3);
 
-      }, 4000); 
+      }, 4000); // <--- CZAS: 4 sekundy (środkowa przerwa na czytanie tekstu)
       booksyTimeouts.push(t2);
 
-    }, 4000); 
+    }, 2000); // <--- CZAS: 2 sekundy (pokazywanie pierwszego logo)
     booksyTimeouts.push(t1);
   }
 
