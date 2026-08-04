@@ -400,7 +400,7 @@
 
   .hero-nashi-partner {
     position: relative;
-    margin-top: 12px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -410,38 +410,29 @@
   }
   
   .hero-nashi-partner img {
-    width: clamp(110px, 15vw, 140px); /* Małe logo responsywne */
+    width: clamp(100px, 14vw, 130px);
     height: auto;
     display: block;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
   }
   
   .hero-nashi-partner span {
     position: absolute;
-    /* Wyśrodkowanie na obrazku i lekki kąt obrotu dla naturalnego "odręcznego" efektu */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-3deg);
+    top: 38%; /* Delikatnie podniesione w górę względem środka logo */
+    left: -25%; /* Zaczyna się wyraźnie przed logiem i "wychodzi" z lewej */
+    transform: translateY(-50%); /* Zero pochyleń, równy, prosty tekst */
     font-family: 'Dancing Script', cursive;
-    font-size: clamp(1.4rem, 3vw, 1.7rem);
-    color: var(--bottle-green-light); /* Twój zmienny kolor, ładny liściasty zielony */
-    font-weight: 700;
+    font-size: clamp(1.5rem, 3.5vw, 1.9rem);
+    color: #a8d5af; /* Jasny, naturalny odcień zieleni liści, widoczny na ciemnym tle monstery */
+    font-weight: 400; /* Cienkie, czyste, klasyczne pismo odręczne */
     white-space: nowrap;
-    /* Gruby biały obrys i poświata zapobiegająca zlewaniu się z logo w tle */
-    text-shadow: 
-      -1.5px -1.5px 0 rgba(255,255,255,0.9),  
-       1.5px -1.5px 0 rgba(255,255,255,0.9),
-      -1.5px  1.5px 0 rgba(255,255,255,0.9),
-       1.5px  1.5px 0 rgba(255,255,255,0.9),
-       0px  0px 14px rgba(255,255,255,1),
-       0px  3px 6px rgba(0,0,0,0.3);
+    text-shadow: none; /* Całkowity brak poświat, obrysów i cieni */
     z-index: 2;
   }
   
   .hero-content.animate .hero-nashi-partner {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.45s; /* Pojawia się płynnie chwilę po podtytule */
+    transition-delay: 0.45s;
   }
 
   .hero-scroll{
