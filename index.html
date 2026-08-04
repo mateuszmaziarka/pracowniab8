@@ -2518,48 +2518,69 @@
   const booksyBtn = document.getElementById('booksyBtn');
   let isBooksyAnimActive = false;
   let isBooksyVisible = false;
+  let booksyTimeouts = []; // Tablica zapamiętująca wszystkie odliczania czasu
 
-  // Sprawdzamy czy przycisk jest na ekranie, żeby nie odpalać animacji gdy użytkownik jest na górze strony
+  // Funkcja awaryjnego zatrzymania: "zabija" odliczanie i przywraca stan początkowy
+  function killBooksyAnimation() {
+    booksyTimeouts.forEach(clearTimeout); // Czyści wszystkie timery z pamięci
+    booksyTimeouts = [];
+    if (booksyBtn) {
+      booksyBtn.classList.remove('show-logo'); // Wymusza pokazanie napisu "Umów wizytę"
+    }
+    isBooksyAnimActive = false; // Odblokowuje możliwość ponownego uruchomienia w przyszłości
+  }
+
+  // Obserwator monitorujący czy przycisk fizycznie znajduje się w kadrze
   if (booksyBtn) {
     const btnObserver = new IntersectionObserver((entries) => {
       isBooksyVisible = entries[0].isIntersecting;
+      
+      // Jeśli przycisk zniknął (przez scroll lub rozwinięcie akordeonu) - wyłączamy wszystko natychmiast
+      if (!isBooksyVisible) {
+        killBooksyAnimation();
+      }
     }, { threshold: 0.1 });
     btnObserver.observe(booksyBtn);
   }
 
   function triggerBooksyAnimation() {
-    // Blokada zabezpieczająca przed bugami i pętlami (przycisk musi być widoczny i animacja nie może być w toku)
+    // Nie odpalaj jeśli jest zablokowane lub przycisku nie ma na ekranie
     if (!booksyBtn || isBooksyAnimActive || !isBooksyVisible) return;
     
-    isBooksyAnimActive = true; // Zamykamy dostęp dla kolejnych przewinięć stroną
+    isBooksyAnimActive = true; 
 
-    // Cykl 1: Zmiana na logo
+    // Cykl 1: Pokazanie logo
     booksyBtn.classList.add('show-logo');
     
-    setTimeout(() => {
-      // Wróć do tekstu
+    let t1 = setTimeout(() => {
+      // Powrót do tekstu po 3s
       booksyBtn.classList.remove('show-logo');
       
-      setTimeout(() => {
-        // Cykl 2: Zmiana na logo
+      let t2 = setTimeout(() => {
+        // Cykl 2: Drugie pokazanie logo po 3s przerwy
         booksyBtn.classList.add('show-logo');
         
-        setTimeout(() => {
-          // Wróć do tekstu na dobre
+        let t3 = setTimeout(() => {
+          // Ostateczny powrót do tekstu po kolejnych 3s
           booksyBtn.classList.remove('show-logo');
           
-          // Zdejmujemy blokadę dopiero po np. 5 sekundach od zakończenia
-          // Dzięki temu jeśli ktoś dalej scrolluje cennik to przycisk mu nie miga w kółko jak dyskoteka
-          setTimeout(() => {
+          let t4 = setTimeout(() => {
+            // Zdejmujemy całkowitą blokadę po 5 sekundach od zakończenia pętli
             isBooksyAnimActive = false;
-          }, 5000); 
-          
-        }, 2000); // 2 sekundy trwa pokazywanie logo po raz drugi
-      }, 2000); // 2 sekundy trwa pokazywanie tekstu w środku
-    }, 2000); // 2 sekundy trwa pokazywanie logo po raz pierwszy
+          }, 7000); 
+          booksyTimeouts.push(t4);
+
+        }, 3000); 
+        booksyTimeouts.push(t3);
+
+      }, 3000); 
+      booksyTimeouts.push(t2);
+
+    }, 3000); 
+    booksyTimeouts.push(t1);
   }
 
-  // Podpinamy wywołanie pod każdy scroll, ale kod zabezpieczający powyżej odsiewa puste wywołania
+  // Odpalanie za każdym wykrytym ruchem kółka myszy lub pociągnięciem na telefonie
   window.addEventListener('scroll', triggerBooksyAnimation, { passive: true });
 
 </script>
