@@ -399,30 +399,31 @@
   .hero-content.animate .hero-tagline{ opacity:1; transform: translateY(0); transition-delay: 0.3s; }
 
   .hero-nashi-partner {
-    margin-top: 16px;
+    margin-top: 32px; /* Więcej oddechu od głównego cytatu wyżej */
     display: flex;
-    flex-direction: column; /* Ustawia elementy w kolumnie (jeden pod drugim) */
+    flex-direction: column;
     align-items: center;
-    gap: 2px; /* Dystans - bardzo blisko siebie */
+    gap: 8px; /* Lepszy, zrównoważony odstęp od logo */
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 1s ease, transform 1s ease;
   }
   
   .hero-nashi-partner img {
-    width: clamp(100px, 14vw, 130px);
+    width: clamp(85px, 12vw, 110px); /* Troszkę mniejsze logo, bardziej jak subtelny znaczek */
     height: auto;
     display: block;
+    opacity: 0.95; /* Delikatne wtapianie w tło */
   }
   
   .hero-nashi-partner span {
-    font-family: 'Plus Jakarta Sans', sans-serif; /* Ta sama co 'STUDIO FRYZUR' */
-    font-size: 1.05rem;
-    color: var(--sand-gold-light); /* Ten sam beżowy odcień */
-    font-weight: 700; /* Grubsze litery */
-    letter-spacing: normal; /* Normalne odstępy między literami */
-    text-transform: none; /* Brak wymuszania samych wielkich liter */
-    text-shadow: none; /* Zero poświat i cieni */
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem; /* Znacznie mniejsze */
+    text-transform: uppercase; /* Wszystko z dużej litery */
+    letter-spacing: 4px; /* Mocne rozstrzelenie liter (Premium look) */
+    color: rgba(231, 210, 174, 0.85); /* Twój beżowy (sand-gold-light), lekko stonowany przezroczystością */
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Gwarantuje, że cienkie litery nie znikną na tle jasnych liści w tle */
   }
   
   .hero-content.animate .hero-nashi-partner {
@@ -1489,9 +1490,9 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner container">
     <a href="#top" class="nav-logo">
-      <span class="text-top">BERNARDYŃSKA 8 </span>
+      <span class="text-top">Fryzjerstwo</span>
       <span class="text-scrolled">PRACOWNIA </span>
-      <span class="logo-full">RZESZÓW</span>
+      <span class="logo-full"></span>
       <span class="logo-short">B8</span>
       <span class="nav-sub">
         <span>F</span><span>R</span><span>Y</span><span>Z</span><span>J</span><span>E</span><span>R</span><span>S</span><span>T</span><span>W</span><span>O</span>
