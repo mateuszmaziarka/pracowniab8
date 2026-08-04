@@ -2549,35 +2549,41 @@
     
     isBooksyAnimActive = true; 
 
-    // Cykl 1: Pokazanie obrazka Booksy
-    booksyBtn.classList.add('show-logo');
-    
-    let t1 = setTimeout(() => {
-      // Powrót do "Umów wizytę" (Obrazek znika po 2s)
-      booksyBtn.classList.remove('show-logo');
+    // Cykl 0: Czekamy 3 sekundy na napisie "Umów wizytę" zanim cokolwiek się stanie
+    let t0 = setTimeout(() => {
       
-      let t2 = setTimeout(() => {
-        // Cykl 2: Ponowne pokazanie obrazka Booksy (Napis wisiał przez 4s)
-        booksyBtn.classList.add('show-logo');
+      // Cykl 1: Pokazanie obrazka Booksy
+      booksyBtn.classList.add('show-logo');
+      
+      let t1 = setTimeout(() => {
+        // Powrót do "Umów wizytę" (Obrazek znika po 2s)
+        booksyBtn.classList.remove('show-logo');
         
-        let t3 = setTimeout(() => {
-          // Ostateczny powrót do "Umów wizytę" (Obrazek znika po 2s)
-          booksyBtn.classList.remove('show-logo');
+        let t2 = setTimeout(() => {
+          // Cykl 2: Ponowne pokazanie obrazka Booksy (Napis wisiał przez 4s)
+          booksyBtn.classList.add('show-logo');
           
-          let t4 = setTimeout(() => {
-            // Zdejmujemy całkowitą blokadę (Twój zaplanowany odpoczynek 8s)
-            isBooksyAnimActive = false;
-          }, 6000); 
-          booksyTimeouts.push(t4);
+          let t3 = setTimeout(() => {
+            // Ostateczny powrót do "Umów wizytę" (Obrazek znika po 2s)
+            booksyBtn.classList.remove('show-logo');
+            
+            let t4 = setTimeout(() => {
+              // Zdejmujemy całkowitą blokadę (Twój zaplanowany odpoczynek 8s)
+              isBooksyAnimActive = false;
+            }, 7000); 
+            booksyTimeouts.push(t4);
 
-        }, 2300); // <--- CZAS: 2 sekundy (pokazywanie drugiego logo)
-        booksyTimeouts.push(t3);
+          }, 2300); // <--- CZAS: 2 sekundy (pokazywanie drugiego logo)
+          booksyTimeouts.push(t3);
 
-      }, 4200); // <--- CZAS: 4 sekundy (środkowa przerwa na czytanie tekstu)
-      booksyTimeouts.push(t2);
+        }, 4200); // <--- CZAS: 4 sekundy (środkowa przerwa na czytanie tekstu)
+        booksyTimeouts.push(t2);
 
-    }, 2300); // <--- CZAS: 2 sekundy (pokazywanie pierwszego logo)
-    booksyTimeouts.push(t1);
+      }, 2300); // <--- CZAS: 2 sekundy (pokazywanie pierwszego logo)
+      booksyTimeouts.push(t1);
+
+    }, 3000); // <--- CZAS: 3 sekundy startowego oczekiwania (tekst "Umów wizytę")
+    booksyTimeouts.push(t0);
   }
 
   // Odpalanie za każdym wykrytym ruchem kółka myszy lub pociągnięciem na telefonie
