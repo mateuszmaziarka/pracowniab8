@@ -808,6 +808,38 @@
     transform: translateY(-2px);
   }
 
+  /* --- ANIMACJA PRZYCISKU BOOKSY --- */
+  .btn-booksy-anim {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-booksy-anim .btn-text {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .btn-booksy-anim .btn-logo {
+    position: absolute;
+    width: 75px; /* Szerokość logo, możesz dostosować w razie potrzeby */
+    height: auto;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none; /* Żeby obrazek nie blokował w kliknięciu */
+  }
+
+  .btn-booksy-anim.show-logo .btn-text {
+    opacity: 0;
+    transform: scale(0.95); /* Lekko "zapada się" do środka */
+  }
+
+  .btn-booksy-anim.show-logo .btn-logo {
+    opacity: 1;
+    transform: scale(1);
+  }
+
   .btn-outline{
     background: transparent;
     border: 1.5px solid var(--bottle-green);
@@ -1805,7 +1837,10 @@
     </div>
 
     <div class="pricing-cta">
-      <a href="https://booksy.com/pl-pl/268448_fryzjerstwo-pracowniab8_fryzjer_10729_rzeszow" target="_blank" rel="noopener noreferrer" class="btn">Zarezerwuj termin</a>
+      <a href="https://booksy.com/pl-pl/268448_fryzjerstwo-pracowniab8_fryzjer_10729_rzeszow" target="_blank" rel="noopener noreferrer" class="btn btn-booksy-anim" id="booksyBtn">
+        <span class="btn-text">Umów wizytę</span>
+        <img src="booksy.png" alt="Booksy" class="btn-logo">
+      </a>
     </div>
   </div>
 </section>
@@ -2478,6 +2513,54 @@
       showPrev(); // Przesunięcie w prawo
     }
   }
+
+  // --- LOGIKA ANIMACJI PRZYCISKU BOOKSY ---
+  const booksyBtn = document.getElementById('booksyBtn');
+  let isBooksyAnimActive = false;
+  let isBooksyVisible = false;
+
+  // Sprawdzamy czy przycisk jest na ekranie, żeby nie odpalać animacji gdy użytkownik jest na górze strony
+  if (booksyBtn) {
+    const btnObserver = new IntersectionObserver((entries) => {
+      isBooksyVisible = entries[0].isIntersecting;
+    }, { threshold: 0.1 });
+    btnObserver.observe(booksyBtn);
+  }
+
+  function triggerBooksyAnimation() {
+    // Blokada zabezpieczająca przed bugami i pętlami (przycisk musi być widoczny i animacja nie może być w toku)
+    if (!booksyBtn || isBooksyAnimActive || !isBooksyVisible) return;
+    
+    isBooksyAnimActive = true; // Zamykamy dostęp dla kolejnych przewinięć stroną
+
+    // Cykl 1: Zmiana na logo
+    booksyBtn.classList.add('show-logo');
+    
+    setTimeout(() => {
+      // Wróć do tekstu
+      booksyBtn.classList.remove('show-logo');
+      
+      setTimeout(() => {
+        // Cykl 2: Zmiana na logo
+        booksyBtn.classList.add('show-logo');
+        
+        setTimeout(() => {
+          // Wróć do tekstu na dobre
+          booksyBtn.classList.remove('show-logo');
+          
+          // Zdejmujemy blokadę dopiero po np. 5 sekundach od zakończenia
+          // Dzięki temu jeśli ktoś dalej scrolluje cennik to przycisk mu nie miga w kółko jak dyskoteka
+          setTimeout(() => {
+            isBooksyAnimActive = false;
+          }, 5000); 
+          
+        }, 2000); // 2 sekundy trwa pokazywanie logo po raz drugi
+      }, 2000); // 2 sekundy trwa pokazywanie tekstu w środku
+    }, 2000); // 2 sekundy trwa pokazywanie logo po raz pierwszy
+  }
+
+  // Podpinamy wywołanie pod każdy scroll, ale kod zabezpieczający powyżej odsiewa puste wywołania
+  window.addEventListener('scroll', triggerBooksyAnimation, { passive: true });
 
 </script>
 
