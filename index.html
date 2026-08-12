@@ -1466,6 +1466,101 @@
       color: #f0ece2 !important;
     }
   }
+
+/* --- ELEGANKI BANER COOKIES --- */
+  .cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 99999;
+    background: rgba(15, 28, 22, 0.92); /* Głęboka zieleń dopasowana do marki */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(207, 168, 118, 0.3); /* Złota ramka */
+    border-radius: 20px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 440px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Animacja wyłaniania */
+    transform: translateY(30px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, visibility 0.5s ease;
+  }
+
+  .cookie-banner.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .cookie-text {
+    font-size: 0.8rem;
+    color: #f0ece2;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .cookie-text a {
+    color: var(--sand-gold);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .cookie-text a:hover {
+    color: var(--sand-gold-light);
+    border-color: var(--sand-gold-light);
+  }
+
+  .cookie-btn {
+    background: var(--sand-gold);
+    color: var(--bottle-green);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cookie-btn:hover {
+    background: var(--sand-gold-light);
+    transform: translateY(-2px);
+  }
+
+  /* Wersja mobilna - ultra dopasowana */
+  @media (max-width: 760px) {
+    .cookie-banner {
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      max-width: none;
+      flex-direction: row; 
+      padding: 14px 16px;
+      gap: 12px;
+      border-radius: 16px;
+    }
+    .cookie-text {
+      font-size: 0.75rem;
+    }
+    .cookie-btn {
+      padding: 14px 20px; /* Duży obszar klikalny dla palca */
+      font-size: 0.8rem;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1859,7 +1954,7 @@
           natychmiast na podany e-mail – gotowy do wręczenia.
         </p>
         <div style="font-size: 0.8rem; margin-bottom: 12px; color: #55554f;">
-          Kliknięcie przycisku zakupu jest równoznaczne z akceptacją <a href="regulamin-FINALNY.html" style="color: var(--bottle-green); text-decoration: underline;">Regulaminu</a>.
+          Kliknięcie przycisku zakupu jest równoznaczne z akceptacją <a href="regulamin.html" style="color: var(--bottle-green); text-decoration: underline;">Regulaminu</a>.
         </div>
         <a href="https://buy.stripe.com/3cI6oG6gPc4T16E8BI0Fi00" target="_blank" rel="noopener noreferrer" class="btn">
           Kup Voucher Online
@@ -2615,17 +2710,34 @@
 
 </script>
 <!-- BANER COOKIES -->
-<div id="cookieBanner" style="position:fixed; bottom:0; left:0; width:100%; background:rgba(20, 40, 30, 0.95); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); padding:12px 16px; z-index:99999; display:flex; align-items:center; justify-content:space-between; gap:16px; border-top:1px solid rgba(207,168,118,0.25); box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif;">
-  
-  <div style="font-size:0.75rem; color:#f0ece2; line-height:1.4; text-align:left; flex:1;">
-    Ta strona używa ciasteczek (cookies) do poprawnego działania i obsługi płatności. 
-    <a href="polityka-prywatnosci-FINALNA.html" style="color:#cfa876; text-decoration:none; border-bottom:1px solid #cfa876; white-space:nowrap; font-weight:600;">Czytaj więcej</a>
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Informacja o plikach cookie">
+  <div class="cookie-text">
+    Używamy ciasteczek, aby strona działała idealnie i obsługiwała płatności. 
+    <a href="polityka-prywatnosci.html">Czytaj więcej</a>
   </div>
-  
-  <button onclick="document.getElementById('cookieBanner').style.display='none'" style="background:#cfa876; color:#1f3d2f; border:none; padding:14px 24px; border-radius:30px; font-weight:800; font-size:0.95rem; cursor:pointer; flex-shrink:0; box-shadow:0 4px 12px rgba(0,0,0,0.2); text-transform:uppercase;">
-    Rozumiem
-  </button>
-  
+  <button id="acceptCookiesBtn" class="cookie-btn">Jasne</button>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const acceptBtn = document.getElementById('acceptCookiesBtn');
+
+    // Sprawdzamy, czy użytkownik już zaakceptował cookies
+    if (!localStorage.getItem('b8_cookies_accepted')) {
+      // Opóźniamy pokazanie o 1 sekundę, żeby nie atakować klienta od razu
+      setTimeout(() => {
+        cookieBanner.classList.add('show');
+      }, 200);
+    }
+
+    // Co się dzieje po kliknięciu
+    acceptBtn.addEventListener('click', () => {
+      // Płynne zniknięcie
+      cookieBanner.classList.remove('show');
+      // Zapisujemy wybór w pamięci przeglądarki
+      localStorage.setItem('b8_cookies_accepted', 'true');
+    });
+  });
+</script>
 </body>
 </html>
