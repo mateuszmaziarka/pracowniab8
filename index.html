@@ -312,9 +312,9 @@
   }
 
   .loader-bar{
-    position: absolute;
+    position: fixed; /* Uniezależniamy pozycję od logo */
     left: 50%;
-    bottom: -15px; /* Odległość tuż pod logo. Zwiększ lub zmniejsz np. na -20px według preferencji */
+    top: 75vh; /* Ustawia pasek idealnie na 3/4 wysokości ekranu */
     transform: translateX(-50%);
     width: min(220px, 50vw);
     height: 3px;
