@@ -1186,8 +1186,10 @@
     text-decoration: underline;
     text-decoration-color: rgba(242,237,226,0.4); /* Delikatne podkreślenie */
     text-underline-offset: 4px;
-    margin-left: 6px;
+    margin-left: 8px; /* Troszkę zwiększony odstęp, żeby linki się nie zlewały */
     transition: color 0.3s ease, text-decoration-color 0.3s ease;
+    white-space: nowrap; /* Blokuje rozrywanie wyrazów (spacja jest bezpieczna) */
+    display: inline-block; /* Traktuje cały link jako nierozłączny klocek */
   }
 
   .footer-link-regulamin:hover {
