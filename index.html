@@ -774,16 +774,21 @@
   }
 
   .nashi-photo{
-    height: 200px;
+    height: 220px;
     width: 100%;
-    background: linear-gradient(135deg, #e9e2d4, #cbb996);
     border-radius: 24px 24px 0 0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color: var(--bottle-green);
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    overflow: hidden;
+  }
+
+  .nashi-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .nashi-card:hover .nashi-photo img {
+    transform: scale(1.05);
   }
 
   .nashi-card h3, .nashi-card p{ padding: 0 28px; }
@@ -2037,28 +2042,34 @@
   <div class="container">
     <span class="eyebrow">Kosmetyki premium</span>
     <h2 class="section-heading">Ekskluzywna Pielęgnacja Nashi</h2>
-    <p class="section-sub">Włoska linia kosmetyków Nashi Argan to synonim luksusowej pielęgnacji na bazie oleju arganowego, dostępna wyłącznie w wybranych salonach.</p>
+    <p class="section-sub">Odkryj najpopularniejsze linie włoskich kosmetyków Nashi Argan. Luksusowa pielęgnacja bogata w organiczne składniki, stworzona z poszanowaniem natury – dostępna w naszym salonie.</p>
 
     <div class="nashi-grid">
       <div class="glass nashi-card">
-        <div class="nashi-photo">Nashi Argan Oil</div>
-        <h3>Nashi Argan Oil</h3>
-        <p>Wielofunkcyjny olejek arganowy nadający włosom blask, miękkość i ułatwiający rozczesywanie — idealny do codziennej pielęgnacji.</p>
+        <div class="nashi-photo">
+          <img src="prod-argan.jpg" alt="Nashi Classic">
+        </div>
+        <h3>Linia Classic</h3>
+        <p>Kultowa seria do codziennej pielęgnacji. Głęboko nawilża, wygładza i ułatwia rozczesywanie, otulając włosy zmysłowym, charakterystycznym zapachem Nashi.</p>
       </div>
       <div class="glass nashi-card">
-        <div class="nashi-photo">Nashi Shampoo & Mask</div>
-        <h3>Rytuał Szampon &amp; Maska</h3>
-        <p>Duet głęboko odżywczy, który odbudowuje strukturę włosu od wewnątrz i przywraca mu naturalną elastyczność.</p>
+        <div class="nashi-photo">
+          <img src="prod-sun.jpg" alt="Nashi Sun">
+        </div>
+        <h3>Linia Sun</h3>
+        <p>Niezbędna ochrona przed promieniami UV, solą morską i chlorem. Przywraca wilgotność i miękkość włosom zmęczonym intensywną ekspozycją na słońce.</p>
       </div>
       <div class="glass nashi-card">
-        <div class="nashi-photo">Nashi Keratin Ritual</div>
-        <h3>Rytuał Keratynowy</h3>
-        <p>Zaawansowany zabieg wygładzający, redukujący puszenie się włosów, zapewniający efekt salonowej gładkości na tygodnie.</p>
+        <div class="nashi-photo">
+          <img src="prod-filler.jpg" alt="Nashi Filler Therapy">
+        </div>
+        <h3>Filler Therapy</h3>
+        <p>Zaawansowana rekonstrukcja dla włosów zniszczonych zabiegami. Oparta na keratynie i kolagenie, przywraca pasmom elastyczność i naturalną siłę.</p>
       </div>
     </div>
 
     <div class="nashi-cta-wrap">
-      <button class="btn">Zobacz pełny katalog</button>
+      <a href="https://nashi.pracowniab8.pl" class="btn">Zobacz pełny katalog Nashi</a>
     </div>
   </div>
 </section>
