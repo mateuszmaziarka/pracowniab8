@@ -1948,21 +1948,61 @@
       <div class="about-content" style="text-align: center; padding: 60px 24px;">
         <span class="eyebrow">Pomysł na idealny prezent</span>
         <h2 class="section-heading">Karta Podarunkowa</h2>
-        <p style="margin: 0 auto 30px; max-width: 600px;">
+        <p style="margin: 0 auto 20px; max-width: 600px;">
           Podaruj bliskiej osobie chwilę relaksu i piękne włosy. Wybierz dowolną kwotę, 
           zapłać wygodnie online, a elegancki voucher trafi 
           natychmiast na podany e-mail – gotowy do wręczenia.
         </p>
-        <div style="font-size: 0.8rem; margin-bottom: 12px; color: #55554f;">
-          Kliknięcie przycisku zakupu jest równoznaczne z akceptacją <a href="regulamin.html" style="color: var(--bottle-green); text-decoration: underline;">Regulaminu</a>.
+
+        <!-- NOWY KOD: Akceptacja regulaminu z Checkboxem -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 24px;">
+          <label style="display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 0.9rem; color: #55554f; cursor: pointer; user-select: none;">
+            <input type="checkbox" id="acceptVoucherTerms" style="width: 18px; height: 18px; accent-color: var(--bottle-green); cursor: pointer;">
+            <span>Akceptuję <a href="regulamin.html" target="_blank" style="color: var(--bottle-green); text-decoration: underline;">Regulamin</a> sprzedaży voucherów</span>
+          </label>
+          <span id="voucherErrorMsg" style="color: #cc3333; font-size: 0.85rem; font-weight: 600; opacity: 0; transition: opacity 0.3s ease;">
+            Aby przejść do płatności, musisz zaakceptować regulamin.
+          </span>
         </div>
-        <a href="https://buy.stripe.com/3cI6oG6gPc4T16E8BI0Fi00" target="_blank" rel="noopener noreferrer" class="btn">
+
+        <!-- Przycisk z ID dodanym dla JavaScriptu -->
+        <a href="https://buy.stripe.com/3cI6oG6gPc4T16E8BI0Fi00" target="_blank" rel="noopener noreferrer" class="btn" id="buyVoucherBtn">
           Kup Voucher Online
         </a>
       </div>
     </div>
   </div>
 </section>
+
+<!-- SKRYPT: Logika blokady przycisku i komunikatu błędu -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const acceptTermsCheckbox = document.getElementById("acceptVoucherTerms");
+    const buyVoucherBtn = document.getElementById("buyVoucherBtn");
+    const voucherErrorMsg = document.getElementById("voucherErrorMsg");
+
+    buyVoucherBtn.addEventListener("click", (e) => {
+      // Jeśli checkbox NIE JEST zaznaczony
+      if (!acceptTermsCheckbox.checked) {
+        e.preventDefault(); // Zablokuj przejście do Stripe
+        voucherErrorMsg.style.opacity = "1"; // Pokaż komunikat o błędzie
+        
+        // Dodatkowy efekt: delikatne powiększenie pola z checkboxem, aby przykuć wzrok
+        const labelEl = acceptTermsCheckbox.parentElement;
+        labelEl.style.transform = "scale(1.03)";
+        labelEl.style.transition = "transform 0.2s ease";
+        setTimeout(() => { labelEl.style.transform = "scale(1)"; }, 200);
+      }
+    });
+
+    // Gdy użytkownik zaznaczy regulamin - schowaj błąd
+    acceptTermsCheckbox.addEventListener("change", () => {
+      if (acceptTermsCheckbox.checked) {
+        voucherErrorMsg.style.opacity = "0";
+      }
+    });
+  });
+</script>
 
 <!-- ZESPÓŁ -->
 <section id="zespol">
