@@ -1743,17 +1743,31 @@
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <div class="hero-content" id="heroContent">
-    <span class="hero-kicker">BERNARDYŃSKA 8</span>
-    <img src="logo.png" alt="Pracownia B8 - FRYZJERSTWO" class="hero-logo">
-    <p class="hero-tagline">Przestrzeń stworzona dla Twoich włosów i Twojego relaksu.</p>
-    <div class="hero-nashi-partner">
-      <span>Salon partnerski</span>
-      <a href="https://nashi.pracowniab8.pl" title="Odwiedź dedykowaną stronę Nashi Argan" style="display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-        <img src="nashi_logo.png" alt="Nashi Argan">
-      </a>
+  <!-- Osobna warstwa ze zdjęciem do płynnej animacji przybliżania -->
+  <div class="hero-bg-layer"></div>
+  
+  <div class="container hero-container">
+    <div class="hero-content" id="heroContent">
+      <span class="hero-eyebrow">Fryzjerstwo Rzeszów</span>
+      <h1 class="hero-title">Zasługujesz na<br>idealne włosy.</h1>
+      <p class="hero-subtitle">Poznaj przestrzeń, gdzie rzemieślnicza precyzja spotyka się z Twoim relaksem. Zarezerwuj swój czas w Pracowni B8.</p>
+      
+      <div class="hero-actions">
+        <a href="https://booksy.com/pl-pl/268448_fryzjerstwo-pracowniab8_fryzjer_10729_rzeszow" target="_blank" rel="noopener noreferrer" class="btn hero-btn">
+          Umów wizytę
+        </a>
+      </div>
     </div>
   </div>
+
+  <!-- Nashi przeniesione dyskretnie do prawego dolnego rogu -->
+  <div class="hero-nashi-corner">
+    <span>Salon partnerski</span>
+    <a href="https://nashi.pracowniab8.pl" title="Odwiedź stronę Nashi" target="_blank">
+      <img src="nashi_logo.png" alt="Nashi Argan">
+    </a>
+  </div>
+
   <div class="hero-scroll" id="heroScroll">
     <span>Przewiń</span>
     <div class="line"></div>
