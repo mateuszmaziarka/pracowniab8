@@ -349,165 +349,106 @@
     width: 100%;
     position: relative;
     overflow: hidden;
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+      /* Im wyższa wartość (od 0.0 do 1.0), tym ciemniejsze zdjęcie */
+      linear-gradient(rgba(0,0,0,0.70), rgba(0,0,0,0.70)),
+      url('hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align:center;
   }
 
   @supports (height: 100svh){
     .hero{ height: 100svh; }
   }
 
-  /* Animowane tło - Ken Burns effect */
-  .hero-bg-layer {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background-image: url('hero-bg.png');
-    background-size: cover;
-    background-position: center 30%; /* Lekko podniesione, by pokazać więcej salonu */
-    background-repeat: no-repeat;
-    animation: zoomBg 25s linear infinite alternate;
-  }
-
-  /* Gradient przyciemniający głownie lewą stronę pod tekstem */
-  .hero-bg-layer::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(15,28,22,0.92) 0%, rgba(15,28,22,0.65) 45%, rgba(15,28,22,0.2) 100%);
-  }
-
-  @keyframes zoomBg {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.12); }
-  }
-
-  .hero-container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    padding-top: 60px; /* Korekta na pasek nawigacji */
-  }
-
   .hero-content{
-    display: flex;
+    display:flex;
     flex-direction: column;
-    align-items: flex-start; /* Magazynowy styl do lewej */
-    max-width: 680px;
+    align-items:center;
+    gap: 22px;
+    padding: 0 24px;
+    margin-top: 8vh; /* <-- Dodane: identyczne przesunięcie w dół co w loaderze */
   }
 
-  .hero-eyebrow {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 5px;
+  .hero-kicker{
+    font-size: 0.78rem;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--sand-gold);
-    margin-bottom: 24px;
-    
+    color: var(--sand-gold-light);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: relative;
+    top: -15px; /* Odpowiada za przesunięcie napisu wyżej względem logo */
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
     transition: opacity 0.9s ease, transform 0.9s ease;
   }
 
-  .hero-title {
+  .hero-logo{
+    width: min(420px, 74vw);
+    height: auto;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+  }
+
+  .hero-tagline{
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
-    line-height: 1.05;
-    color: #fdf9f2;
-    margin-bottom: 24px;
-    text-shadow: 0 4px 24px rgba(0,0,0,0.4);
-    
+    font-style: italic;
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    color: #f3efe6;
+    max-width: 520px;
+    line-height: 1.5;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.35);
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
     transition: opacity 1s ease, transform 1s ease;
   }
 
-  .hero-subtitle {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
-    color: rgba(253, 249, 242, 0.85);
-    line-height: 1.6;
-    max-width: 540px;
-    margin-bottom: 40px;
-    font-weight: 300;
-    
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
+  .hero-content.animate .hero-kicker{ opacity:1; transform: translateY(0); transition-delay: 0.15s; }
+  .hero-content.animate .hero-tagline{ opacity:1; transform: translateY(0); transition-delay: 0.3s; }
 
-  .hero-actions {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-
-  .hero-btn {
-    background: var(--sand-gold);
-    color: var(--bottle-green);
-    font-size: 1.05rem;
-    padding: 18px 46px;
-    box-shadow: 0 10px 30px rgba(207, 168, 118, 0.2);
-  }
-
-  .hero-btn:hover {
-    background: var(--sand-gold-light);
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(207, 168, 118, 0.35);
-  }
-
-  /* Kaskadowe wyłanianie elementów po załadowaniu (współpracuje z loaderem) */
-  .hero-content.animate .hero-eyebrow{ opacity:1; transform: translateY(0); transition-delay: 0.1s; }
-  .hero-content.animate .hero-title{ opacity:1; transform: translateY(0); transition-delay: 0.25s; }
-  .hero-content.animate .hero-subtitle{ opacity:1; transform: translateY(0); transition-delay: 0.4s; }
-  .hero-content.animate .hero-actions{ opacity:1; transform: translateY(0); transition-delay: 0.55s; }
-
-  /* Nashi w prawym dolnym rogu */
-  .hero-nashi-corner {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    z-index: 2;
+  .hero-nashi-partner {
+    margin-top: 32px; /* Więcej oddechu od głównego cytatu wyżej */
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
+    align-items: center;
+    gap: 8px; /* Lepszy, zrównoważony odstęp od logo */
     opacity: 0;
-    transition: opacity 2s ease 1s; /* Pokazuje się bardzo powoli na końcu */
-  }
-
-  .hero-content.animate ~ .hero-nashi-corner {
-    opacity: 0.8;
+    transform: translateY(16px);
+    transition: opacity 1s ease, transform 1s ease;
   }
   
-  .hero-nashi-corner:hover {
-    opacity: 1;
-  }
-
-  .hero-nashi-corner span {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  .hero-nashi-corner img {
-    width: 80px;
+  .hero-nashi-partner img {
+    width: clamp(85px, 12vw, 110px); /* Troszkę mniejsze logo, bardziej jak subtelny znaczek */
     height: auto;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
-    transition: transform 0.3s ease;
+    display: block;
+    opacity: 0.95; /* Delikatne wtapianie w tło */
+  }
+  
+  .hero-nashi-partner span {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem; /* Znacznie mniejsze */
+    text-transform: uppercase; /* Wszystko z dużej litery */
+    letter-spacing: 4px; /* Mocne rozstrzelenie liter (Premium look) */
+    color: rgba(231, 210, 174, 0.85); /* Twój beżowy (sand-gold-light), lekko stonowany przezroczystością */
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Gwarantuje, że cienkie litery nie znikną na tle jasnych liści w tle */
+  }
+  
+  .hero-content.animate .hero-nashi-partner {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.45s;
   }
 
-  .hero-nashi-corner a:hover img {
-    transform: scale(1.05);
-  }
-
-  /* Animacja scrolla (ikona przewijania) */
   .hero-scroll{
     position:absolute;
     bottom: 34px;
-    left: 40px; /* Zmienione na lewą by pasowało do kompozycji */
+    left: 50%;
+    transform: translateX(-50%);
     color: #fff;
     font-size: 0.65rem;
     letter-spacing: 2.5px;
@@ -518,58 +459,27 @@
     gap:8px;
     opacity: 0.75;
     transition: opacity 0.6s ease, transform 0.6s ease;
-    z-index: 2;
   }
 
   .hero-scroll.hide{
     opacity: 0;
-    transform: translateY(14px);
+    transform: translate(-50%, 14px);
     pointer-events: none;
   }
 
   .hero-scroll .line{
     width:1px;
-    height:30px;
-    background: rgba(255,255,255,0.4);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .hero-scroll .line::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: var(--sand-gold);
-    animation: scrollDrop 2s ease-in-out infinite;
+    height:20px;
+    background: rgba(255,255,255,0.55);
+    animation: scrollPulse 2.2s ease-in-out infinite;
   }
 
-  @keyframes scrollDrop {
-    0% { transform: translateY(-100%); }
-    50% { transform: translateY(0); }
-    100% { transform: translateY(100%); }
+  @keyframes scrollPulse{
+    0% { transform: scaleY(0.4); opacity:0.4; }
+    50% { transform: scaleY(1); opacity:1; }
+    100% { transform: scaleY(0.4); opacity:0.4; }
   }
 
-  /* Oraz mała poprawka dla telefonów, żeby ładnie wyglądało w pionie */
-  @media (max-width: 760px) {
-    .hero-bg-layer::after {
-      /* Na telefonie przyciemniamy mocniej z dołu do góry, żeby teksty były zawsze czytelne */
-      background: linear-gradient(to top, rgba(15,28,22,0.95) 0%, rgba(15,28,22,0.7) 50%, rgba(15,28,22,0.3) 100%);
-    }
-    .hero-content {
-      align-items: center; /* Na telefonach nadal najlepiej wygląda środkowanie */
-      text-align: center;
-      margin-top: 40px;
-    }
-    .hero-scroll {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .hero-nashi-corner {
-      display: none; /* Na telefonie usuwamy logo Nashi z pierwszego ekranu, żeby nie robić śmietnika */
-    }
-  }
-  
-  
   /* ABOUT */
   .about-card{
     /* padding usunięty stąd i przeniesiony do .about-content */
@@ -1743,31 +1653,17 @@
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <!-- Osobna warstwa ze zdjęciem do płynnej animacji przybliżania -->
-  <div class="hero-bg-layer"></div>
-  
-  <div class="container hero-container">
-    <div class="hero-content" id="heroContent">
-      <span class="hero-eyebrow">Fryzjerstwo Rzeszów</span>
-      <h1 class="hero-title">Zasługujesz na<br>idealne włosy.</h1>
-      <p class="hero-subtitle">Poznaj przestrzeń, gdzie rzemieślnicza precyzja spotyka się z Twoim relaksem. Zarezerwuj swój czas w Pracowni B8.</p>
-      
-      <div class="hero-actions">
-        <a href="https://booksy.com/pl-pl/268448_fryzjerstwo-pracowniab8_fryzjer_10729_rzeszow" target="_blank" rel="noopener noreferrer" class="btn hero-btn">
-          Umów wizytę
-        </a>
-      </div>
+  <div class="hero-content" id="heroContent">
+    <span class="hero-kicker">BERNARDYŃSKA 8</span>
+    <img src="logo.png" alt="Pracownia B8 - FRYZJERSTWO" class="hero-logo">
+    <p class="hero-tagline">Przestrzeń stworzona dla Twoich włosów i Twojego relaksu.</p>
+    <div class="hero-nashi-partner">
+      <span>Salon partnerski</span>
+      <a href="https://nashi.pracowniab8.pl" title="Odwiedź dedykowaną stronę Nashi Argan" style="display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="nashi_logo.png" alt="Nashi Argan">
+      </a>
     </div>
   </div>
-
-  <!-- Nashi przeniesione dyskretnie do prawego dolnego rogu -->
-  <div class="hero-nashi-corner">
-    <span>Salon partnerski</span>
-    <a href="https://nashi.pracowniab8.pl" title="Odwiedź stronę Nashi" target="_blank">
-      <img src="nashi_logo.png" alt="Nashi Argan">
-    </a>
-  </div>
-
   <div class="hero-scroll" id="heroScroll">
     <span>Przewiń</span>
     <div class="line"></div>
