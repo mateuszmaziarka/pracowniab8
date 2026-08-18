@@ -2838,6 +2838,14 @@
           'ad_personalization': 'granted'
         });
       }
+      
+      const iframe = document.getElementById('googleMapIframe');
+      const placeholder = document.getElementById('mapPlaceholder');
+      if (iframe && placeholder) {
+        iframe.src = iframe.getAttribute('data-src'); // Podstawia prawdziwy link
+        iframe.style.display = 'block';               // Pokazuje mapę
+        placeholder.style.display = 'none';           // Ukrywa tekst o blokadzie
+      }
     }
 
     const cookieChoice = localStorage.getItem('b8_cookies_choice');
