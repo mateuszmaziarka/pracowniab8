@@ -2077,27 +2077,27 @@
     <p class="section-sub">Odkryj najpopularniejsze linie włoskich kosmetyków Nashi Argan. Luksusowa pielęgnacja bogata w organiczne składniki, stworzona z poszanowaniem natury – dostępna w naszym salonie.</p>
 
     <div class="nashi-grid">
-      <div class="glass nashi-card">
+      <a href="https://nashi.pracowniab8.pl" class="glass nashi-card">
         <div class="nashi-photo">
           <img src="prod-argan.jpg" alt="Nashi Classic">
         </div>
         <h3>Linia Classic</h3>
         <p>Kultowa seria do codziennej pielęgnacji. Głęboko nawilża, wygładza i ułatwia rozczesywanie, otulając włosy zmysłowym, charakterystycznym zapachem Nashi.</p>
-      </div>
-      <div class="glass nashi-card">
+      </a>
+      <a href="https://nashi.pracowniab8.pl" class="glass nashi-card">
         <div class="nashi-photo">
           <img src="prod-sun.jpg" alt="Nashi Sun">
         </div>
         <h3>Linia Sun</h3>
         <p>Niezbędna ochrona przed promieniami UV, solą morską i chlorem. Przywraca wilgotność i miękkość włosom zmęczonym intensywną ekspozycją na słońce.</p>
-      </div>
-      <div class="glass nashi-card">
+      </a>
+      <a href="https://nashi.pracowniab8.pl" class="glass nashi-card">
         <div class="nashi-photo">
           <img src="prod-filler.jpg" alt="Nashi Filler Therapy">
         </div>
         <h3>Filler Therapy</h3>
         <p>Zaawansowana rekonstrukcja dla włosów zniszczonych zabiegami. Oparta na keratynie i kolagenie, przywraca pasmom elastyczność i naturalną siłę.</p>
-      </div>
+      </a>
     </div>
 
     <div class="nashi-cta-wrap">
@@ -2801,17 +2801,20 @@
 <!-- BANER COOKIES -->
 <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Informacja o plikach cookie">
   <div class="cookie-text">
-    Używamy ciasteczek, aby strona działała idealnie i obsługiwała płatności. 
+    Używamy niezbędnych plików cookies do działania strony (np. płatności). Opcjonalnie używamy ciasteczek analitycznych (Google Analytics), aby badać ruch na stronie. 
     <a href="polityka-prywatnosci.html">Czytaj więcej</a>
   </div>
-  <button id="acceptCookiesBtn" class="cookie-btn">Akceptuję</button>
+  <div style="display: flex; gap: 10px;">
+    <button id="rejectCookiesBtn" class="cookie-btn" style="background: transparent; border: 1px solid var(--sand-gold); color: var(--sand-gold);">Tylko niezbędne</button>
+    <button id="acceptCookiesBtn" class="cookie-btn">Akceptuję wszystkie</button>
+  </div>
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const cookieBanner = document.getElementById('cookieBanner');
     const acceptBtn = document.getElementById('acceptCookiesBtn');
+    const rejectBtn = document.getElementById('rejectCookiesBtn');
 
-    // Funkcja odblokowująca śledzenie Google Analytics po zgodzie
     function grantGoogleAnalyticsConsent() {
       if(typeof gtag === 'function') {
         gtag('consent', 'update', {
@@ -2823,20 +2826,23 @@
       }
     }
 
-    // Sprawdzamy, czy użytkownik już wcześniej zaakceptował cookies
-    if (localStorage.getItem('b8_cookies_accepted') === 'true') {
-      grantGoogleAnalyticsConsent(); // Zgoda była, włączamy analitykę
-    } else {
-      setTimeout(() => {
-        cookieBanner.classList.add('show');
-      }, 200);
+    const cookieChoice = localStorage.getItem('b8_cookies_choice');
+    if (cookieChoice === 'accepted') {
+      grantGoogleAnalyticsConsent();
+    } else if (!cookieChoice) {
+      setTimeout(() => { cookieBanner.classList.add('show'); }, 200);
     }
 
-    // Co się dzieje po kliknięciu "Zamknij" na banerze
     acceptBtn.addEventListener('click', () => {
       cookieBanner.classList.remove('show');
-      localStorage.setItem('b8_cookies_accepted', 'true');
-      grantGoogleAnalyticsConsent(); // Odblokowujemy analitykę!
+      localStorage.setItem('b8_cookies_choice', 'accepted');
+      grantGoogleAnalyticsConsent();
+    });
+
+    rejectBtn.addEventListener('click', () => {
+      cookieBanner.classList.remove('show');
+      localStorage.setItem('b8_cookies_choice', 'rejected');
+      // Google pozostaje zablokowane (ustawienie domyślne na górze strony)
     });
   });
 </script>
