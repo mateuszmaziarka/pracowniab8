@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pracownia B8 | Salon Fryzjerski Rzeszów</title>
-<!-- OPIS DLA WYSZUKIWARKI GOOGLE -->
 <meta name="description" content="Pracownia B8 to ekskluzywny salon fryzjerski w sercu Rzeszowa (ul. Bernardyńska 8). Oferujemy profesjonalne strzyżenie, nowoczesną koloryzację, dekoloryzację oraz luksusową pielęgnację Nashi Argan. Umów wizytę online!">
 
 
@@ -15,11 +14,10 @@
 <meta property="og:title" content="Pracownia B8 | Salon Fryzjerski Rzeszów">
 <meta property="og:description" content="Ekskluzywny salon fryzjerski w sercu Rzeszowa. Zarezerwuj wizytę i odkryj luksusową pielęgnację włosów.">
 <meta property="og:image" content="https://pracowniab8.pl/hero-bg.png">
-
-<!-- KANONICZNY ADRES URL -->
+<meta name="thumbnail" content="https://pracowniab8.pl/pracownia.jpg">
+<meta itemprop="image" content="https://pracowniab8.pl/pracownia.jpg">
 <link rel="canonical" href="https://pracowniab8.pl/">
 
-<!-- GOOGLE CONSENT MODE (Ustawienia domyślne - blokada przed kliknięciem) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -32,7 +30,6 @@
   });
 </script>
 
-<!-- Google tag (gtag.js) - Twój kod -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMKHJ6LP44"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -44,9 +41,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<!-- Lenis Smooth Scroll -->
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-<!-- GSAP & ScrollTrigger -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <style>
@@ -111,9 +106,9 @@
   .eyebrow{
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 6px; /* Zwiększony odstęp między literami */
-    font-size: 0.85rem; /* Minimalnie powiększone, bo Bebas jest optycznie węższy/mniejszy */
-    font-weight: 400; /* Bebas najlepiej wygląda bez dodatkowego pogrubienia */
+    letter-spacing: 6px;
+    font-size: 0.85rem;
+    font-weight: 400;
     color: var(--sand-gold);
     margin-bottom: 14px;
     display:block;
@@ -122,7 +117,7 @@
   .section-heading{
     font-family: 'Bebas Neue', sans-serif;
     font-weight: 400;
-    letter-spacing: 1.5px; /* Delikatny odstęp dla poprawy czytelności */
+    letter-spacing: 1.5px;
     font-size: clamp(2.2rem, 4vw, 3.2rem);
     margin-bottom: 20px;
   }
@@ -142,7 +137,6 @@
     box-shadow: 0 8px 32px rgba(31,61,47,0.08);
   }
 
-  /* NAV */
   .navbar{
       position: fixed;
       top: 0;
@@ -178,7 +172,7 @@
 
   .nav-logo{
     position: relative; 
-    display: inline-block; /* KLUCZOWE: Nadaje logo dokładną szerokość */
+    display: inline-block;
     line-height: 1;     
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
@@ -190,27 +184,24 @@
     transition: color 0.4s ease, text-shadow 0.4s ease, font-size 0.4s ease;
   }
 
-  /* --- NAPRAWIONY KOD: Idealnie rozłożony napis --- */
   .nav-sub {
     position: absolute;
     top: 96%; 
     left: 0;
-    width: calc(100% - 2px); /* Idealnie zrównuje z prawą stroną "8", pomijając niewidzialną lukę */
+    width: calc(100% - 2px);
     display: flex;
-    justify-content: space-between; /* Matematycznie rozkłada litery na całą szerokość */
+    justify-content: space-between;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.45em; /* Powiększone, wreszcie będzie czytelne! */
+    font-size: 0.45em;
     color: var(--bottle-green);
     text-shadow: none !important;
     
-    /* Ukryte na samej górze strony */
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
     transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
   }
 
-  /* Płynne pokazanie napisu */
   .navbar.scrolled .nav-sub,
   .navbar.at-footer .nav-sub {
     opacity: 1;
@@ -230,24 +221,23 @@
     color: var(--sand-gold);
   }
 
-  /* --- Logika chowania/pokazywania odpowiednich wyrazów --- */
   .nav-logo .text-scrolled,
   .nav-logo .logo-short {
-    display: none; /* Domyślnie ukryte na samym zdjęciu (Hero) */
+    display: none;
   }
   
   .navbar.scrolled .nav-logo .text-top,
   .navbar.at-footer .nav-logo .text-top,
   .navbar.scrolled .nav-logo .logo-full,
   .navbar.at-footer .nav-logo .logo-full {
-    display: none; /* Ukrywamy "Bernardyńska 8 Rzeszów" podczas scrolla i na stopce */
+    display: none;
   }
   
   .navbar.scrolled .nav-logo .text-scrolled,
   .navbar.at-footer .nav-logo .text-scrolled,
   .navbar.scrolled .nav-logo .logo-short,
   .navbar.at-footer .nav-logo .logo-short {
-    display: inline; /* Pokazujemy "Pracownia B8" podczas scrolla i na stopce */
+    display: inline;
   }
 
   .nav-links{
@@ -260,7 +250,7 @@
   .nav-links a{
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
-    font-size: 1.25rem; /* Zwiększone, aby zachować czytelność nowej czcionki */
+    font-size: 1.25rem;
     letter-spacing: 1.5px;
     font-weight: 400;
     color: #f0ece2;
@@ -328,7 +318,6 @@
 
   .nav-overlay.active{ opacity:1; visibility:visible; }
 
-  /* LOADER */
   .loader{
     position: fixed;
     inset: 0;
@@ -357,13 +346,13 @@
     align-items: center;
     gap: 22px;
     padding: 0 24px;
-    margin-top: 8vh; /* <-- Dodane: przesuwa cały blok w dół */
+    margin-top: 8vh;
   }
 
   .loader-bar{
-    position: fixed; /* Uniezależniamy pozycję od logo */
+    position: fixed;
     left: 50%;
-    top: 75vh; /* Ustawia pasek idealnie na 3/4 wysokości ekranu */
+    top: 75vh;
     transform: translateX(-50%);
     width: min(220px, 50vw);
     height: 3px;
@@ -392,7 +381,6 @@
     pointer-events: none;
   }
 
-  /* HERO */
   .hero{
     height: 100vh;
     width: 100%;
@@ -402,7 +390,6 @@
     align-items:center;
     justify-content:center;
     background:
-      /* Im wyższa wartość (od 0.0 do 1.0), tym ciemniejsze zdjęcie */
       linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.58)),
       url('hero-bg.png');
     background-size: cover;
@@ -421,7 +408,7 @@
     align-items:center;
     gap: 22px;
     padding: 0 24px;
-    margin-top: 8vh; /* <-- Dodane: identyczne przesunięcie w dół co w loaderze */
+    margin-top: 8vh;
   }
 
   .hero-kicker{
@@ -431,7 +418,7 @@
     color: var(--sand-gold-light);
     text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     position: relative;
-    top: -15px; /* Odpowiada za przesunięcie napisu wyżej względem logo */
+    top: -15px;
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 0.9s ease, transform 0.9s ease;
@@ -460,31 +447,31 @@
   .hero-content.animate .hero-tagline{ opacity:1; transform: translateY(0); transition-delay: 0.3s; }
 
   .hero-nashi-partner {
-    margin-top: 32px; /* Więcej oddechu od głównego cytatu wyżej */
+    margin-top: 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px; /* Lepszy, zrównoważony odstęp od logo */
+    gap: 8px;
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 1s ease, transform 1s ease;
   }
   
   .hero-nashi-partner img {
-    width: clamp(85px, 12vw, 110px); /* Troszkę mniejsze logo, bardziej jak subtelny znaczek */
+    width: clamp(85px, 12vw, 110px);
     height: auto;
     display: block;
-    opacity: 0.95; /* Delikatne wtapianie w tło */
+    opacity: 0.95;
   }
   
   .hero-nashi-partner span {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.72rem; /* Znacznie mniejsze */
-    text-transform: uppercase; /* Wszystko z dużej litery */
-    letter-spacing: 4px; /* Mocne rozstrzelenie liter (Premium look) */
-    color: rgba(231, 210, 174, 0.85); /* Twój beżowy (sand-gold-light), lekko stonowany przezroczystością */
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: rgba(231, 210, 174, 0.85);
     font-weight: 600;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Gwarantuje, że cienkie litery nie znikną na tle jasnych liści w tle */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   }
   
   .hero-content.animate .hero-nashi-partner {
@@ -529,13 +516,11 @@
     100% { transform: scaleY(0.4); opacity:0.4; }
   }
 
-  /* ABOUT */
   .about-card{
-    /* padding usunięty stąd i przeniesiony do .about-content */
     padding: 0;
     max-width: 900px;
     margin: 0 auto;
-    overflow: hidden; /* Kluczowe: docina rogi zdjęcia do zaokrągleń panelu glass */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
   }
@@ -568,7 +553,6 @@
   }
 
   
-  /* SERVICES */
   .services-grid{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
@@ -613,7 +597,6 @@
     border-top: 1px solid rgba(31,61,47,0.12);
   }
 
-  /* PRICING */
   .pricing-list{
     margin-top: 50px;
     display:flex;
@@ -665,7 +648,7 @@
     display: inline-block;
     width: 16px; 
     height: 16px;
-    flex-shrink: 0; /* TO JEST KLUCZ - całkowicie blokuje zgniatanie przez tekst */
+    flex-shrink: 0;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f3d2f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
@@ -674,7 +657,7 @@
   }
 
   .pricing-category[open] .cat-chevron {
-    transform: rotate(180deg); /* Przy otwarciu po prostu odwracamy wektor o 180 stopni */
+    transform: rotate(180deg);
   }
 
   .pricing-body{
@@ -723,33 +706,31 @@
 
   .variant-meta{
     display: grid;
-    grid-template-columns: 1fr 75px 85px; /* Magia siatki: Kropki | Czas (75px) | Cena (85px) */
-    gap: 12px; /* Odstęp między kropkami, czasem a ceną */
+    grid-template-columns: 1fr 75px 85px;
+    gap: 12px;
     align-items: baseline;
     white-space: nowrap;
     font-weight: 700;
     color: var(--bottle-green);
     font-size: 0.95rem;
-    text-align: right; /* Zrównuje wszystko ładnie do prawej krawędzi */
+    text-align: right;
   }
 
-  /* --- Kropki naprowadzające --- */
   .variant-meta::before {
     content: "";
     border-bottom: 2px dotted rgba(31,61,47,0.25);
     position: relative;
     top: -4px; 
-    grid-column: 1; /* Sztywno przypisuje kropki do pierwszej kolumny */
+    grid-column: 1;
     grid-row: 1;
   }
 
-  /* Ukrywamy kropki podpunktów, ale używamy transparent, by nie usuwać ich z siatki (zachowuje wyrównanie!) */
   .price-variants .variant-meta::before {
     border-bottom-color: transparent;
   }
 
   .variant-meta small{
-    grid-column: 2; /* Sztywno przypisuje czas do drugiej kolumny */
+    grid-column: 2;
     grid-row: 1;
     font-weight: 500;
     color: var(--sand-gold);
@@ -761,7 +742,6 @@
     margin-top: 46px;
   }
 
-  /* TEAM */
   .team-grid{
     display:grid;
     grid-template-columns: repeat(2, 1fr);
@@ -806,7 +786,6 @@
 
   .team-card p{ color: #55554f; font-size: 0.95rem; }
 
-  /* NASHI */
   .nashi-section{
     background: linear-gradient(180deg, rgba(31,61,47,0.04), rgba(207,168,118,0.06));
   }
@@ -854,7 +833,6 @@
     margin-top: 46px;
   }
 
-  /* BUTTONS */
   .btn{
     display:inline-block;
     padding: 16px 36px;
@@ -874,7 +852,6 @@
     transform: translateY(-2px);
   }
 
-  /* --- ANIMACJA PRZYCISKU BOOKSY --- */
   .btn-booksy-anim {
     position: relative;
     display: inline-flex;
@@ -888,17 +865,17 @@
 
   .btn-booksy-anim .btn-logo {
     position: absolute;
-    width: 75px; /* Szerokość logo, możesz dostosować w razie potrzeby */
+    width: 75px;
     height: auto;
     opacity: 0;
     transform: scale(0.85);
     transition: opacity 0.4s ease, transform 0.4s ease;
-    pointer-events: none; /* Żeby obrazek nie blokował w kliknięciu */
+    pointer-events: none;
   }
 
   .btn-booksy-anim.show-logo .btn-text {
     opacity: 0;
-    transform: scale(0.95); /* Lekko "zapada się" do środka */
+    transform: scale(0.95);
   }
 
   .btn-booksy-anim.show-logo .btn-logo {
@@ -917,15 +894,14 @@
     color: #fdf9f2;
   }
 
-  /* DYNAMIC GALLERY - MASONRY, EXPAND & LIGHTBOX */
   .gallery-wrapper {
     position: relative;
     overflow: hidden;
-    max-height: 1350px; /* Zmieniono z 420px: idealna wysokość na pełne 2 rzędy i gradient */
+    max-height: 1350px;
     transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .gallery-wrapper.expanded {
-    max-height: 8000px; /* Rozwinięcie na maksymalną przestrzeń */
+    max-height: 8000px;
   }
 
   .gallery-expand-overlay {
@@ -934,9 +910,9 @@
     left: 0;
     width: 100%;
     height: 220px;
-    background: linear-gradient(to top, var(--bg) 20%, rgba(252, 251, 250, 0.85) 60%, transparent); /* Szybki, silny zanik gradientowy */
+    background: linear-gradient(to top, var(--bg) 20%, rgba(252, 251, 250, 0.85) 60%, transparent);
     display: flex;
-    align-items: center; /* Trzyma przycisk wysoko na gradientowym polu */
+    align-items: center;
     justify-content: center;
     z-index: 2;
     transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -960,7 +936,7 @@
     box-shadow: 0 8px 32px rgba(31,61,47,0.1);
     cursor: pointer;
     transition: transform 0.3s ease, background 0.3s ease;
-    transform: translateY(15px); /* Precyzyjna wysokość osadzenia na gradiencie */
+    transform: translateY(15px);
   }
   .gallery-expand-btn:hover {
     background: #fff;
@@ -1019,7 +995,6 @@
     font-weight: 500;
   }
 
-  /* LIGHTBOX MODAL */
   .lightbox {
     position: fixed;
     inset: 0;
@@ -1030,7 +1005,7 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    background: rgba(15,28,22,0.85); /* Wektor z var(--bottle-green) */
+    background: rgba(15,28,22,0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
@@ -1117,31 +1092,27 @@
     transform: translateY(-50%) scale(1.05);
   }
 
-  /* FOOTER */
   footer {
-    /* Ciągły, elegancki gradient na całej powierzchni stopki */
     background: linear-gradient(to bottom, #2b523f 0%, var(--bottle-green) 100%);
     color: #f2ede2;
     padding: 90px 0 40px;
     position: relative;
-    overflow: hidden; /* Przycina liście, żeby nie wychodziły poza obszar stopki */
+    overflow: hidden;
   }
 
-  /* Wyciągnięcie tekstu stopki nad liście */
   footer .container {
     position: relative;
     z-index: 2;
   }
 
-  /* Statyczne liście wewnątrz stopki */
   .footer-leaf {
     position: absolute;
-    bottom: -5%; /* Lekko opuszczone, by dół liścia zniknął za krawędzią ekranu */
+    bottom: -5%;
     max-width: 35vw;
     height: auto;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.6; /* Delikatnie zmniejszona widoczność, by lepiej stopiły się z gradientem */
+    opacity: 0.6;
   }
 
   .footer-leaf-left {
@@ -1159,7 +1130,6 @@
   }
   .footer-grid{
     display: grid;
-    /* 5 kolumn, by idealnie rozłożyć wszystko na równe wysokości i zlikwidować puste dziury */
     grid-template-columns: 2.2fr 1.6fr 1.4fr 1fr 1.2fr; 
     gap: 30px;
   }
@@ -1194,29 +1164,26 @@
   .social-icons-wrapper {
     display: flex;
     flex-direction: row;
-    gap: 18px; /* Odstęp między ikonami */
+    gap: 18px;
     margin-top: 14px;
   }
 
-  /* Resetujemy domyślne style linków w stopce, żeby ikony leżały w rzędzie */
   .footer-col a.social-icon {
     display: block;
     margin: 0;
     padding: 0;
-    width: 44px; /* Wielkość ikony - możesz zmienić jeśli są za małe/za duże */
+    width: 44px;
     height: 44px;
-    transition: transform 0.2s ease; /* Tylko delikatne uniesienie przy najechaniu */
+    transition: transform 0.2s ease;
   }
 
-  /* Dopasowanie obrazka do rozmiaru linku */
   .footer-col a.social-icon img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Gwarantuje, że obrazek nie zostanie ucięty ani rozciągnięty */
+    object-fit: contain;
     display: block;
   }
 
-  /* Lekkie podbicie do góry po najechaniu myszką, żadnych zmian kolorów */
   .footer-col a.social-icon:hover {
     transform: translateY(-3px);
   }
@@ -1232,16 +1199,15 @@
     color: rgba(242,237,226,0.6);
   }
 
-  /* --- NOWY KOD: Styl dla linku Regulamin --- */
   .footer-link-regulamin {
     color: inherit;
     text-decoration: underline;
-    text-decoration-color: rgba(242,237,226,0.4); /* Delikatne podkreślenie */
+    text-decoration-color: rgba(242,237,226,0.4);
     text-underline-offset: 4px;
-    margin-left: 8px; /* Troszkę zwiększony odstęp, żeby linki się nie zlewały */
+    margin-left: 8px;
     transition: color 0.3s ease, text-decoration-color 0.3s ease;
-    white-space: nowrap; /* Blokuje rozrywanie wyrazów (spacja jest bezpieczna) */
-    display: inline-block; /* Traktuje cały link jako nierozłączny klocek */
+    white-space: nowrap;
+    display: inline-block;
   }
 
   .footer-link-regulamin:hover {
@@ -1249,7 +1215,6 @@
     text-decoration-color: #fff;
   }
 
-  /* WIDŻET MAPY W STOPCE */
   .footer-map-wrapper {
     width: 100%;
     height: 320px;
@@ -1271,7 +1236,6 @@
     border: none;
   }
 
-  /* AKTYWNE LINKI KONTAKTOWE (Tel / Mail) */
   .footer-col p .contact-link {
     display: inline;
     color: var(--sand-gold-light);
@@ -1285,18 +1249,16 @@
     text-shadow: 0 0 8px rgba(231, 210, 174, 0.4);
   }
 
-  /* RESPONSIVE */
   @media (max-width: 980px){
     .services-grid{ grid-template-columns: repeat(2, 1fr); }
     .nashi-grid{ grid-template-columns: repeat(1, 1fr); max-width: 480px; margin-left:auto; margin-right:auto; }
-    .footer-grid{ grid-template-columns: repeat(3, 1fr); gap: 40px; } /* Zmienione na 3 kolumny by dopasować 5 elementów */
+    .footer-grid{ grid-template-columns: repeat(3, 1fr); gap: 40px; }
     .gallery-masonry { column-count: 2; }
   }
 
   @media (max-width: 760px){
     section{ padding: 80px 0; }
     
-    /* --- NOWY UKŁAD CENNIKA NA TELEFONY --- */
     .pricing-category summary { padding: 20px 20px; }
     .cat-title { font-size: 1.4rem; }
     .pricing-body { padding: 0px 20px 24px; }
@@ -1310,12 +1272,12 @@
     }
     
     .variant-meta {
-      display: grid; /* Używamy magii siatki również na telefonie */
-      grid-template-columns: 1fr auto; /* Lewa strona (czas) i prawa strona (cena) */
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: baseline;
       width: 100%; 
       font-size: 1.05rem;
-      text-align: right; /* Tekst ceny zostanie ściągnięty idealnie do prawej */
+      text-align: right;
     }
     
     .variant-meta::before {
@@ -1323,19 +1285,15 @@
     }
     
     .variant-meta small {
-      grid-column: 1; /* Wymuszamy wrzucenie czasu do 1. kolumny (lewa krawędź) */
+      grid-column: 1;
       grid-row: 1;
-      text-align: left; /* Czas równamy do lewej */
-      margin: 0; /* Resetujemy wszelkie marginesy */
+      text-align: left;
+      margin: 0;
       font-size: 0.95rem;
     }
-    /* -------------------------------------- */
 
     .nav-logo{ font-size: 2.2rem; }
     .navbar.scrolled .nav-logo{ font-size: 1.6rem; }
-    
-    /* --- NOWY KOD: Bernardyńska 8 pomniejszona na telefonach o 25% względem Pracowni --- */
-    /* Rzeszów na telefonach wyraźnie mniejszy (zmniejszony o 45%) */
     .nav-logo .logo-full { font-size: 0.85em; }
 
     .nav-links{
@@ -1395,7 +1353,6 @@
         }
 
 
-    /* MOBILE GALLERY RESPONSIVE */
     .gallery-masonry { 
       column-count: auto; 
       display: grid;
@@ -1413,18 +1370,18 @@
     }
     
     .gallery-wrapper {
-      max-height: 420px; /* Zmieniono z 170px: mieści idealnie 2 rzędy kwadratów + zarys trzeciego pod gradientem */
+      max-height: 420px;
     }
     .gallery-wrapper.expanded {
       max-height: 5000px; 
     }
     .gallery-expand-overlay {
       height: 120px;
-      padding-bottom: 10px; /* Nieznacznie opuszcza przycisk na mniejszych ekranach */
+      padding-bottom: 10px;
       background: linear-gradient(to top, var(--bg) 15%, rgba(252, 251, 250, 0.85) 65%, transparent);
     }
     .gallery-expand-btn {
-      transform: none; /* Resetuje desktopowe ułożenie */
+      transform: none;
     }
     .gallery-expand-btn:hover {
       transform: translateY(-2px);
@@ -1438,15 +1395,14 @@
     }
     .lightbox-close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 1.2rem; }
   }
-  /* TOAST NOTIFICATION - KOMUNIKAT GALERII */
   .gallery-toast {
     position: fixed;
     bottom: 40px;
     left: 50%;
-    transform: translate(-50%, 80px); /* Ukryte poniżej ekranu */
+    transform: translate(-50%, 80px);
     opacity: 0;
     visibility: hidden;
-    background: var(--glass-bg-strong); /* Użycie mocniejszego rozmycia z Twoich zmiennych */
+    background: var(--glass-bg-strong);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
@@ -1457,7 +1413,7 @@
     border-radius: 30px;
     box-shadow: 0 12px 40px rgba(31,61,47,0.15);
     z-index: 10000;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Elegancki efekt sprężystości */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     pointer-events: none;
     text-align: center;
     width: max-content;
@@ -1465,12 +1421,11 @@
   }
 
   .gallery-toast.show {
-    transform: translate(-50%, 0); /* Wyjazd do oryginalnej pozycji */
+    transform: translate(-50%, 0);
     opacity: 1;
     visibility: visible;
   }
 
-  /* DEKORACYJNE LIŚCIE - PARALAKSA */
   .parallax-leaf {
     position: absolute;
     max-width: 32vw;
@@ -1484,7 +1439,6 @@
     }
   }
   
-  /* --- NOWY KOD: Pasek nawigacji przy stopce --- */
   .navbar.at-footer {
     background: #ffffff !important;
     backdrop-filter: none !important;
@@ -1535,7 +1489,6 @@
     }
   }
 
-/* --- ELEGANKI BANER COOKIES --- */
   .cookie-banner {
     position: fixed;
     bottom: 24px;
@@ -1548,7 +1501,7 @@
     border-radius: 20px;
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Zmiana układu: tekst ląduje nad przyciskami */
+    flex-direction: column;
     align-items: flex-start;
     gap: 16px;
     max-width: 440px;
@@ -1608,7 +1561,6 @@
     transform: translateY(-2px);
   }
 
-  /* Wersja mobilna - ultra dopasowana */
   @media (max-width: 760px) {
     .cookie-banner {
       bottom: 16px;
@@ -1631,7 +1583,6 @@
     }
   }
 
-  /* TOAST EMAIL AUTORA */
   .email-toast {
     position: fixed;
     bottom: 30px;
@@ -1669,16 +1620,13 @@
 </head>
 <body>
 
-<!-- KONTENER NA DEKORACYJNE LIŚCIE -->
 <div id="parallax-leaves-wrapper" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden;">
   <div id="parallax-leaves-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; will-change: transform;">
-    <!-- Liście lewa strona -->
     <img src="l/LG1.png" class="parallax-leaf" style="top: 0; left: 0;" alt="">
     <img src="l/LG2.png" class="parallax-leaf" style="top: 0; left: 0;" alt="">
     <img src="l/LS1.png" class="parallax-leaf" style="top: 22%; left: 0;" alt="">
     <img src="l/LS2.png" class="parallax-leaf" style="top: 68%; left: 0;" alt="">
     
-    <!-- Liście prawa strona -->
     <img src="l/PG1.png" class="parallax-leaf" style="top: 0; right: 0;" alt="">
     <img src="l/PS1.png" class="parallax-leaf" style="top: 48%; right: 0;" alt="">
   </div>
@@ -1689,11 +1637,9 @@
   <div class="loader-content">
     <span class="hero-kicker" style="visibility:hidden; margin:0;">Rzeszów · FRYZJERSTWO</span>
     
-    <!-- WRAPPER: trzyma pasek z pozycją absolutną idealnie pod logo -->
     <div style="position: relative;">
       <img src="logo.png" alt="Pracownia B8" class="hero-logo loader-logo">
       
-      <!-- Pasek postępu przeniesiony tutaj -->
       <div class="loader-bar" id="loaderBarWrapper">
         <div class="loader-bar-fill" id="loaderFill"></div>
       </div>
@@ -1701,7 +1647,6 @@
 
     <p class="hero-tagline" style="visibility:hidden; margin:0;">Miejsce, gdzie luksus wiąże się z pasją i precyzją każdego cięcia.</p>
     
-    <!-- DODANY NIEWIDZIALNY ELEMENT: wyrównuje środek ciężkości loadera ze stroną główną -->
     <div class="hero-nashi-partner" style="visibility:hidden;">
       <span>Salon partnerski</span>
       <img src="nashi_logo.png" alt="">
@@ -1736,9 +1681,9 @@
 </nav>
 <div class="nav-overlay" id="navOverlay"></div>
 
-<!-- HERO -->
 <header class="hero" id="top">
   <h1 class="sr-only">Pracownia B8 - Dobry Fryzjer Rzeszów, Koloryzacja i Strzyżenie</h1>
+  <img src="https://pracowniab8.pl/pracownia.jpg" alt="Wnętrze ekskluzywnego salonu fryzjerskiego Pracownia B8 Rzeszów" class="sr-only">
   <div class="hero-content" id="heroContent">
     <span class="hero-kicker">BERNARDYŃSKA 8</span>
     <img src="logo.png" alt="Pracownia B8 - FRYZJERSTWO" class="hero-logo">
@@ -1756,11 +1701,9 @@
   </div>
 </header>
 
-<!-- O NAS -->
 <section id="onas">
   <div class="container">
     <div class="glass about-card">
-      <!-- Kontener na tekst (przejmuje padding) -->
       <div class="about-content">
         <span class="eyebrow">Nasza historia</span>
         <h2 class="section-heading">O Pracowni B8</h2>
@@ -1769,13 +1712,11 @@
         <p>Mamy pełną świadomość, że fundamentem spektakularnego i trwałego rezultatu są wyłącznie zdrowe, silne włosy. Z tego względu nasza oferta opiera się na zaawansowanych procedurach regeneracyjnych, takich jak luksusowy Rytuał Piękna NASHI czy wieloetapowa rekonstrukcja struktury włosa. Pracując na wyselekcjonowanych produktach premium, gwarantujemy najwyższą skuteczność zabiegów oraz bezkompromisowe bezpieczeństwo, oddając w Twoje ręce jakość bez drogi na skróty.</p>
         <p class="signature-line">— Zespół Pracowni B8, Rzeszów</p>
       </div>
-      <!-- Zdjęcie "przyklejone" do dołu (podmień src na własne) -->
       <img src="pracownia.jpg" alt="Wnętrze Pracowni B8" class="about-photo">
     </div>
   </div>
 </section>
 
-<!-- USŁUGI / CENNIK -->
 <section id="uslugi">
   <div class="container">
     <span class="eyebrow">Cennik</span>
@@ -1783,7 +1724,6 @@
     <p class="section-sub">Pełny cennik usług Pracowni B8. Ceny mogą się różnić w zależności od długości i gęstości włosów oraz nakładu pracy — dokładną wycenę otrzymasz podczas bezpłatnej konsultacji.</p>
 
     <div class="pricing-list">
-      <!-- Kategorie cennika -->
       <details class="glass pricing-category">
         <summary>
           <span class="cat-icon">✂</span>
@@ -2052,7 +1992,6 @@
   </div>
 </section>
 
-<!-- VOUCHER PODARUNKOWY -->
 <section id="voucher">
   <div class="container">
     <div class="glass about-card" style="border: 2px solid var(--sand-gold-light);">
@@ -2065,7 +2004,6 @@
           natychmiast na podany e-mail – gotowy do wręczenia.
         </p>
 
-        <!-- Akceptacja regulaminu z Checkboxem (bez tekstu błędu) -->
         <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 24px;">
           <label id="voucherTermsLabel" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 0.9rem; color: #55554f; cursor: pointer; user-select: none;">
             <input type="checkbox" id="acceptVoucherTerms" style="width: 18px; height: 18px; accent-color: var(--bottle-green); cursor: pointer;">
@@ -2073,7 +2011,6 @@
           </label>
         </div>
 
-        <!-- Przycisk z ID dodanym dla JavaScriptu -->
         <a href="https://buy.stripe.com/3cI6oG6gPc4T16E8BI0Fi00" target="_blank" rel="noopener noreferrer" class="btn" id="buyVoucherBtn">
           Kup Voucher Online
         </a>
@@ -2082,7 +2019,6 @@
   </div>
 </section>
 
-<!-- SKRYPT: Logika blokady przycisku i animacji podskoczenia -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const acceptTermsCheckbox = document.getElementById("acceptVoucherTerms");
@@ -2090,11 +2026,9 @@
     const voucherTermsLabel = document.getElementById("voucherTermsLabel");
 
     buyVoucherBtn.addEventListener("click", (e) => {
-      // Jeśli checkbox NIE JEST zaznaczony
       if (!acceptTermsCheckbox.checked) {
-        e.preventDefault(); // Zablokuj przejście do Stripe
+        e.preventDefault();
         
-        // Efekt: mocne, jednokrotne powiększenie (skok do przodu) bez ruchu w górę/dół
         voucherTermsLabel.animate([
           { transform: 'scale(1)' },
           { transform: 'scale(1.2)', offset: 0.5 },
@@ -2108,7 +2042,6 @@
   });
 </script>
 
-<!-- ZESPÓŁ -->
 <section id="zespol">
   <div class="container">
     <span class="eyebrow">Ludzie Pracowni</span>
@@ -2136,7 +2069,6 @@
   </div>
 </section>
 
-<!-- NASHI -->
 <section id="nashi" class="nashi-section">
   <div class="container">
     <span class="eyebrow">Kosmetyki premium</span>
@@ -2173,7 +2105,6 @@
   </div>
 </section>
 
-<!-- GALERIA -->
 <section id="galeria">
   <div class="container">
     <span class="eyebrow">Inspiracje</span>
@@ -2183,7 +2114,6 @@
     <div class="gallery-wrapper" id="galleryWrapper">
       <div class="gallery-masonry" id="galleryMasonry" aria-live="polite">
         <div class="gallery-loader" id="galleryLoader">Ładowanie zdjęć z galerii...</div>
-        <!-- Zdjęcia generowane automatycznie przez JavaScript -->
       </div>
       <div class="gallery-expand-overlay" id="galleryExpandOverlay">
         <button class="gallery-expand-btn" id="galleryExpandBtn">Rozwiń galerię</button>
@@ -2192,7 +2122,6 @@
   </div>
 </section>
 
-<!-- LIGHTBOX GALERII (MODAL) -->
 <div id="galleryLightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia z galerii" hidden>
   <button class="lightbox-close" id="lightboxClose" aria-label="Zamknij podgląd">✕</button>
   <button class="lightbox-prev" id="lightboxPrev" aria-label="Poprzednie zdjęcie">‹</button>
@@ -2204,18 +2133,15 @@
 
 
 </div>
-<!-- KOMUNIKAT GALERII (TOAST) -->
 <div id="galleryToast" class="gallery-toast">
   Kliknij zdjęcie, aby je powiększyć
 </div>
 
-<!-- STOPKA -->
 <footer id="kontakt">
   <img src="l/LD1.png" class="footer-leaf footer-leaf-left" alt="">
   <img src="l/PD2.png" class="footer-leaf footer-leaf-right" alt="">
   <div class="container">
 
-    <!-- TEKSTY I DANE KONTAKTOWE (NA GÓRZE) -->
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-brand">Pracownia B8</div>
@@ -2235,19 +2161,15 @@
         <p>Nd: Zamknięte</p>
       </div>
 
-      <!-- OKRĄGŁE IKONY (BOOKSY, INSTAGRAM, FACEBOOK) -->
       <div class="footer-col">
         <h4>Odwiedź nas</h4>
         <div class="social-icons-wrapper">
-          <!-- Booksy -->
           <a class="social-icon" href="https://booksy.com/pl-pl/268448_fryzjerstwo-pracowniab8_fryzjer_10729_rzeszow" target="_blank" rel="noopener">
             <img src="logo/b.png" alt="Booksy">
           </a>
-          <!-- Instagram -->
           <a class="social-icon" href="https://www.instagram.com/pracownia_b8/" target="_blank" rel="noopener">
             <img src="logo/i.png" alt="Instagram">
           </a>
-          <!-- Facebook -->
           <a class="social-icon" href="https://www.facebook.com/profile.php?id=61568803359059" target="_blank" rel="noopener">
             <img src="logo/f.png" alt="Facebook">
           </a>
@@ -2262,7 +2184,6 @@
       </div>
     </div>
 
-    <!-- MAPA GOOGLE POD TEKSTAMI -->
     <div class="footer-map-wrapper" id="mapWrapper">
     <div id="mapPlaceholder" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(15,28,22,0.8); color: #f2ede2; text-align: center; padding: 20px; font-family: 'Plus Jakarta Sans', sans-serif;">
       <h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 1px; color: var(--sand-gold); margin-bottom: 8px;">Mapa Google jest zablokowana</h4>
@@ -2286,30 +2207,25 @@
       <a href="#" class="footer-link-regulamin" onclick="localStorage.removeItem('b8_cookies_choice'); location.reload(); return false;">Zarządzaj Cookies</a>
       <a href="polityka-prywatnosci.html" class="footer-link-regulamin" target="_blank">Polityka prywatności</a>
       
-      <!-- TWÓJ PODPIS -->
       <a href="#" id="devSignature"><span class="footer-link-regulamin dev-signature" title="Kliknij, aby skopiować e-mail">Wykonanie: Mateusz Maziarka</span></a>
     </div>
   </div>
 </footer>
 
-<!-- KOMUNIKAT EMAIL TOAST -->
 <div id="emailToast" class="email-toast">
   Skopiowano adres e-mail
 </div>
 
 <script>
-  // Dynamiczny rocznik w stopce
   document.getElementById('currentYear').textContent = new Date().getFullYear();
-  // Rejestracja wtyczki ScrollTrigger
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animacja wyłaniania nagłówków i sekcji "O nas"
   gsap.utils.toArray('.section-heading, .section-sub, .about-card').forEach(element => {
     gsap.from(element, {
       scrollTrigger: {
         trigger: element,
-        start: "top 85%", // Animacja startuje, gdy góra elementu osiągnie 85% wysokości ekranu
-        toggleActions: "play none none reverse" // Wraca do stanu początkowego przy scrollowaniu w górę
+        start: "top 85%",
+        toggleActions: "play none none reverse"
       },
       y: 40,
       opacity: 0,
@@ -2318,7 +2234,6 @@
     });
   });
 
-  // Kaskadowe (stagger) wyłanianie kart w siatkach (Usługi, Zespół, Nashi)
   const grids = ['.services-grid', '.team-grid', '.nashi-grid'];
   grids.forEach(gridClass => {
     const grid = document.querySelector(gridClass);
@@ -2333,28 +2248,23 @@
         y: 50,
         opacity: 0,
         duration: 1,
-        stagger: 0.15, // Opóźnienie między każdą kolejną kartą (efekt fali)
+        stagger: 0.15,
         ease: "power3.out"
       });
     }
   });
   
-  // Inicjalizacja luksusowego Smooth Scroll (Lenis)
   const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true
   });
   
-  // Wstrzymanie scrolla na czas loadera
   lenis.stop();
 
-  // --- LOGIKA PARALAKSY DLA LIŚCI ---
   const leavesLayer = document.getElementById('parallax-leaves-layer');
   
-  // Zmienna zapamiętująca szerokość ekranu
   let lastWindowWidth = window.innerWidth;
-  // Flaga sprawdzająca, czy to pierwsze uruchomienie
   let isFirstLeavesInit = true;
   
   function updateLeavesLayerHeight() {
@@ -2362,10 +2272,6 @@
     
     const currentWidth = window.innerWidth;
     
-    // BLOKADA SKAKANIA (ZAMROŻENIE LIŚCI):
-    // Jeśli to nie jest pierwsze ładowanie strony I szerokość ekranu 
-    // się nie zmieniła, przerywamy funkcję. Dzięki temu rozwijanie 
-    // galerii czy cennika nie zepsuje początkowego ułożenia liści.
     if (!isFirstLeavesInit && currentWidth === lastWindowWidth) {
       return; 
     }
@@ -2377,19 +2283,17 @@
     const winHeight = window.innerHeight;
     const maxScroll = Math.max(0, currentDocHeight - winHeight);
     
-    // Ustawiamy wirtualną wysokość kontenera dla paralaksy
     const layerHeight = winHeight + maxScroll * 0.5;
     leavesLayer.style.height = `${layerHeight}px`;
   }
 
   let resizeTimeout;
   
-  // Obserwator zmian na stronie (np. rozwinięcie akordeonu, galerii)
   const resizeObserver = new ResizeObserver(() => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       updateLeavesLayerHeight();
-      ScrollTrigger.refresh(); // <--- TO NAPRAWIA PROBLEM! Oblicza na nowo wysokość dla stopki
+      ScrollTrigger.refresh();
     }, 150);
   });
   resizeObserver.observe(document.body);
@@ -2398,15 +2302,13 @@
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       updateLeavesLayerHeight();
-      ScrollTrigger.refresh(); // Oblicza wysokość przy zmianie rozmiaru okna
+      ScrollTrigger.refresh();
     }, 150);
   });
-  // ----------------------------------
 
   function raf(time) {
     lenis.raf(time);
     
-    // AKTUALIZACJA PARALLAX W GŁÓWNEJ PĘTLI ANIMACJI (Gwarancja płynności)
     if (leavesLayer) {
       const currentScroll = lenis.scroll || 0; 
       leavesLayer.style.transform = `translate3d(0, -${currentScroll * 0.5}px, 0)`;
@@ -2428,17 +2330,13 @@
       else navbar.classList.add('scrolled');
     });
   }, { 
-    // Dodajemy ujemny margines na górze ekranu. 
-    // -100px oznacza, że zmiana koloru zajdzie w momencie, gdy dół zdjęcia 
-    // wjedzie pod pasek nawigacyjny.
     rootMargin: "-100px 0px 0px 0px", 
     threshold: 0 
   });
   heroObserver.observe(heroEl);
-  // --- NOWY KOD: Precyzyjny obserwator stopki (ScrollTrigger) ---
   ScrollTrigger.create({
     trigger: "footer",
-    start: "top 80px", // Aktywuje się DOKŁADNIE gdy góra stopki wjeżdża pod pasek (ok. 80px od góry ekranu)
+    start: "top 80px",
     onEnter: () => document.getElementById('navbar').classList.add('at-footer'),
     onLeaveBack: () => document.getElementById('navbar').classList.remove('at-footer')
   });
@@ -2459,7 +2357,6 @@
   });
   navOverlay.addEventListener('click', closeMenu);
 
-  // Gładkie przewijanie linków za pomocą Lenis
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -2472,7 +2369,6 @@
     });
   });
 
-  // Logika Loadera i animacji (optymalizacja ładowania)
   const loader = document.getElementById('loader');
   const loaderFill = document.getElementById('loaderFill');
   const heroContent = document.getElementById('heroContent');
@@ -2491,11 +2387,8 @@
   }
   requestAnimationFrame(tickProgress);
 
-  // Wymuszony minimalny czas Loadera (1 sekunda) 
   const minTimePromise = new Promise(resolve => setTimeout(resolve, 1000));
   
-  // Loader wyłączy się błyskawicznie tylko po załadowaniu głównego drzewa strony
-  // bez oczekiwania na zdjęcia ze skryptu galerii
   const windowLoadPromise = new Promise(resolve => {
     if (document.readyState === 'complete') {
       resolve();
@@ -2509,21 +2402,16 @@
     loaderFill.style.width = '100%';
     
     setTimeout(() => {
-      // Wyzwolenie przejścia Loadera w Hero
       loader.classList.add('hidden');
       document.body.style.overflow = '';
       lenis.start(); 
-      // Inicjalne przeliczenie układu liści tuż po powrocie płynnego scrolla
       updateLeavesLayerHeight();
       
-      // Animacja tekstu
       heroContent.classList.add('animate');
       
-      // Całkowite ukrycie diva Loadera po zakończeniu CSS transition
       setTimeout(() => {
         loader.style.display = 'none';
         
-        // ZAWIESZENIE ZDJĘĆ - DOPIERO TUTAJ ŁADUJEMY GALERIĘ W TLE
         const galleryContainer = document.getElementById('galleryMasonry');
         if(galleryContainer) {
           loadGalleryImage(1);
@@ -2532,7 +2420,6 @@
     }, 400); 
   });
 
-  // Wskaźnik "Przewiń" znika płynnie
   const heroScroll = document.getElementById('heroScroll');
   let scrollStarted = false;
   window.addEventListener('scroll', () => {
@@ -2542,7 +2429,6 @@
     }
   }, { passive: true });
 
-  // Płynny akordeon (Details & Summary Smooth Animation)
   class SmoothDetails {
     constructor(el) {
       this.el = el;
@@ -2602,10 +2488,8 @@
   });
 
 
-  // Zmienna globalna dla czasu komunikatu
   let toastTimeout;
 
-  // Obsługa przycisku rozwijania galerii
   const galleryExpandBtn = document.getElementById('galleryExpandBtn');
   const galleryWrapper = document.getElementById('galleryWrapper');
   const galleryToast = document.getElementById('galleryToast');
@@ -2617,7 +2501,6 @@
       if (galleryToast) {
         galleryToast.classList.add('show');
         
-        // Zapisujemy czas do zmiennej, żeby móc go później anulować
         clearTimeout(toastTimeout);
         toastTimeout = setTimeout(() => {
           galleryToast.classList.remove('show');
@@ -2626,7 +2509,6 @@
     });
   }
 
-  // --- LOGIKA GALERII (Dynamiczne ładowanie, Masonry & Lightbox) ---
   const galleryLoader = document.getElementById('galleryLoader');
   const galleryContainer = document.getElementById('galleryMasonry');
   const lightbox = document.getElementById('galleryLightbox');
@@ -2639,13 +2521,11 @@
   let currentImageIndex = 0;
   let lastFocusedElement = null;
 
-  // Automatyczne sprawdzanie i dodawanie zdjęć (wywoływane PO zniknięciu loadera)
   function loadGalleryImage(index) {
     const imgPath = `galeria/${index}.jpeg`;
     const img = new Image();
     
     img.onload = () => {
-      // Jeżeli wczytano pierwsze zdjęcie usuń napis "Ładowanie..."
       if(index === 1 && galleryLoader) {
         galleryLoader.style.display = 'none';
       }
@@ -2653,7 +2533,6 @@
       galleryImages.push(imgPath);
       const actualIndex = galleryImages.length - 1;
 
-      // Tworzenie dostępnego elementu kontenera
       const btn = document.createElement('button');
       btn.className = 'gallery-masonry-item';
       btn.setAttribute('aria-label', `Powiększ zdjęcie z galerii nr ${index}`);
@@ -2665,17 +2544,14 @@
       
       btn.appendChild(thumb);
       
-      // Event dla otwarcia Lightbox'a
       btn.addEventListener('click', () => openLightbox(actualIndex, btn));
       
       galleryContainer.appendChild(btn);
 
-      // Spróbuj załadować następne zdjęcie w kolejce
       loadGalleryImage(index + 1);
     };
 
     img.onerror = () => {
-      // Natrafiono na brak pliku (np. brak 12.jpeg) - koniec wyszukiwania
       if(index === 1 && galleryLoader) {
         galleryLoader.textContent = 'Brak zdjęć w galerii.';
       }
@@ -2684,37 +2560,31 @@
     img.src = imgPath;
   }
 
-  // Funkcje Lightboxa
   function openLightbox(index, triggerElement) {
     currentImageIndex = index;
     lastFocusedElement = triggerElement || document.activeElement; 
     
-    // BŁYSKAWICZNE CHOWANIE KOMUNIKATU (TOAST)
     const galleryToast = document.getElementById('galleryToast');
     if (galleryToast && galleryToast.classList.contains('show')) {
       galleryToast.classList.remove('show');
-      clearTimeout(toastTimeout); // Zatrzymujemy 6-sekundowy zegar
+      clearTimeout(toastTimeout);
     }
 
     updateLightboxImage();
     lightbox.removeAttribute('hidden');
     
-    // Zablokuj scrollowanie w tle przy otwartym modalu
     if (typeof lenis !== 'undefined') lenis.stop();
     document.body.style.overflow = 'hidden';
     
-    // Ustawienie focusu
     setTimeout(() => btnNext.focus(), 50);
   }
 
   function closeLightbox() {
     lightbox.setAttribute('hidden', '');
     
-    // Odblokuj scrollowanie
     if (typeof lenis !== 'undefined') lenis.start();
     document.body.style.overflow = '';
     
-    // Przywróć focus
     if (lastFocusedElement) {
       lastFocusedElement.focus();
     }
@@ -2737,19 +2607,16 @@
     lightboxImg.alt = `Powiększone zdjęcie z galerii nr ${currentImageIndex + 1}`;
   }
 
-  // Listener'y przycisków
   btnClose.addEventListener('click', closeLightbox);
   btnNext.addEventListener('click', showNext);
   btnPrev.addEventListener('click', showPrev);
 
-  // Zamykanie przez kliknięcie w tło
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
       closeLightbox();
     }
   });
 
-  // Obsługa klawiatury i Focus Trap w Modalu
   lightbox.addEventListener('keydown', (e) => {
     if (lightbox.hasAttribute('hidden')) return;
 
@@ -2783,7 +2650,6 @@
     }
   });
 
-  // Obsługa przeciągania (Swipe) dla urządzeń mobilnych
   let touchStartX = 0;
   let touchEndX = 0;
 
@@ -2797,37 +2663,34 @@
   }, {passive: true});
 
   function handleSwipe() {
-    const threshold = 15; // Zmniejszony dystans - super czułe przesunięcie
+    const threshold = 15;
     if (touchEndX < touchStartX - threshold) {
-      showNext(); // Przesunięcie w lewo
+      showNext();
     }
     if (touchEndX > touchStartX + threshold) {
-      showPrev(); // Przesunięcie w prawo
+      showPrev();
     }
   }
 
-  // --- LOGIKA ANIMACJI PRZYCISKU BOOKSY ---
+
   const booksyBtn = document.getElementById('booksyBtn');
   let isBooksyAnimActive = false;
   let isBooksyVisible = false;
-  let booksyTimeouts = []; // Tablica zapamiętująca wszystkie odliczania czasu
+  let booksyTimeouts = [];
 
-  // Funkcja awaryjnego zatrzymania: "zabija" odliczanie i przywraca stan początkowy
   function killBooksyAnimation() {
-    booksyTimeouts.forEach(clearTimeout); // Czyści wszystkie timery z pamięci
+    booksyTimeouts.forEach(clearTimeout);
     booksyTimeouts = [];
     if (booksyBtn) {
-      booksyBtn.classList.remove('show-logo'); // Wymusza pokazanie napisu "Umów wizytę"
+      booksyBtn.classList.remove('show-logo');
     }
-    isBooksyAnimActive = false; // Odblokowuje możliwość ponownego uruchomienia w przyszłości
+    isBooksyAnimActive = false;
   }
 
-  // Obserwator monitorujący czy przycisk fizycznie znajduje się w kadrze
   if (booksyBtn) {
     const btnObserver = new IntersectionObserver((entries) => {
       isBooksyVisible = entries[0].isIntersecting;
       
-      // Jeśli przycisk zniknął (przez scroll lub rozwinięcie akordeonu) - wyłączamy wszystko natychmiast
       if (!isBooksyVisible) {
         killBooksyAnimation();
       }
@@ -2836,53 +2699,44 @@
   }
 
   function triggerBooksyAnimation() {
-    // Nie odpalaj jeśli jest zablokowane lub przycisku nie ma na ekranie
     if (!booksyBtn || isBooksyAnimActive || !isBooksyVisible) return;
     
     isBooksyAnimActive = true; 
 
-    // Cykl 0: Czekamy 3 sekundy na napisie "Umów wizytę" zanim cokolwiek się stanie
     let t0 = setTimeout(() => {
       
-      // Cykl 1: Pokazanie obrazka Booksy
       booksyBtn.classList.add('show-logo');
       
       let t1 = setTimeout(() => {
-        // Powrót do "Umów wizytę" (Obrazek znika po 2s)
         booksyBtn.classList.remove('show-logo');
         
         let t2 = setTimeout(() => {
-          // Cykl 2: Ponowne pokazanie obrazka Booksy (Napis wisiał przez 4s)
           booksyBtn.classList.add('show-logo');
           
           let t3 = setTimeout(() => {
-            // Ostateczny powrót do "Umów wizytę" (Obrazek znika po 2s)
             booksyBtn.classList.remove('show-logo');
             
             let t4 = setTimeout(() => {
-              // Zdejmujemy całkowitą blokadę (Twój zaplanowany odpoczynek 8s)
               isBooksyAnimActive = false;
             }, 7000); 
             booksyTimeouts.push(t4);
 
-          }, 2600); // <--- CZAS: 2 sekundy (pokazywanie drugiego logo)
+          }, 2600);
           booksyTimeouts.push(t3);
 
-        }, 4200); // <--- CZAS: 4 sekundy (środkowa przerwa na czytanie tekstu)
+        }, 4200);
         booksyTimeouts.push(t2);
 
-      }, 2600); // <--- CZAS: 2 sekundy (pokazywanie pierwszego logo)
+      }, 2600);
       booksyTimeouts.push(t1);
 
-    }, 1800); // <--- CZAS: 3 sekundy startowego oczekiwania (tekst "Umów wizytę")
+    }, 1800);
     booksyTimeouts.push(t0);
   }
 
-  // Odpalanie za każdym wykrytym ruchem kółka myszy lub pociągnięciem na telefonie
   window.addEventListener('scroll', triggerBooksyAnimation, { passive: true });
 
 </script>
-<!-- BANER COOKIES -->
 <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Informacja o plikach cookie">
   <div class="cookie-text">
     Używamy niezbędnych plików cookies do działania strony. Opcjonalnie używamy ciasteczek analitycznych (Google Analytics), aby badać ruch na stronie. 
@@ -2912,9 +2766,9 @@
       const iframe = document.getElementById('googleMapIframe');
       const placeholder = document.getElementById('mapPlaceholder');
       if (iframe && placeholder) {
-        iframe.src = iframe.getAttribute('data-src'); // Podstawia prawdziwy link
-        iframe.style.display = 'block';               // Pokazuje mapę
-        placeholder.style.display = 'none';           // Ukrywa tekst o blokadzie
+        iframe.src = iframe.getAttribute('data-src');
+        iframe.style.display = 'block';
+        placeholder.style.display = 'none';
       }
     }
 
@@ -2934,7 +2788,6 @@
     rejectBtn.addEventListener('click', () => {
       cookieBanner.classList.remove('show');
       localStorage.setItem('b8_cookies_choice', 'rejected');
-      // Google pozostaje zablokowane (ustawienie domyślne na górze strony)
     });
   });
 
