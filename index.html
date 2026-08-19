@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pracownia B8 | Salon Fryzjerski Rzeszów</title>
+<!-- OPIS DLA WYSZUKIWARKI GOOGLE -->
+<meta name="description" content="Pracownia B8 to ekskluzywny salon fryzjerski w sercu Rzeszowa (ul. Bernardyńska 8). Oferujemy profesjonalne strzyżenie, nowoczesną koloryzację, dekoloryzację oraz luksusową pielęgnację Nashi Argan. Umów wizytę online!">
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pracowniab8.pl/">
+<meta property="og:title" content="Pracownia B8 | Salon Fryzjerski Rzeszów">
+<meta property="og:description" content="Ekskluzywny salon fryzjerski w sercu Rzeszowa. Zarezerwuj wizytę i odkryj luksusową pielęgnację włosów.">
+<meta property="og:image" content="https://pracowniab8.pl/hero-bg.png">
+
+<!-- KANONICZNY ADRES URL -->
+<link rel="canonical" href="https://pracowniab8.pl/">
+
 <!-- GOOGLE CONSENT MODE (Ustawienia domyślne - blokada przed kliknięciem) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -65,6 +78,18 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+  }
+
+  .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
   }
 
   img { max-width: 100%; display:block; }
@@ -1676,6 +1701,7 @@
 
 <!-- HERO -->
 <header class="hero" id="top">
+  <h1 class="sr-only">Pracownia B8 - Dobry Fryzjer Rzeszów, Koloryzacja i Strzyżenie</h1>
   <div class="hero-content" id="heroContent">
     <span class="hero-kicker">BERNARDYŃSKA 8</span>
     <img src="logo.png" alt="Pracownia B8 - FRYZJERSTWO" class="hero-logo">
@@ -2590,7 +2616,7 @@
       
       const thumb = document.createElement('img');
       thumb.src = imgPath;
-      thumb.alt = `Zdjęcie z galerii nr ${index}`;
+      thumb.alt = `Pracownia B8 - Fryzjer Rzeszów koloryzacja włosów, zdjęcie nr ${index}`;
       thumb.loading = "lazy";
       
       btn.appendChild(thumb);

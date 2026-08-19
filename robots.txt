@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pracowniab8.pl/sitemap.xml
