@@ -2249,9 +2249,17 @@
       <a href="regulamin.pdf" class="footer-link-regulamin" target="_blank">Regulamin salonu</a>
       <a href="#" class="footer-link-regulamin" onclick="localStorage.removeItem('b8_cookies_choice'); location.reload(); return false;">Zarządzaj Cookies</a>
       <a href="polityka-prywatnosci.html" class="footer-link-regulamin" target="_blank">Polityka prywatności</a>
+      
+      <!-- TWÓJ PODPIS -->
+      <span class="footer-link-regulamin dev-signature" id="devSignature" title="Kliknij, aby skopiować e-mail">Wykonanie: Imię Nazwisko</span>
     </div>
   </div>
 </footer>
+
+<!-- KOMUNIKAT EMAIL TOAST -->
+<div id="emailToast" class="email-toast">
+  Skopiowano adres e-mail
+</div>
 
 <script>
   // Dynamiczny rocznik w stopce
@@ -2891,6 +2899,30 @@
       cookieBanner.classList.remove('show');
       localStorage.setItem('b8_cookies_choice', 'rejected');
       // Google pozostaje zablokowane (ustawienie domyślne na górze strony)
+    });
+  });
+
+
+  document.getElementById('devSignature').addEventListener('click', function() {
+
+    const _0x1a = "mateusz.maziarka";
+
+    const _0x2b = "proton.me";  
+    
+
+    const _email = `${_0x1a}${String.fromCharCode(64)}${_0x2b}`;
+    
+
+    navigator.clipboard.writeText(_email).then(() => {
+      const eToast = document.getElementById('emailToast');
+      eToast.classList.add('show');
+      
+
+      setTimeout(() => {
+        eToast.classList.remove('show');
+      }, 3000);
+    }).catch(err => {
+      console.error('Błąd kopiowania:', err);
     });
   });
 </script>
